@@ -1,0 +1,218 @@
+body {
+    margin: 0;
+}
+
+.top-title {
+    float: left;
+    font-family: 'Arial italic';
+    position: relative;
+    font-size: 12PX;
+    height: 50px;
+    float: left;
+    left: 150px;
+    top: 20px;
+    color: #FFFFFF;
+}
+
+.top_bottom_menu {
+    background: #6293BB;
+    color: white;
+}
+
+#menu1 li A:link {
+    COLOR: white;
+    font-weight: bold;
+    font-size: 14px;
+    TEXT-DECORATION: none;
+}
+
+#menu1 li A:visited {
+    COLOR: white;
+    font-weight: bold;
+    font-size: 14px;
+    TEXT-DECORATION: none;
+}
+
+#menu1 li A:hover {
+    COLOR: white;
+    font-weight: bold;
+    font-size: 14px;
+    TEXT-DECORATION: underline;
+}
+
+#menu1 li A:active {
+    COLOR: white;
+    font-weight: bold;
+    font-size: 14px;
+    TEXT-DECORATION: underline;
+}
+
+#nav tr {
+    background: #e0e0e0;
+}
+
+#historyMenu {
+    float: left;
+    padding-left: 0;
+}
+
+#historyMenu:after {
+    display: block;
+    content: 'clear';
+    clear: both;
+    line-height: 0;
+    visibility: hidden;
+}
+
+#historyMenu li {
+    float: left;
+    font-size: 16px;
+    margin-top: 2px;
+    margin-left: 10px;
+    cursor: pointer;
+    list-style-type: none;
+}
+
+#menu1:after {
+    display: block;
+    content: 'clear';
+    clear: both;
+    line-height: 0;
+    visibility: hidden;
+}
+
+#menu1 li {
+    float: left;
+    font-family: "宋体";
+    font-weight: normal;
+    list-style-type: none;
+    padding-left: 4px;
+    text-align: left;
+    vertical-align: bottom;
+    margin-top: 2px;
+    cursor: pointer;
+}
+
+#menu1 li #home {
+    padding-left: 5px;
+    margin-left: 0px;
+}
+
+#menu1 li #back {
+    padding-left: 3px;
+    margin-left: 0px;
+}
+
+#menu1 li #forward {
+    padding-left: 3px;
+    margin-left: 0px;
+}
+
+#menu1 #firs {
+    margin-top: 2px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 9px;
+}
+
+#menu1 {
+    margin: 0px;
+    padding: 0px;
+}
+
+#menu2 {
+    position: absolute;
+    right: 0px;
+    top: 10px;
+    height: 20px;
+    margin-right: 50px;
+    list-style: none;
+}
+
+#menu2 ul {
+    margin: 0;
+    position: relative;
+}
+
+#menu2 li {
+    list-style-type: none;
+    float: left;
+    margin-left: 12px;
+    position: relative;
+}
+
+#menu2 li .submenu {
+    width: 150px;
+    display: none;
+    z-index: 2;
+}
+
+#menu2 li:hover .submenu {
+    display: block;
+}
+
+#menu2 li a {
+    color: blue;
+    text-decoration: none;
+    font-size: 12px;
+    font-family: "新宋体";
+    cursor: pointer;
+}
+
+#menu2 li a:hover {
+    text-decoration: underline;
+}
+
+.logoDiv {
+    width: 219px;
+    height: 50px;
+    float: left;
+    background-image: url(../images/ico.jpg);
+    background-repeat: no-repeat;
+}
+
+li .back-forward-link {
+    margin-left: 10px;
+}
+
+#topMessage {
+    font-size: 12px;
+    color: blue;
+    margin-left: 50px;
+}
+
+.logo_and_nav {
+    width: 100%;
+    height: 59px;
+}
+
+.logo_and_nav .logo {
+    float: left;
+    width: 59px;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: 59px 59px;
+    background-image: url(/oa_static/images/logo.png);
+}
+
+.logo_and_nav .company-info {
+    float: left;
+    width: 500px;
+    height: 100%;
+    padding: 4px 5px;
+    font-family: Microsoft YaHei;
+}
+
+.logo_and_nav .company-info .company-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.logo_and_nav .company-info .company-name-en {
+    font-size: 16px;
+    color: #ccc;
+}
+
+.login-button-div {
+    padding: 20px 0;
+}

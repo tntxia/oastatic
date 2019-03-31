@@ -1,0 +1,121 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.bannerDiv {
+    height: 9em;
+    background: white;
+}
+
+
+.clear {
+    clear: both;
+}
+
+.login-nav {
+    border-top: #ccc 1px solid;
+    padding-right: 1em;
+	font-size:2em;
+}
+
+.login-nav a{
+	font-size:1em;
+}
+
+.loginMain {
+    text-align: center;
+    width: 100%;
+    height: calc(100% - 80px);
+    background: #0066CC;
+    overflow: auto;
+}
+
+
+
+.loginForm {
+    width: 516px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    background: white;
+}
+
+.login-banner {
+	position:relative;
+    height: 2em;
+    color: white;
+    font-size: 5em;
+    line-height: 150px;
+    text-align: left;
+    padding-left: 40px;
+    background: -webkit-linear-gradient(to bottom, #1F3491, #2775BD);
+    /* Safari 5.1 - 6 */
+    background: -o-linear-gradient(to bottom, #1F3491, #2775BD);
+    /* Opera 11.1 - 12*/
+    background: -moz-linear-gradient(to bottom, #1F3491, #2775BD);
+    /* Firefox 3.6 - 15*/
+    background: linear-gradient(to bottom, #1F3491, #2775BD);
+    /* 标准的语法 */
+}
+
+.login-banner:after {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: url(../images/login-form-bg.png) repeat center center;
+	opacity: .4
+}
+
+.loginDiv {
+    padding-top: 50px;
+    background: white;
+}
+
+.item-row{
+	font-size:4em;
+	display:flex;
+}
+
+.item-row label{
+	width:30%;
+	padding-left:1em;
+}
+
+.item-row div{
+	width:70%;
+	position:relative;
+}
+.item-row div input{
+	width:80%;
+	height:1em;
+	font-size:0.8em;
+}
+
+.loginInput {
+    border: 1px solid #2971cc;
+    padding: 0;
+    margin: 0;
+    height: 22px;
+    line-height: 22px;
+}
+
+.login-button-div {
+    padding: 20px 0;
+	text-align:center;
+	
+}
+
+.login-button-div button{
+	font-size:4em;
+	background:none;
+	border-radius:5px;
+	background:#eee;
+	border:1px solid #ccc;
+	padding:0.3em 1em;
+}

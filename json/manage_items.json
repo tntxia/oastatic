@@ -1,0 +1,64 @@
+[{
+	"items": [{
+		"name": "用户管理",
+		"url": "/admin/index.mvc#user"
+	},{
+		"name": "部门设置",
+		"url": "/admin/index.mvc#department"
+	},{
+		"name": "职位设置",
+		"url": "position/list.jsp"
+	},{
+		"name": "仓库管理",
+		"url": "warehouse/manage.jsp"
+	},{
+		"name": "权限信息管理",
+		"url": "/admin/index.mvc#right"
+	},{
+		"name": "权限组管理",
+		"url": "/admin/index.mvc#restrain"
+	},{
+		"name": "系统基本信息管理",
+		"url": "../toUpdateSystemInfo.dispatch"
+	}]
+},{},{
+	"items": [{
+		"name": "公司基本信息",
+		"url": "companym.jsp"
+	},{
+		"name": "信用级别",
+		"url": "zdy/xyjb/hlxx.jsp"
+	},{
+		"name": "行业性质",
+		"url": "../xclient/hylx.jsp"
+	},{
+		"name": "汇率管理",
+		"url": "hl/hlxx.jsp"
+	},{
+		"name": "活动类型",
+		"url": "zdy/activity/activity.jsp"
+	},{
+		"name": "权限组管理",
+		"url": "/admin/index.mvc#restrain"
+	},{
+		"name": "系统基本信息管理",
+		"url": "../toUpdateSystemInfo.dispatch"
+	}]
+},{},{
+	"items": [{
+		"name": "计量单位",
+		"url": "punit/punit.jsp"
+	},{
+		"name": "收款银行",
+		"url": "bank/hlxx.jsp"
+	},{
+		"name": "产品类别",
+		"url": "zdy/pro-fl/secprofl.jsp"
+	},{
+		"name": "品牌自定义",
+		"url": "zdy/pro-fl/lprofl.jsp"
+	},{
+		"name": "知识库类型",
+		"url": "knowledge/knowledge.dispatch?method=typeList"
+	}]
+}]
