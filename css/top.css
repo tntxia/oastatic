@@ -216,3 +216,9 @@ li .back-forward-link {
 .login-button-div {
     padding: 20px 0;
 }
+
+.current-online-info {
+	position: absolute;
+	right: 50px;
+	top: 35px;
+}
