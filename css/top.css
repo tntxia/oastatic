@@ -1,5 +1,6 @@
 body {
     margin: 0;
+	background: #f5f5f5
 }
 
 .top-title {
@@ -120,7 +121,7 @@ body {
     padding: 0px;
 }
 
-#menu2 {
+.right-top-nav {
     position: absolute;
     right: 0px;
     top: 10px;
@@ -129,29 +130,29 @@ body {
     list-style: none;
 }
 
-#menu2 ul {
+.right-top-nav  ul {
     margin: 0;
     position: relative;
 }
 
-#menu2 li {
+.right-top-nav  li {
     list-style-type: none;
     float: left;
     margin-left: 12px;
     position: relative;
 }
 
-#menu2 li .submenu {
+.right-top-nav  li .submenu {
     width: 150px;
     display: none;
     z-index: 2;
 }
 
-#menu2 li:hover .submenu {
+.right-top-nav  li:hover .submenu {
     display: block;
 }
 
-#menu2 li a {
+.right-top-nav  li a {
     color: blue;
     text-decoration: none;
     font-size: 12px;
@@ -159,7 +160,7 @@ body {
     cursor: pointer;
 }
 
-#menu2 li a:hover {
+.right-top-nav  li a:hover {
     text-decoration: underline;
 }
 
