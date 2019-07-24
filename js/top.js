@@ -1,15 +1,5 @@
 $(function() {
 
-	$.ajax({
-		url:webRoot+"/logininfo.do"
-	}).done(res=>{
-		$("#loginList").empty();
-		$("#online-num").text(res.loginList.length);
-		$.each(res.loginList,function(i,d){
-			$("#loginList").append(d+";")
-		})
-	})
-
     $.ajax({
         url: webRoot + "/menu!list.do"
     }).done(res => {
@@ -25,7 +15,16 @@ $(function() {
     })
 
     new Vue({
-        el: '#historyMenu',
+        el: '#topDiv',
+        data: {
+            username: null,
+            loginList: [],
+            toDoCount: 0,
+            todoDialogTitle: null
+        },
+        mounted() {
+            this.fetchData();
+        },
         methods: {
             home: function() {
                 window.location.href = webRoot + "/index.mvc";
@@ -35,69 +34,56 @@ $(function() {
             },
             forward: function() {
                 history.forward();
-            }
-        }
-    });
+            },
+            showToDo() {
+                let dialog = this.$refs["myTodoDialog"];
+                dialog.show();
+                return;
+                BootstrapUtils.createDialog({
+                    id: 'toToDialog',
+                    template: webRoot + '/template/todo.html',
+                    onFinish() {
+                        let vueTarget = this.find("#useralert");
+                        let vm = new Vue({
+                            data: {
+                                username: null,
+                                items: []
+                            },
+                            mounted() {
+                                this.fetchData();
+                            },
+                            methods: {
+                                fetchData: function() {
+                                    let vm = this;
 
-    new Vue({
-        el: '#menu2',
-		data:{
-			toDoCount:0
-		},
-		mounted(){
-			this.fetchData();
-		},
-        methods: {
-			showToDo(){
-				BootstrapUtils.createDialog({
-					id:'toToDialog',
-					template:webRoot+'/template/todo.html',
-					onFinish(){
-						let vueTarget = this.find("#useralert");
-						let vm = new Vue({
-							data:{
-								username:null,
-								items:[]
-							},
-							mounted(){
-								this.fetchData();
-							},
-							methods:{
-								fetchData:function(){
-									let vm = this;
-									
-									$.ajax({
-										url:webRoot+"/userAlert.do",
-										success:function(data){
-											vm.username = data.username;
-											vm.items = data.items;
-										},
-										error:function(e){
-											console.error(e);
-										}
-									});
-								}
-							}
-						});
-						vm.$mount(vueTarget.get(0));
-					}
-				});
-				$("#toToDialog").modal('show');
-			},
-			fetchData(){
-				let vm = this;
-				$.ajax({
-					url:webRoot+"/userAlert.do",
-					success:function(data){
-						$.each(data.items,function(i,d){
-							vm.toDoCount += d.count;
-						})
-					},
-					error:function(e){
-						console.error(e);
-					}
-				});
-			},
+                                    $.ajax({
+                                        url: webRoot + "/userAlert.do",
+                                        success: function(data) {
+                                            vm.username = data.username;
+                                            vm.items = data.items;
+                                        },
+                                        error: function(e) {
+                                            console.error(e);
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                        vm.$mount(vueTarget.get(0));
+                    }
+                });
+                $("#toToDialog").modal('show');
+            },
+            fetchData() {
+                let vm = this;
+                $.ajax({
+                    url: webRoot + "/logininfo.do"
+                }).done(res => {
+                    vm.username = res.username;
+                    vm.todoDialogTitle = vm.username + "的待办事项"
+                    vm.loginList = res.loginList;
+                })
+            },
             passchange: function() {
                 openChangePassDialog();
             },
