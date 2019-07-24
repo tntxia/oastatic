@@ -38,44 +38,18 @@ $(function() {
             showToDo() {
                 let dialog = this.$refs["myTodoDialog"];
                 dialog.show();
-                return;
-                BootstrapUtils.createDialog({
-                    id: 'toToDialog',
-                    template: webRoot + '/template/todo.html',
-                    onFinish() {
-                        let vueTarget = this.find("#useralert");
-                        let vm = new Vue({
-                            data: {
-                                username: null,
-                                items: []
-                            },
-                            mounted() {
-                                this.fetchData();
-                            },
-                            methods: {
-                                fetchData: function() {
-                                    let vm = this;
-
-                                    $.ajax({
-                                        url: webRoot + "/userAlert.do",
-                                        success: function(data) {
-                                            vm.username = data.username;
-                                            vm.items = data.items;
-                                        },
-                                        error: function(e) {
-                                            console.error(e);
-                                        }
-                                    });
-                                }
-                            }
-                        });
-                        vm.$mount(vueTarget.get(0));
-                    }
-                });
-                $("#toToDialog").modal('show');
             },
             fetchData() {
                 let vm = this;
+                $.ajax({
+                    url: webRoot + "/userAlertCount.do",
+                    success: function(data) {
+                        vm.toDoCount = data;
+                    },
+                    error: function(e) {
+                        console.error(e);
+                    }
+                });
                 $.ajax({
                     url: webRoot + "/logininfo.do"
                 }).done(res => {
