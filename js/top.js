@@ -36,7 +36,7 @@ $(function() {
                 history.forward();
             },
             showToDo() {
-                let dialog = this.$refs["myTodoDialog"];
+                let dialog = dialogVue.getDialog("myTodoDialog");
                 dialog.show();
             },
             fetchData() {
