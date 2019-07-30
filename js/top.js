@@ -1,7 +1,8 @@
 $(function() {
 
     $.ajax({
-        url: webRoot + "/menu!list.do"
+        url: webRoot + "/menu!list.do",
+        cache: false
     }).done(res => {
         $.each(res, (i, d) => {
             let li = $("<li>");
@@ -27,7 +28,7 @@ $(function() {
         },
         methods: {
             home: function() {
-                window.location.href = webRoot + "/index.mvc";
+                router.goRoute("index_main");
             },
             back: function() {
                 history.back();

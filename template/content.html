@@ -1,0 +1,33 @@
+<div class="oa-main-content" id="app">
+    <div id="timeDiv" align="right" style="margin-right: 10px;"></div>
+    <div class="title">
+        客户跟进 &gt;&gt;
+    </div>
+    <jxiaui-datagrid :dataset="customerFollowDataset">
+        <jxiaui-datagrid-item label="#" type="index"></jxiaui-datagrid-item>
+        <jxiaui-datagrid-item label="洽谈内容">
+            <template v-slot="row">
+                <a :href="getUrl(row)">{{row.c_nr}}</a>
+            </template>
+        </jxiaui-datagrid-item>
+        <jxiaui-datagrid-item label="客户名称">
+            <template v-slot="row">
+                <a :href="getUrlCo(row)">{{row.c_name}}</a>
+            </template>
+        </jxiaui-datagrid-item>
+        <jxiaui-datagrid-item label="联系电话" type="cotel"></jxiaui-datagrid-item>
+    </jxiaui-datagrid>
+    <div class="title">
+        公告 &gt;&gt;
+    </div>
+    <jxiaui-datagrid :dataset="publicDataset">
+        <jxiaui-datagrid-item label="#" type="index"></jxiaui-datagrid-item>
+        <jxiaui-datagrid-item label="公告主题">
+            <template v-slot="row">
+                <a :href="getUrlPublic(row)">{{row.titel}}</a>
+            </template>
+        </jxiaui-datagrid-item>
+        <jxiaui-datagrid-item label="发布时间" field="fvdate"></jxiaui-datagrid-item>
+        <jxiaui-datagrid-item label="发布人" field="username"></jxiaui-datagrid-item>
+    </jxiaui-datagrid>
+</div>
