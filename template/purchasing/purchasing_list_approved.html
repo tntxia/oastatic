@@ -1,0 +1,69 @@
+<div class="main_sec" id="app">
+	<div id="searchDiv">
+		型号：<input v-model="form.epro"> 
+		品牌：<brand-select v-model="form.brand"></brand-select>
+		供 应 商：<input v-model='form.supplier'>
+		采购编号：<input v-model='form.number'>
+		<br>
+		起始日期：<input v-model='form.startdate'>
+		终止日期：<input v-model='form.enddate'>
+		
+		采购方向:<select>
+			<option value="">请选择</option>
+			<option>国际采购</option>
+			<option>国内采购</option>
+		</select>
+		责任人:
+		<select v-model="form.man">
+			<option value="">请选择</option>
+			<#list purchasingManList as p>
+			<option>${p.name }</option>
+			</#list>
+		</select>
+		状态:
+		<select v-model="form.status">
+			<option value="">请选择</option>
+			<option value="2">审批通过</option>
+			<option value="3">合同已确认</option>
+			<option value="4">待入库</option>
+			<option value="6">已入库</option>
+			<option value="7">全部退货</option>
+			<option value="8">部分退货</option>
+		</select>
+		<button id="viewTop">产品最高记录</button>
+		<button @click="query">查询</button>
+	</div>
+	<div>
+		<jxiaui-datagrid class="table" ref="datagrid" :dataset="dataset">
+	        <jxiaui-datagrid-item label="序号" type="index"></jxiaui-datagrid-item>
+			<jxiaui-datagrid-item label="合同编号">
+				<template v-slot="row">
+					<a :href="getUrl(row)" target="_blank">{{row.number}}</a>
+				</template>
+			</jxiaui-datagrid-item>
+			<jxiaui-datagrid-item label="供应商">
+				<template v-slot="row">
+					<a :href="getUrl(row)" target="_blank">{{row.coname}}</a>
+				</template>
+			</jxiaui-datagrid-item>
+			<jxiaui-datagrid-item label="销售合同号" field="sub">
+			</jxiaui-datagrid-item>
+			
+			<jxiaui-datagrid-item label="货币" field="money">
+			</jxiaui-datagrid-item>
+			<jxiaui-datagrid-item label="采购金额" field="totalPrice">
+			</jxiaui-datagrid-item>
+			<jxiaui-datagrid-item label="运费" field="pay_je">
+			</jxiaui-datagrid-item>
+			<jxiaui-datagrid-item label="采购方向" field="senddate">
+			</jxiaui-datagrid-item>
+			<jxiaui-datagrid-item label="责任人" field="man">
+			</jxiaui-datagrid-item>
+			<jxiaui-datagrid-item label="状态" field="l_spqk">
+			</jxiaui-datagrid-item>
+			<jxiaui-datagrid-item label="日期" field="datetime">
+			</jxiaui-datagrid-item>
+	    </jxiaui-datagrid>
+	</div>
+</div>
+

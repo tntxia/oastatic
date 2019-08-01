@@ -1,0 +1,34 @@
+<div style="display: flex;flex-direction: column;height:100%;" id="app">
+    <div id="searchForm" style="height:23px;">
+        <select v-model="form.year">
+            <option value="">请选择</option>
+            <option v-for="y in yearList">{{y}}</option>
+        </select> 年
+        <select v-model="form.month">
+            <option value="">请选择</option>
+            <option v-for="y in monthList">{{y}}</option>
+        </select> 月
+        <button @click="query">搜索</button>
+        <button @click="exportGathering">导出</button>
+    </div>
+    <div style="height: calc(100vh - 146px);">
+        <span class="fa fa-spinner fa-spin" v-if="loading"></span>
+        <jxiaui-datagrid class="table" ref="gatheringTable" :dataset="dataset">
+            <jxiaui-datagrid-item label="#" type="index"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="合同编号">
+                <template v-slot="row">
+					<a href="javascript:void(0)" @click="getUrl(row)">{{row.orderform}}</a>
+				</template>
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="发票类别" field="rate"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="客户名称" field="coname"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="合同金额" field="total"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="已开发票" field="i_man"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="待开发票" field="sub"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="欠款金额" field="left"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="实际发运日期" field="sjdate"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="部门" field="sale_dept"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="当前状态" field="states"></jxiaui-datagrid-item>
+        </jxiaui-datagrid>
+    </div>
+</div>

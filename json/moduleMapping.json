@@ -1,0 +1,202 @@
+{
+    "index_main": {
+        "path": "/oa_static/modules/index_main.module.js",
+        "template": "/oa_static/template/content.html"
+    },
+    "mail_inbox": {
+        "path": "/oa_static/modules/mail/mail_inbox.module.js",
+        "template": "/oa_static/template/mail/mail_inbox.html"
+    },
+    "warehouse_manage": {
+        "path": "/oa_static/modules/warehouse/warehouse_manage.module.js",
+        "template": "/oa_static/template/warehouse/warehouse_manage.html"
+    },
+    "warehouse_in_manage": {
+        "path": "/oa_static/modules/warehouse/warehouse_in_manage.module.js",
+        "template": "/oa_static/template/warehouse/warehouse_in_manage.html"
+    },
+    "warehouse_out_manage": {
+        "path": "/oa_static/modules/warehouse/warehouse_out_manage.module.js",
+        "template": "/oa_static/template/warehouse/warehouse_out_manage.html"
+    },
+    "warehouse_logistics_company": {
+        "path": "/oa_static/modules/warehouse/warehouse_logistics_company.module.js",
+        "template": "/oa_static/template/warehouse/warehouse_logistics_company.html"
+    },
+    "warehouse_sale_approving": {
+        "path": "/oa_static/modules/warehouse/warehouse_sale_approving.module.js",
+        "template": "/oa_static/template/warehouse/warehouse_sale_approving.html"
+    },
+    "warehouse_sale": {
+        "path": "/oa_static/modules/warehouse/warehouse_sale.module.js",
+        "template": "/oa_static/template/warehouse/warehouse_sale.html"
+    },
+    "warehouse_sale_outed": {
+        "path": "/oa_static/modules/warehouse/warehouse_sale_outed.module.js",
+        "template": "/oa_static/template/warehouse/warehouse_sale_outed.html"
+    },
+    "warehouse_delivery_list": {
+        "path": "/oa_static/modules/warehouse/warehouse_delivery_list.module.js",
+        "template": "/oa_static/template/warehouse/warehouse_delivery_list.html"
+    },
+    "warehouse_send_bill_list": {
+        "path": "/oa_static/modules/warehouse/warehouse_send_bill_list.module.js",
+        "template": "/oa_static/template/warehouse/warehouse_send_bill_list.html"
+    },
+    "purchasing_supplier": {
+        "path": "/oa_static/modules/purchasing/purchasing_supplier.module.js",
+        "template": "/oa_static/template/purchasing/purchasing_supplier.html"
+    },
+    "purchasing_contact": {
+        "path": "/oa_static/modules/purchasing/purchasing_contact.module.js",
+        "template": "/oa_static/template/purchasing/purchasing_contact.html"
+    },
+    "purchasing_inquiry": {
+        "path": "/oa_static/modules/purchasing/purchasing_inquiry.module.js",
+        "template": "/oa_static/template/purchasing/purchasing_inquiry.html"
+    },
+    "purchasing_supplier_shift": {
+        "path": "/oa_static/modules/purchasing/purchasing_supplier_shift.module.js",
+        "template": "/oa_static/template/purchasing/purchasing_supplier_shift.html"
+    },
+    "purchasing_list_draft": {
+        "path": "/oa_static/modules/purchasing/purchasing_list_draft.module.js",
+        "template": "/oa_static/template/purchasing/purchasing_list_draft.html"
+    },
+    "purchasing_list_approving": {
+        "path": "/oa_static/modules/purchasing/purchasing_list_approving.module.js",
+        "template": "/oa_static/template/purchasing/purchasing_list_approving.html"
+    },
+    "purchasing_list_approved": {
+        "path": "/oa_static/modules/purchasing/purchasing_list_approved.module.js",
+        "template": "/oa_static/template/purchasing/purchasing_list_approved.html"
+    },
+    "purchasing_list_deleted": {
+        "path": "/oa_static/modules/purchasing/purchasing_list_deleted.module.js",
+        "template": "/oa_static/template/purchasing/purchasing_list_deleted.html"
+    },
+    "purchasing_refund_list_draft": {
+        "path": "/oa_static/modules/purchasing/purchasing_refund_list_draft.module.js",
+        "template": "/oa_static/template/purchasing/purchasing_refund_list_draft.html"
+    },
+    "purchasing_refund_list_approving": {
+        "path": "/oa_static/modules/purchasing/purchasing_refund_list_approving.module.js",
+        "template": "/oa_static/template/purchasing/purchasing_refund_list_approving.html"
+    },
+    "purchasing_refund_list_approved": {
+        "path": "/oa_static/modules/purchasing/purchasing_refund_list_approved.module.js",
+        "template": "/oa_static/template/purchasing/purchasing_refund_list_approved.html"
+    },
+    "purchasing_refund_list_deleted": {
+        "path": "/oa_static/modules/purchasing/purchasing_refund_list_deleted.module.js",
+        "template": "/oa_static/template/purchasing/purchasing_refund_list_deleted.html"
+    },
+    "sale_list_draft": {
+        "path": "/oa_static/modules/sale/sale_list_draft.module.js",
+        "template": "/oa_static/template/sale/sale_list_draft.html"
+    },
+    "sale_list_approving": {
+        "path": "/oa_static/modules/sale/sale_list_approving.module.js",
+        "template": "/oa_static/template/sale/sale_list_approving.html"
+    },
+    "sale_list_approved": {
+        "path": "/oa_static/modules/sale/sale_list_approved.module.js",
+        "template": "/oa_static/template/sale/sale_list_approved.html"
+    },
+    "sale_list_deleted": {
+        "path": "/oa_static/modules/sale/sale_list_deleted.module.js",
+        "template": "/oa_static/template/sale/sale_list_deleted.html"
+    },
+    "sale_product_list": {
+        "path": "/oa_static/modules/sale/sale_product_list.module.js",
+        "template": "/oa_static/template/sale/sale_product_list.html"
+    },
+    "sale_inquiry_list": {
+        "path": "/oa_static/modules/sale/sale_inquiry_list.module.js",
+        "template": "/oa_static/template/sale/sale_inquiry_list.html"
+    },
+    "sale_quote_list_draft": {
+        "path": "/oa_static/modules/sale/sale_quote_list_draft.module.js",
+        "template": "/oa_static/template/sale/sale_quote_list_draft.html"
+    },
+    "sale_project_list_executing": {
+        "path": "/oa_static/modules/sale/sale_project_list_executing.module.js",
+        "template": "/oa_static/template/sale/sale_project_list_executing.html"
+    },
+    "sale_project_list_finish": {
+        "path": "/oa_static/modules/sale/sale_project_list_finish.module.js",
+        "template": "/oa_static/template/sale/sale_project_list_finish.html"
+    },
+    "sale_partner_list": {
+        "path": "/oa_static/modules/sale/sale_partner_list.module.js",
+        "template": "/oa_static/template/sale/sale_partner_list.html"
+    },
+    "sale_client_list_potential": {
+        "path": "/oa_static/modules/sale/sale_client_list_potential.module.js",
+        "template": "/oa_static/template/sale/sale_client_list_potential.html"
+    },
+    "sale_client_list": {
+        "path": "/oa_static/modules/sale/sale_client_list.module.js",
+        "template": "/oa_static/template/sale/sale_client_list.html"
+    },
+    "sale_client_contact_list": {
+        "path": "/oa_static/modules/sale/sale_client_contact_list.module.js",
+        "template": "/oa_static/template/sale/sale_client_contact_list.html"
+    },
+    "sale_client_request_list": {
+        "path": "/oa_static/modules/sale/sale_client_request_list.module.js",
+        "template": "/oa_static/template/sale/sale_client_request_list.html"
+    },
+    "finance_fund": {
+        "path": "/oa_static/modules/finance/finance_fund.module.js",
+        "template": "/oa_static/template/finance/finance_fund.html"
+    },
+    "finance_wage": {
+        "path": "/oa_static/modules/finance/finance_wage.module.js",
+        "template": "/oa_static/template/finance/finance_wage.html"
+    },
+    "finance_exchange": {
+        "path": "/oa_static/modules/finance/finance_exchange.module.js",
+        "template": "/oa_static/template/finance/finance_exchange.html"
+    },
+    "finance_payment_wait": {
+        "path": "/oa_static/modules/finance/finance_payment_wait.module.js",
+        "template": "/oa_static/template/finance/finance_payment_wait.html"
+    },
+    "finance_payment_finish": {
+        "path": "/oa_static/modules/finance/finance_payment_finish.module.js",
+        "template": "/oa_static/template/finance/finance_payment_finish.html"
+    },
+    "finance_payment_refund_wait": {
+        "path": "/oa_static/modules/finance/finance_payment_refund_wait.module.js",
+        "template": "/oa_static/template/finance/finance_payment_refund_wait.html"
+    },
+    "finance_payment_refund_finish": {
+        "path": "/oa_static/modules/finance/finance_payment_refund_finish.module.js",
+        "template": "/oa_static/template/finance/finance_payment_refund_finish.html"
+    },
+    "finance_tax_wait": {
+        "path": "/oa_static/modules/finance/finance_tax_wait.module.js",
+        "template": "/oa_static/template/finance/finance_tax_wait.html"
+    },
+    "finance_tax_finish": {
+        "path": "/oa_static/modules/finance/finance_tax_finish.module.js",
+        "template": "/oa_static/template/finance/finance_tax_finish.html"
+    },
+    "finance_gathering": {
+        "path": "/oa_static/modules/finance/finance_gathering.module.js",
+        "template": "/oa_static/template/finance/finance_gathering.html"
+    },
+    "finance_gathered": {
+        "path": "/oa_static/modules/finance/finance_gathered.module.js",
+        "template": "/oa_static/template/finance/finance_gathered.html"
+    },
+    "finance_refund": {
+        "path": "/oa_static/modules/finance/finance_refund.module.js",
+        "template": "/oa_static/template/finance/finance_refund.html"
+    },
+    "finance_refund_gathered": {
+        "path": "/oa_static/modules/finance/finance_refund_gathered.module.js",
+        "template": "/oa_static/template/finance/finance_refund_gathered.html"
+    }
+}

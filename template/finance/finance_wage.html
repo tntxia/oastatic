@@ -1,0 +1,28 @@
+<div style="display: flex;flex-direction: column;height:100%;" id="gathering-container">
+    <div id="searchForm" style="height:23px;">
+        <select v-model="form.year">
+            <option value="">请选择</option>
+            <option v-for="y in yearList">{{y}}</option>
+        </select> 年
+        <select v-model="form.month">
+            <option value="">请选择</option>
+            <option v-for="y in monthList">{{y}}</option>
+        </select> 月
+        <button @click="query">搜索</button>
+        <button @click="exportGathering">导出</button>
+    </div>
+    <div style="height: calc(100vh - 146px);">
+        <span class="fa fa-spinner fa-spin" v-if="loading"></span>
+        <jxiaui-datagrid class="table" ref="gatheringTable" :dataset="dataset">
+            <jxiaui-datagrid-item label="#" type="index"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="开户名称">
+                <template v-slot="row">
+					<a href="javascript:void(0)" @click="getUrl(row)">{{row.com_bank}}</a>
+				</template>
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="开户银行" field="bank"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="银行帐号" field="bank_num"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="金额" field="bank_je"></jxiaui-datagrid-item>
+        </jxiaui-datagrid>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div style="display: flex;flex-direction: column;height:100%;" id="app">
+    <div id="searchForm" style="height:23px;">
+        共{{newMailCount}}封新邮件
+        <button @click="getMail" class="but">收取邮件</button>
+        <!-- 这里增加了过滤界面    -->
+        <input type="button" value="写邮件" name="B2223" class="but" onClick="window.open('new.jsp','_blank', 'height=450, width=930, top=0, left=50, toolbar=yes, menubar=yes, scrollbars=yes, resizable=yes,location=no, status=no')">
+        <input type="button" value="待处理" class="but" onclick="doHandlingMail()">
+    </div>
+    <div style="height: calc(100vh - 146px);">
+        <span class="fa fa-spinner fa-spin" v-if="loading"></span>
+        <jxiaui-datagrid class="table" ref="gatheringTable" :dataset="dataset">
+            <jxiaui-datagrid-item label="#" type="index"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="发件人">
+                <template v-slot="row">
+					<a :href="getUrl(row)" target="_blank">{{row.mail_man}}</a>
+				</template>
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="主　　　题">
+                <template v-slot="row">
+					<a :href="getUrl(row)" target="_blank">{{row.mail_sub}}</a>
+				</template>
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="发件日期" field="mail_datetime"></jxiaui-datagrid-item>
+        </jxiaui-datagrid>
+    </div>
+</div>

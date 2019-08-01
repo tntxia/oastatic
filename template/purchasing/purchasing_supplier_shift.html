@@ -1,0 +1,49 @@
+<div id="app" style="height:100%;">
+	<table height=8 width="100%" 
+bordercolor="#CCBE5A" cellspacing="0" 
+                        bordercolordark="#ffffff" cellpadding="3" 
+                        align="center" bgcolor="#ffffff" bordercolorlight="#7f9db9" 
+                        border="1"><tr> 
+      <td colspan="4" bgcolor="#d3d8eb">
+      	<font size="2" color="#213e9b"><strong>供应商资料转移 </strong>
+      </font></td>
+    </tr>
+    <tr> 
+      <td width="15%" bgcolor="#e8ebf5">供应商</td>
+      <td colspan="3">
+      	<jxiaui-combobox v-model="form.coname" :dataset="supplierDataset" param-field="coname"
+      		@change="supplierChange">
+      	</jxiaui-combobox>
+      </td>
+    </tr>
+    <tr> 
+      <td width="15%" bgcolor="#e8ebf5"><strong>从：</strong></td>
+      <td colspan="3">
+      	{{form.man1}}
+      </td>
+    </tr>
+    <tr> 
+      <td width="15%" bgcolor="#e8ebf5"><strong>转移到:</strong>&nbsp;</td>
+      <td width="34%">
+        <user-select v-model="form.man2"></user-select>
+      </td>
+      <td width="11%" bgcolor="#e8ebf5">是否共享&nbsp;</td>
+      <td width="40%">
+        <select v-model="form.share">
+          <option>否</option>
+          <option>是</option>
+        </select>
+        &nbsp;
+      </td>
+    </tr>
+    <tr> 
+      <td colspan="4"><center>
+          <font size="2"> 
+          	<button @click="sub">供应商资料转移</button>
+          </font>
+      </center>
+      </td>
+    </tr>
+  </table>
+</div>
+

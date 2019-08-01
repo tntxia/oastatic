@@ -1,0 +1,71 @@
+<div class="main_sec" id="app">
+	<div>
+		型号：<input v-model="form.model">
+		客户名称:<input v-model="form.coname">
+		合同编号:<input v-model="form.number">
+		产品编号:<input v-model="form.pro_number">
+		选择部门：<select v-model="form.depts">
+				<option value="">请选择</option>
+				<option v-for="dept in departmentList">{{dept}}</option>
+				</select>
+		销售员:<select v-model="form.man">
+				<option value="">请选择</option>
+				<option v-for="user in userList">{{user.name}}</option>
+				</select>
+		返回原因:<select v-model="form.pStates">
+				<option>请选择</option>
+				<option>A、退回重新编辑</option>
+				<option>B、货物检验有质量问题</option>
+				<option>C、货物不符合合同要求</option>
+				<option>D、客户推迟订货时间</option>
+				<option>E、供应商没有货</option>
+				<option>F、没有收到货款</option>
+				<option>G、其他</option>
+				</select>
+		起始日期：
+			<input v-model="form.startdate">
+		终止日期:
+			<input v-model="form.enddate">
+		
+		<button @click="toAdd">新增</button>
+		<button @click="query">查询</button>
+		<button @click="viewTop">产品最高记录</button>
+	</div>
+	<div>
+		<jxiaui-datagrid class="table" ref="datagrid" :dataset="dataset">
+	        <jxiaui-datagrid-item label="序号" type="index"></jxiaui-datagrid-item>
+			<jxiaui-datagrid-item label="客户名称">
+				<template v-slot="row">
+					<a :href="getUrl(row)" target="_blank">{{row.coname}}</a>
+				</template>
+			</jxiaui-datagrid-item>
+			<jxiaui-datagrid-item label="公司电话" field="cotel">
+			</jxiaui-datagrid-item>
+			<jxiaui-datagrid-item label="产品型号" field="product">
+			</jxiaui-datagrid-item>
+			<jxiaui-datagrid-item label="封装" field="cpro">
+			</jxiaui-datagrid-item>
+			<jxiaui-datagrid-item label="年份" field="pro_p_year">
+			</jxiaui-datagrid-item>
+			<jxiaui-datagrid-item label="品牌" field="supplier">
+			</jxiaui-datagrid-item>
+			<jxiaui-datagrid-item label="数量" field="quantity">
+			</jxiaui-datagrid-item>
+			<jxiaui-datagrid-item label="目标价" field="price">
+			</jxiaui-datagrid-item>
+			<jxiaui-datagrid-item label="采购价" field="p_price">
+			</jxiaui-datagrid-item>
+			<jxiaui-datagrid-item label="报价" field="q_price">
+			</jxiaui-datagrid-item>
+			<jxiaui-datagrid-item label="采购回复" field="pro_report">
+			</jxiaui-datagrid-item>
+			<jxiaui-datagrid-item label="询价日期" field="xj_date">
+			</jxiaui-datagrid-item>
+			<jxiaui-datagrid-item label="负责人" field="man">
+			</jxiaui-datagrid-item>
+			<jxiaui-datagrid-item label="当前状况" field="states">
+			</jxiaui-datagrid-item>
+	    </jxiaui-datagrid>
+	</div>
+</div>
+

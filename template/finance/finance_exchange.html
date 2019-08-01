@@ -1,0 +1,48 @@
+<div style="display: flex;flex-direction: column;height:100%;" id="app">
+    <div id="searchForm">
+        科目
+        <select name="km" id="km"> 
+            <option value="">请选择</option>
+            <option v-for="a in accountList">{{a.coun_name }}</option>
+        </select> 科目明细
+        <select name="l_topic" id="l_topic"> 
+            <option value="">请选择</option> 
+            <option v-for="a in accountTypeList">{{a.km_mx }}</option>
+        </select> 贷方／借方
+        <select name="l_c_d" id="l_c_d"> 
+                <option></option> 
+                <option value="借方">借方</option> 
+                <option value="贷方">贷方</option> 
+            </select> 凭证编号
+        <font size="2">
+            <input type="text" name="l_menber" size="10" maxlength="25"> 销售单号
+            <input type="text" name="xsdh" size="10" maxlength="25"> 单据备注
+            <input type="text" name="remarks" size="10" maxlength="25"> 采购单号
+            <input type="text" name="cgdh" size="10" maxlength="25"> 公司名称
+            <input name="coname" type="text" id="l_coname" size="10" maxlength="25"> 起始日期
+            <input type="text" name="sdate" size="10" maxlength="10"> 终止日期 <input type="text" name="edate" size="10" maxlength="10">
+            <button id="searchBtn">检索</button> |
+            <a href="#" onClick="window.open('yksqt.jsp','_blank', 'height=458, width=955, top=50, left=50, toolbar=yes, menubar=no, scrollbars=yes, resizable=yes,location=no, status=no')">
+            新增</a>
+            <button @click="query">搜索</button>
+            <button @click="exportGathering">导出</button>
+    </div>
+    <div style="height: calc(100vh - 146px);">
+        <span class="fa fa-spinner fa-spin" v-if="loading"></span>
+        <jxiaui-datagrid class="table" ref="gatheringTable" :dataset="dataset">
+            <jxiaui-datagrid-item label="#" type="index"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="凭证日期">
+                <template v-slot="row">
+					<a href="javascript:void(0)" @click="getUrl(row)">{{row.l_date}}</a>
+				</template>
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="销售单号" field="xsdh"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="单据备注" field="remarks"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="采购单号" field="cgdh"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="公司名称" field="l_coname"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="科目明细" field="l_topic"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="借方/贷方" field="l_c_d"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="金额" field="l_sqje"></jxiaui-datagrid-item>
+        </jxiaui-datagrid>
+    </div>
+</div>
