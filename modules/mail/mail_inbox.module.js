@@ -54,11 +54,8 @@
                     });
                 },
                 query() {
-                    let datagrid = this.$refs["gatheringTable"];
-                    datagrid.setParams(this.form);
-                    datagrid.loadData();
-                    this.loadData();
-                    console.log("query,,,", this.sdate, this.edate);
+                    let datagrid = this.$refs["datagrid"];
+                    datagrid.query();
                 },
                 getMail() {
                     $.ajax({
@@ -73,23 +70,65 @@
                         alert("操作异常");
                     });
                 },
-                exportGathering() {
+                newMail() {
+                    let dialog = dialogVue.getDialog("mailNewDialog");
+                    dialog.show();
+                },
+                pushInHandling() {
+                    let datagrid = this.$refs["datagrid"];
+                    let selectedRows = datagrid.getSelectedRows();
+                    if (!selectedRows || !selectedRows.length) {
+                        alert("请选择你要放入待处理的邮件");
+                        return;
+                    }
+                    let ids = selectedRows.map(row => {
+                        return row.id;
+                    })
                     $.ajax({
-                        url: webRoot + "/finance/finance!exportToGather.do"
+                        url: webRoot + "/mail!pushInMailHandling.do",
+                        type: 'post',
+                        data: {
+                            ids: ids.join(",")
+                        }
                     }).done(res => {
                         if (res.success) {
-                            window.open("/ReportCenter/view.mvc?id=" + res.uuid);
+                            alert("操作成功");
                         } else {
-                            alert("操作失败：" + data.msg);
+                            alert("操作失败:" + res.errorMsg);
                         }
-                    }).fail(e => {
-                        alert("操作异常");
-                    });
+                    })
+                    console.log("find selected", datagrid.getSelectedRows());
+
+                },
+                delSelected() {
+                    let datagrid = this.$refs["datagrid"];
+                    let selectedRows = datagrid.getSelectedRows();
+                    if (!selectedRows || !selectedRows.length) {
+                        alert("请选择你要删除的邮件");
+                        return;
+                    }
+                    let vm = this;
+                    let ids = selectedRows.map(row => {
+                        return row.id;
+                    })
+                    $.ajax({
+                        url: webRoot + "/mail!delInMail.do",
+                        type: 'post',
+                        data: {
+                            ids: ids.join(",")
+                        }
+                    }).done(res => {
+                        if (res.success) {
+                            alert("操作成功");
+                            vm.query();
+                        } else {
+                            alert("操作失败:" + res.errorMsg);
+                        }
+                    })
                 }
-            }
+            },
+
         });
-
-
     };
     return module.exports;
 });

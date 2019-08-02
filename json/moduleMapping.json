@@ -7,6 +7,18 @@
         "path": "/oa_static/modules/mail/mail_inbox.module.js",
         "template": "/oa_static/template/mail/mail_inbox.html"
     },
+    "mail_outbox": {
+        "path": "/oa_static/modules/mail/mail_outbox.module.js",
+        "template": "/oa_static/template/mail/mail_outbox.html"
+    },
+    "mail_trashbox": {
+        "path": "/oa_static/modules/mail/mail_trashbox.module.js",
+        "template": "/oa_static/template/mail/mail_trashbox.html"
+    },
+    "mail_handling": {
+        "path": "/oa_static/modules/mail/mail_handling.module.js",
+        "template": "/oa_static/template/mail/mail_handling.html"
+    },
     "warehouse_manage": {
         "path": "/oa_static/modules/warehouse/warehouse_manage.module.js",
         "template": "/oa_static/template/warehouse/warehouse_manage.html"

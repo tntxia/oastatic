@@ -1,19 +1,11 @@
 <div style="display: flex;flex-direction: column;height:100%;" id="app">
-    <div id="searchForm" style="height:23px;">
-        共{{newMailCount}}封新邮件
-        <button @click="getMail" class="but">收取邮件</button>
-        <!-- 这里增加了过滤界面    -->
-        <input type="button" value="写邮件" @click="newMail">
-        <button @click="pushInHandling">待处理</button>
-        <button @click="delSelected">删除</button>
-    </div>
     <div style="height: calc(100vh - 146px);">
         <span class="fa fa-spinner fa-spin" v-if="loading"></span>
         <jxiaui-datagrid ref="datagrid" :dataset="dataset" :check="true">
             <jxiaui-datagrid-item label="#" type="index"></jxiaui-datagrid-item>
-            <jxiaui-datagrid-item label="发件人">
+            <jxiaui-datagrid-item label="收件人">
                 <template v-slot="row">
-					<a :href="getUrl(row)" target="_blank">{{row.mail_man}}</a>
+					<a :href="getUrl(row)" target="_blank">{{row.mail_to}}</a>
 				</template>
             </jxiaui-datagrid-item>
             <jxiaui-datagrid-item label="主　　　题">

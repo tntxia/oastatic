@@ -1,0 +1,23 @@
+<jxiaui-dialog @close="hide" v-if="showFlag" :title="title">
+    <div id="searchSaleForm">
+        销售单号：<input name="number"><button id="chooseSaleSearchBtn">查询</button>
+    </div>
+    <div id="chooseSaleDiv">
+        <jxiaui-datagrid class="table" ref="datagrid" :dataset="dataset">
+            <jxiaui-datagrid-item label="序号" type="index"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="合同编号">
+                <template v-slot="row">
+					<a href="javascript:void(0)" @click="handleChoose(row)">{{row.number}}</a>
+				</template>
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="客户" field="coname">
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="含增值税率" field="item">
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="发货日期" field="send_date">
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="当前状态" field="state">
+            </jxiaui-datagrid-item>
+        </jxiaui-datagrid>
+    </div>
+</jxiaui-dialog>
