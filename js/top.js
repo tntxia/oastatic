@@ -87,8 +87,8 @@ $(function() {
                     },
                     success: function(data) {
                         if (data.success) {
-                            if (confirm("打卡成功！是否跳转到打卡记录页面？")) {
-                                window.location.href = webRoot + "/checkwork/main.mvc";
+                            if (confirm("打卡成功！是否查看我的考勤？")) {
+                                router.goRoute("hr_my_attandance");
                             }
                         } else {
                             alert("操作失败！");

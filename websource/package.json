@@ -1,5 +1,32 @@
 {
+    "modules": [{
+        "name": "knowledge_type",
+        "file": "knowledge_type.js",
+        "targetDir": "../modules"
+    }, {
+        "name": "knowledge_list",
+        "file": "knowledge_list.js",
+        "targetDir": "../modules"
+    }, {
+        "name": "rule",
+        "file": "rule.js",
+        "targetDir": "../modules"
+    }, {
+        "name": "hr_my_attandance",
+        "file": "hr/hr_my_attandance.js",
+        "targetDir": "../modules/hr"
+    }, {
+        "name": "trade_policy",
+        "group": "market",
+        "active": false
+    }],
     "components": [{
+        "name": "logo-and-name",
+        "template": "components/logo-and-name.html",
+        "options": "components/logo-and-name.js",
+        "dist": "../components/logo-and-name.js",
+        "active": false
+    }, {
         "name": "mail-new-dialog",
         "template": "mail-new-dialog.html",
         "options": "mail-new-dialog.js",
@@ -29,6 +56,38 @@
         "template": "my-todo-dialog.html",
         "options": "my-todo-dialog.js",
         "dist": "../components/my-todo-dialog.js"
+    }, {
+        "group": "warehouse",
+        "name": "in-list-wait",
+        "active": false
+    }, {
+        "group": "warehouse",
+        "name": "in-list",
+        "active": false
+    }, {
+        "group": "warehouse",
+        "name": "in-list-refund",
+        "active": true
+    }, {
+        "group": "warehouse",
+        "name": "in-list-sample",
+        "active": true
+    }, {
+        "group": "warehouse",
+        "name": "out-list-wait",
+        "active": true
+    }, {
+        "group": "warehouse",
+        "name": "out-list",
+        "active": true
+    }, {
+        "group": "warehouse",
+        "name": "out-list-refund",
+        "active": true
+    }, {
+        "group": "warehouse",
+        "name": "out-list-sample",
+        "active": true
     }, {
         "name": "warehouse-send-bill-add-dialog",
         "template": "warehouse/send_bill_add_dialog.html",

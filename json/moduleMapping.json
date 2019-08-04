@@ -3,6 +3,21 @@
         "path": "/oa_static/modules/index_main.module.js",
         "template": "/oa_static/template/content.html"
     },
+    "knowledge_type": {
+        "leftbar": false,
+        "path": "/oa_static/modules/knowledge_type.module.js",
+        "template": "/oa_static/template/knowledge_type.html"
+    },
+    "knowledge_list": {
+        "leftbar": false,
+        "path": "/oa_static/modules/knowledge_list.module.js",
+        "template": "/oa_static/template/knowledge_list.html"
+    },
+    "rule": {
+        "leftbar": false,
+        "path": "/oa_static/modules/rule.module.js",
+        "template": "/oa_static/template/rule.html"
+    },
     "mail_inbox": {
         "path": "/oa_static/modules/mail/mail_inbox.module.js",
         "template": "/oa_static/template/mail/mail_inbox.html"
@@ -210,5 +225,17 @@
     "finance_refund_gathered": {
         "path": "/oa_static/modules/finance/finance_refund_gathered.module.js",
         "template": "/oa_static/template/finance/finance_refund_gathered.html"
+    },
+    "hr_my_attandance": {
+        "path": "/oa_static/modules/hr/hr_my_attandance.module.js",
+        "template": "/oa_static/template/hr/hr_my_attandance.html"
+    },
+    "market_trade_policy": {
+        "path": "/oa_static/modules/market/market_trade_policy.module.js",
+        "template": "/oa_static/template/market/market_trade_policy.html"
+    },
+    "assay_sale_ranking_product": {
+        "path": "/oa_static/modules/assay/assay_sale_ranking_product.module.js",
+        "template": "/oa_static/template/assay/assay_sale_ranking_product.html"
     }
 }

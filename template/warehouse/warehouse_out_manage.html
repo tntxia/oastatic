@@ -1,8 +1,11 @@
 <div id="container">
-	<jxia-tabs>
-		<jxia-tab label="销售待出库列表" template="warehouse/out/template_to_out.mvc" onload="loadWait"></jxia-tab>
-        <jxia-tab label="样品待出库列表" template="warehouse/out/template_sample_to_out.mvc" onload="loadWaitSample"></jxia-tab>
-        <jxia-tab label="退货待出库列表" template="warehouse/out/template_refund_to_out.mvc" onload="loadWaitRefund"></jxia-tab>
-        <jxia-tab label="已出库列表" template="warehouse/out/template_outed.mvc" onload="loadOuted"></jxia-tab>
-	</jxia-tabs>
+    <jxiaui-tabs>
+        <jxiaui-tabs-item label="销售待出库列表" template="warehouse/out/template_to_out.mvc" onload="loadWait">
+            <warehouse-out-list-wait></warehouse-out-list-wait>
+        </jxiaui-tabs-item>
+        <jxiaui-tabs-item label="样品待出库列表" template="warehouse/out/template_sample_to_out.mvc" onload="loadWaitSample"></jxiaui-tabs-item>
+        <jxiaui-tabs-item label="退货待出库列表" template="warehouse/out/template_refund_to_out.mvc" onload="loadWaitRefund"></jxiaui-tabs-item>
+        <jxiaui-tabs-item label="已出库列表" template="warehouse/out/template_outed.mvc" onload="loadOuted">
+            </jxia-tabs-item>
+    </jxiaui-tabs>
 </div>

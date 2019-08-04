@@ -16,29 +16,33 @@ var $globe = {};
 
 $(function() {
 
-    let jsList = ["/oa_static/components/mail-new-dialog.js",
-        "/oa_static/components/brand-select.js",
-        "/oa_static/components/brand-select.js",
-        "/oa_static/components/user-select.js",
-        "/oa_static/components/saleman-select.js",
-        "/oa_static/components/my-todo-dialog.js",
-        "/oa_static/components/warehouse/warehouse-send-bill-add-dialog.js",
-        "/oa_static/components/warehouse/warehouse-send-bill-view-dialog.js",
-        "/oa_static/components/warehouse/warehouse-send-bill-edit-dialog.js",
-        "/oa_static/components/purchasing/purchasing-inquiry-list.js",
-        "/oa_static/components/purchasing/purchasing-inquiry-list-waiting.js",
-        "/oa_static/components/sale/sale-approved-choose-dialog.js"
-    ]
-
-    JsInstall.install(jsList).then(() => {
-        installMainLayout().then((mainLayout) => {
-            $.ajax({
-                url: '/oa_static/json/moduleMapping.json'
-            }).done(res => {
-                init(mainLayout, res);
-            })
+    getComponents().then(components => {
+        let jsList = components.map(c => {
+            return c.url
+        });
+        JsInstall.install(jsList).then(() => {
+            installMainLayout().then((mainLayout) => {
+                $.ajax({
+                    url: '/oa_static/json/moduleMapping.json'
+                }).done(res => {
+                    init(mainLayout, res, components);
+                })
+            });
         });
     });
+
+    function getComponents() {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: '/oa_static/json/components.json'
+            }).done(res => {
+                resolve(res.components)
+            }).fail(e => {
+                reject(e);
+            })
+        });
+
+    }
 
     function installMainLayout() {
         return MainLayoutInstall.install({
@@ -48,7 +52,7 @@ $(function() {
         });
     }
 
-    function init(mainLayout, mapping) {
+    function init(mainLayout, mapping, components) {
 
         initTop();
         let currLeftbar;
@@ -62,29 +66,12 @@ $(function() {
             'z-index': 10000
         })
         mainLayout.append(dialogsDiv);
-        let components = [{
-            name: 'mail-new-dialog',
-            ref: 'mailNewDialog'
-        }, {
-            name: 'my-todo-dialog',
-            ref: 'myTodoDialog'
-        }, {
-            name: 'warehouse-send-bill-add-dialog',
-            ref: 'warehouseSendBillAddDialog'
-        }, {
-            name: 'warehouse-send-bill-view-dialog',
-            ref: 'warehouseSendBillViewDialog'
-        }, {
-            name: 'warehouse-send-bill-edit-dialog',
-            ref: 'warehouseSendBillEditDialog'
-        }, {
-            name: 'sale-approved-choose-dialog',
-            ref: 'saleApprovedChooseDialog'
-        }];
         components.forEach(comp => {
-            let compEl = $("<" + comp.name + ">");
-            compEl.attr("ref", comp.ref);
-            dialogsDiv.append(compEl);
+            if (comp.isDialog) {
+                let compEl = $("<" + comp.name + ">");
+                compEl.attr("ref", comp.ref);
+                dialogsDiv.append(compEl);
+            }
         });
 
         dialogVue = new Vue({
@@ -101,13 +88,19 @@ $(function() {
             defaultModule: 'index_main',
             mapping: mapping,
             onChange(module) {
-
-                let type = module.split("_")[0];
+                let moduleName = module.name;
+                let leftbarFlag = module.leftbar;
+                if (leftbarFlag === false) {
+                    mainLayout.hideLeftbar();
+                    return;
+                }
+                mainLayout.showLeftbar();
+                let type = moduleName.split("_")[0];
                 if (type === currLeftbar) {
                     $(".leftbar li").removeClass("selected");
                     $(".leftbar li").each(function() {
                         let href = $(this).find("a").attr("href");
-                        if (href.endsWith(module)) {
+                        if (href.endsWith(moduleName)) {
                             $(this).addClass("selected");
                         }
                     });
@@ -125,7 +118,7 @@ $(function() {
                     res.forEach(item => {
                         let buttons = item.buttons;
                         buttons.forEach(button => {
-                            if (button.url.endsWith(module)) {
+                            if (button.url.endsWith(moduleName)) {
                                 button.selected = true;
                             }
                         })
@@ -184,12 +177,6 @@ $(function() {
                 fetchData() {
                     let vm = this;
                     $.ajax({
-                        url: '/oa_static/json/app.json'
-                    }).done(function(data) {
-                        vm.companyName = data.companyName;
-                        vm.companyNameEn = data.companyNameEn;
-                    });
-                    $.ajax({
                         url: webRoot + "/userAlertCount.do",
                         success: function(data) {
                             vm.toDoCount = data;
@@ -232,14 +219,11 @@ $(function() {
                 },
                 checkwork: function() {
                     $.ajax({
-                        url: webRoot + '/checkwork/checkwork.do',
-                        data: {
-                            method: 'record'
-                        },
+                        url: webRoot + '/checkwork/checkwork!record.do',
                         success: function(data) {
                             if (data.success) {
-                                if (confirm("打卡成功！是否跳转到打卡记录页面？")) {
-                                    window.location.href = webRoot + "/checkwork/main.mvc";
+                                if (confirm("打卡成功！是否查看我的考勤？")) {
+                                    router.goRoute("hr_my_attandance");
                                 }
                             } else {
                                 alert("操作失败！");
