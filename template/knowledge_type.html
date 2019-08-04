@@ -1,0 +1,15 @@
+<div style="padding: 10px;" id="app">
+    <h1 style="margin-top: 0;">欢迎使用知识库</h1>
+    <div style="height: calc(100vh - 146px);">
+        <span class="fa fa-spinner fa-spin" v-if="loading"></span>
+        <jxiaui-datagrid ref="datagrid" :dataset="dataset">
+            <jxiaui-datagrid-item label="#" type="index"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="主题">
+                <template v-slot="row">
+					<a :href="getUrl(row)">{{row.km_name}}</a>
+				</template>
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="创建日期" field="km_date"></jxiaui-datagrid-item>
+        </jxiaui-datagrid>
+    </div>
+</div>

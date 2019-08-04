@@ -1,0 +1,14 @@
+<div style="padding: 10px;" id="app">
+    <div style="margin-bottom: 10px;">
+        <button @click="toAdd">新增</button>
+    </div>
+    <div style="height: calc(100vh - 146px);">
+        <span class="fa fa-spinner fa-spin" v-if="loading"></span>
+        <jxiaui-datagrid ref="datagrid" :dataset="dataset">
+            <jxiaui-datagrid-item label="#" type="index"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="打卡日期" field="clock_date"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="签到时间" field="clock_in_time"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="签退时间" field="clock_out_time"></jxiaui-datagrid-item>
+        </jxiaui-datagrid>
+    </div>
+</div>

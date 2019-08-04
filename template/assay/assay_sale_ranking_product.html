@@ -1,0 +1,28 @@
+<div>
+    <!-- <form name="form1" method="post" action="../sale/ddgl/pfmain-search.jsp">  -->
+
+    <div id="form" style="position: relative;z-index: 200000;">
+        <table width="100%" bordercolor="#CCBE5A" cellspacing="0" bordercolordark="#ffffff" cellpadding="3" align="center" bgcolor="#ffffff" bordercolorlight="#7f9db9" border="1">
+            <tr>
+                <td bgcolor="#e8ebf5">起始日期</div>
+    </td>
+    <td width="40%">
+        <jxiaui-datepicker v-model="form.startdate"></jxiaui-datepicker>
+    </td>
+    <td width="11%" bgcolor="#e8ebf5">终止日期</td>
+    <td width="40%">
+        <jxiaui-datepicker v-model="form.enddate"></jxiaui-datepicker>
+    </td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <div align="center">
+                <button @click="sub">统计</button>
+            </div>
+        </td>
+    </tr>
+    </table>
+</div>
+<div id="diagram" style="height: calc(100% - 50px)">
+</div>
+</div>

@@ -1,0 +1,22 @@
+<div style="padding: 10px;" id="app">
+    <div style="margin-bottom: 10px;">
+        <button @click="back">返回列表</button>
+        <button @click="toAdd">新增</button>
+    </div>
+    <div style="height: calc(100vh - 146px);">
+        <span class="fa fa-spinner fa-spin" v-if="loading"></span>
+        <jxiaui-datagrid ref="datagrid" :dataset="dataset">
+            <jxiaui-datagrid-item label="#" type="index"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="政策编号" field="number">
+                <template v-slot="row">
+					<a :href="getUrl(row)" target="_blank">{{row.number}}</a>
+				</template>
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="政策主题">
+                <template v-slot="row">
+					<a :href="getUrl(row)" target="_blank">{{row.trade_subject}}</a>
+				</template>
+            </jxiaui-datagrid-item>
+        </jxiaui-datagrid>
+    </div>
+</div>
