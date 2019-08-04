@@ -53,6 +53,8 @@
             </li>
             <li>|</li>
         </ul>
-        <ul id="menu1"></ul>
+        <ul id="menu1">
+            <li v-for="m in menus" :class="{selected: m.selected}"><a :href="m.url">{{m.name}}</a></li>
+        </ul>
     </div>
 </div>

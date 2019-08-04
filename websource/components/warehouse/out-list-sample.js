@@ -9,7 +9,7 @@ module.exports = {
                 supplier: null
             },
             dataset: {
-                url: webRoot + "/warehouse/warehouse!listIn.do",
+                url: webRoot + "/warehouse/warehouse!waitOutSampleList.do",
                 method: 'post'
             }
         }
@@ -18,7 +18,7 @@ module.exports = {
     updated() {},
     methods: {
         getUrl(row) {
-            return webRoot + "/warehouse/in/view.mvc?id=" + row.id;
+            return webRoot + '/sale/ypgl/yp-view.jsp?id=' + row.id;
         },
         query: function() {
             let datagrid = this.$refs["datagrid"];

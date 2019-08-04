@@ -9,7 +9,7 @@ module.exports = {
                 supplier: null
             },
             dataset: {
-                url: webRoot + "/warehouse/warehouse!listIn.do",
+                url: webRoot + "/warehouse/warehouse!waitRefundList.do",
                 method: 'post'
             }
         }

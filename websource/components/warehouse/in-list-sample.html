@@ -1,0 +1,26 @@
+<div>
+    <div>
+        采购编号：<input v-model="form.number"> 供 应 商：<input v-model="form.coname"> 型号：
+        <input v-model="form.model"> 品牌：
+        <input v-model="form.supplier">
+        <button @click="query">查询</button>
+    </div>
+    <div>
+        <jxiaui-datagrid class="table" ref="datagrid" :dataset="dataset">
+            <jxiaui-datagrid-item label="样品编号">
+                <template v-slot="row">
+                        <a :href="getUrl(row)" target="_blank">{{row.number}}</a>
+                    </template>
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="客户名称" field="coname">
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="运输方式" field="delivery_terms">
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="责任人" field="man">
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="登记日期" field="datetime">
+            </jxiaui-datagrid-item>
+        </jxiaui-datagrid>
+    </div>
+
+</div>

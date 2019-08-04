@@ -8,18 +8,30 @@
     </div>
     <div>
         <jxiaui-datagrid class="table" ref="datagrid" :dataset="dataset">
-            <jxiaui-datagrid-item label="入库编号">
+            <jxiaui-datagrid-item label="序号" type="index"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="合同编号">
                 <template v-slot="row">
-                                <a :href="getUrl(row)" target="_blank">{{row.number}}</a>
-                            </template>
+                    <a :href="getUrl(row)" target="_blank">{{row.pro_fynum}}</a>
+                </template>
             </jxiaui-datagrid-item>
-            <jxiaui-datagrid-item label="供应商名称" field="supplier">
+
+            <jxiaui-datagrid-item label="公司合同号" field="sub">
             </jxiaui-datagrid-item>
-            <jxiaui-datagrid-item label="入库类别" field="int_types">
+            <jxiaui-datagrid-item label="客户名称" field="pro_coname">
             </jxiaui-datagrid-item>
-            <jxiaui-datagrid-item label="责任人" field="man">
+            <jxiaui-datagrid-item label="产品型号" field="pro_model">
             </jxiaui-datagrid-item>
-            <jxiaui-datagrid-item label="入库日期" field="int_date">
+            <jxiaui-datagrid-item label="税率" field="pro_rate">
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="单价" field="salejg">
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="数量" field="pro_num">
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="出库日期" field="pro_datetime">
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="出库人" field="slinkman">
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="销售员" field="man">
             </jxiaui-datagrid-item>
         </jxiaui-datagrid>
     </div>

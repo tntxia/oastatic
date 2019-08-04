@@ -18,9 +18,6 @@
         // var tabs = new JxiaUI({
         // 	el:target,
         // 	methods: {
-        // 		loadWaitSample() {
-        // 			listWaitOutSample();
-        // 		},
         // 		loadWaitRefund() {
         // 			listWaitRefund();
         // 		},
@@ -127,41 +124,6 @@
         // 		},{
         // 			field:'state',
         // 			label:'当前状态'
-        // 		}]
-        // 	});
-        // 	grid.init();
-
-        // }
-
-        // function listWaitOutSample(){
-
-        // 	let target = $("#waitOutSampleList");
-        // 	let grid = new BootstrapGrid({
-        // 		url:webRoot+'/warehouse/warehouse!waitOutSampleList.do',
-        // 		target:target,
-        // 		cols:[{
-        // 			label:'样品编号',
-        // 			field:'number',
-        // 			renderer:function(value,data){
-        // 				var a = $("<a>",{
-        // 					text:data.number,
-        // 					target:'_blank',
-        // 					href:webRoot+'/sale/ypgl/yp-view.jsp?id='+data.id
-        // 				});
-        // 				return a;
-        // 			}
-        // 		},{
-        // 			field:'coname',
-        // 			label:'客户名称'
-        // 		},{
-        // 			field:'delivery_terms',
-        // 			label:'运输方式'
-        // 		},{
-        // 			field:'man',
-        // 			label:'申请人'
-        // 		},{
-        // 			field:'datetime',
-        // 			label:'起运日期'
         // 		}]
         // 	});
         // 	grid.init();

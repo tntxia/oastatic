@@ -3,9 +3,14 @@
         <jxiaui-tabs-item label="销售待出库列表" template="warehouse/out/template_to_out.mvc" onload="loadWait">
             <warehouse-out-list-wait></warehouse-out-list-wait>
         </jxiaui-tabs-item>
-        <jxiaui-tabs-item label="样品待出库列表" template="warehouse/out/template_sample_to_out.mvc" onload="loadWaitSample"></jxiaui-tabs-item>
-        <jxiaui-tabs-item label="退货待出库列表" template="warehouse/out/template_refund_to_out.mvc" onload="loadWaitRefund"></jxiaui-tabs-item>
+        <jxiaui-tabs-item label="样品待出库列表" template="warehouse/out/template_sample_to_out.mvc" onload="loadWaitSample">
+            <warehouse-out-list-sample></warehouse-out-list-sample>
+        </jxiaui-tabs-item>
+        <jxiaui-tabs-item label="退货待出库列表" template="warehouse/out/template_refund_to_out.mvc" onload="loadWaitRefund">
+            <warehouse-out-list-refund></warehouse-out-list-refund>
+        </jxiaui-tabs-item>
         <jxiaui-tabs-item label="已出库列表" template="warehouse/out/template_outed.mvc" onload="loadOuted">
+            <warehouse-out-list></warehouse-out-list>
             </jxia-tabs-item>
     </jxiaui-tabs>
 </div>

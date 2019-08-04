@@ -37,6 +37,15 @@
             "name": "warehouse-out-list-wait",
             "url": "/oa_static/components/warehouse/warehouse-out-list-wait.js"
         }, {
+            "name": "warehouse-out-list-sample",
+            "url": "/oa_static/components/warehouse/warehouse-out-list-sample.js"
+        }, {
+            "name": "warehouse-out-list-refund",
+            "url": "/oa_static/components/warehouse/warehouse-out-list-refund.js"
+        }, {
+            "name": "warehouse-out-list",
+            "url": "/oa_static/components/warehouse/warehouse-out-list.js"
+        }, {
             "name": "warehouse-send-bill-add-dialog",
             "url": "/oa_static/components/warehouse/warehouse-send-bill-add-dialog.js",
             "isDialog": true,

@@ -1,6 +1,6 @@
 body {
     margin: 0;
-	background: #f5f5f5
+    background: #f5f5f5
 }
 
 .top-title {
@@ -48,6 +48,39 @@ body {
     TEXT-DECORATION: underline;
 }
 
+#menu1 li.selected {
+    background: #FFFFFF;
+    color: #6293BB;
+}
+
+#menu1 li.selected A:link {
+    COLOR: #6293BB;
+    font-weight: bold;
+    font-size: 14px;
+    TEXT-DECORATION: none;
+}
+
+#menu1 li.selected A:visited {
+    COLOR: #6293BB;
+    font-weight: bold;
+    font-size: 14px;
+    TEXT-DECORATION: none;
+}
+
+#menu1 li.selected A:hover {
+    COLOR: #6293BB;
+    font-weight: bold;
+    font-size: 14px;
+    TEXT-DECORATION: underline;
+}
+
+#menu1 li.selected A:active {
+    COLOR: #6293BB;
+    font-weight: bold;
+    font-size: 14px;
+    TEXT-DECORATION: underline;
+}
+
 #nav tr {
     background: #e0e0e0;
 }
@@ -87,10 +120,9 @@ body {
     font-family: "宋体";
     font-weight: normal;
     list-style-type: none;
-    padding-left: 4px;
     text-align: left;
     vertical-align: bottom;
-    margin-top: 2px;
+    padding: 2px 4px;
     cursor: pointer;
 }
 
@@ -130,31 +162,31 @@ body {
     list-style: none;
 }
 
-.right-top-nav  ul {
+.right-top-nav ul {
     margin: 0;
     position: relative;
 }
 
-.right-top-nav  li {
+.right-top-nav li {
     list-style-type: none;
     float: left;
     margin-left: 12px;
     position: relative;
-	cursor: pointer;
-	color: blue;
+    cursor: pointer;
+    color: blue;
 }
 
-.right-top-nav  li .submenu {
+.right-top-nav li .submenu {
     width: 150px;
     display: none;
     z-index: 2;
 }
 
-.right-top-nav  li:hover .submenu {
+.right-top-nav li:hover .submenu {
     display: block;
 }
 
-.right-top-nav  li a {
+.right-top-nav li a {
     color: blue;
     text-decoration: none;
     font-size: 12px;
@@ -162,7 +194,7 @@ body {
     cursor: pointer;
 }
 
-.right-top-nav  li a:hover {
+.right-top-nav li a:hover {
     text-decoration: underline;
 }
 
@@ -221,17 +253,17 @@ li .back-forward-link {
 }
 
 .current-online-info {
-	position: absolute;
-	right: 50px;
-	top: 35px;
+    position: absolute;
+    right: 50px;
+    top: 35px;
 }
 
 .message-num-circle {
-	width: 15px;
-	height: 15px;
-	display: inline-block;
-	border-radius: 50%;
-	background: red;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    border-radius: 50%;
+    background: red;
     color: white;
     text-align: center;
 }

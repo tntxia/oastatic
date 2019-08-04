@@ -19,7 +19,7 @@
                 supplier: null
             },
             dataset: {
-                url: webRoot + "/warehouse/warehouse!listIn.do",
+                url: webRoot + "/warehouse/warehouse!waitOutSampleList.do",
                 method: 'post'
             }
         }
@@ -28,7 +28,7 @@
     updated() {},
     methods: {
         getUrl(row) {
-            return webRoot + "/warehouse/in/view.mvc?id=" + row.id;
+            return webRoot + '/sale/ypgl/yp-view.jsp?id=' + row.id;
         },
         query: function() {
             let datagrid = this.$refs["datagrid"];
@@ -40,7 +40,7 @@
         }
     }
 }
-module.exports.template = "<div>\r\n    <div>\r\n        入库编号： <input v-model=\"form.ddnum\"> 采购编号：\r\n        <input v-model=\"form.orderNumber\"> 供 应 商：<input v-model=\"form.coname\">型号：\r\n        <input v-model=\"form.pro_model\">\r\n        <button @click=\"query\">查询</button>\r\n        <button @click=\"toAdd\">新增</button>\r\n    </div>\r\n    <div>\r\n        <jxiaui-datagrid class=\"table\" ref=\"datagrid\" :dataset=\"dataset\">\r\n            <jxiaui-datagrid-item label=\"入库编号\">\r\n                <template v-slot=\"row\">\r\n                                <a :href=\"getUrl(row)\" target=\"_blank\">{{row.number}}</a>\r\n                            </template>\r\n            </jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"供应商名称\" field=\"supplier\">\r\n            </jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"入库类别\" field=\"int_types\">\r\n            </jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"责任人\" field=\"man\">\r\n            </jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"入库日期\" field=\"int_date\">\r\n            </jxiaui-datagrid-item>\r\n        </jxiaui-datagrid>\r\n    </div>\r\n\r\n</div>"
+module.exports.template = "<div>\r\n    <div>\r\n        入库编号： <input v-model=\"form.ddnum\"> 采购编号：\r\n        <input v-model=\"form.orderNumber\"> 供 应 商：<input v-model=\"form.coname\">型号：\r\n        <input v-model=\"form.pro_model\">\r\n        <button @click=\"query\">查询</button>\r\n        <button @click=\"toAdd\">新增</button>\r\n    </div>\r\n    <div>\r\n        <jxiaui-datagrid class=\"table\" ref=\"datagrid\" :dataset=\"dataset\">\r\n            <jxiaui-datagrid-item label=\"样品编号\">\r\n                <template v-slot=\"row\">\r\n                                <a :href=\"getUrl(row)\" target=\"_blank\">{{row.number}}</a>\r\n                            </template>\r\n            </jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"客户名称\" field=\"coname\">\r\n            </jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"运输方式\" field=\"delivery_terms\">\r\n            </jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"申请人\" field=\"man\">\r\n            </jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"起运日期\" field=\"datetime\">\r\n            </jxiaui-datagrid-item>\r\n        </jxiaui-datagrid>\r\n    </div>\r\n\r\n</div>"
         return module.exports;
     })(),
 

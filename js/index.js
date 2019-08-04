@@ -12,7 +12,9 @@ function initDatetime() {
 }
 
 var dialogVue;
+var topVue;
 var $globe = {};
+var mainMenuSelected;
 
 $(function() {
 
@@ -96,6 +98,8 @@ $(function() {
                 }
                 mainLayout.showLeftbar();
                 let type = moduleName.split("_")[0];
+                mainMenuSelected = type;
+                topVue.selectMenu(type);
                 if (type === currLeftbar) {
                     $(".leftbar li").removeClass("selected");
                     $(".leftbar li").each(function() {
@@ -132,21 +136,7 @@ $(function() {
     }
 
     function initTop() {
-        $.ajax({
-            url: webRoot + "/menu!list.do"
-        }).done(res => {
-            $.each(res, (i, d) => {
-                let li = $("<li>");
-                let a = $("<a>", {
-                    text: d.name,
-                    href: webRoot + "/" + d.url
-                });
-                li.append(a);
-                $("#menu1").append(li);
-            });
-        })
-
-        new Vue({
+        topVue = new Vue({
             el: '#topDiv',
             data: {
                 companyName: null,
@@ -155,9 +145,23 @@ $(function() {
                 loginList: [],
                 toDoCount: 0,
                 todoDialogTitle: null,
-
+                menus: []
             },
             mounted() {
+                let vm = this;
+                $.ajax({
+                    url: webRoot + "/menu!list.do"
+                }).done(res => {
+                    res.forEach(m => {
+                        if (m.key_name === mainMenuSelected) {
+                            m.selected = true;
+                        } else {
+                            m.selected = false;
+                        }
+
+                    })
+                    vm.menus = res;
+                })
                 this.fetchData();
             },
             methods: {
@@ -199,6 +203,15 @@ $(function() {
                 },
                 passchange: function() {
                     openChangePassDialog();
+                },
+                selectMenu(key) {
+                    this.menus.forEach(m => {
+                        if (m.key_name == key) {
+                            m.selected = true;
+                        } else {
+                            m.selected = false;
+                        }
+                    })
                 },
                 openWork: function() {
                     var url = webRoot +
