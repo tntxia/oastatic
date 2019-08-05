@@ -24,15 +24,8 @@
                 departmentList: [],
                 userList: [],
                 form: {
-                    model: null,
                     coname: null,
-                    number: null,
-                    pro_number: null,
-                    depts: '',
-                    man: '',
-                    pStates: null,
-                    startdate: null,
-                    enddate: null
+                    follower: null
                 },
                 gatheringId: null,
                 totalAll: null,
@@ -47,7 +40,7 @@
             methods: {
                 getUrl: function(row) {
                     return webRoot +
-                        "/xclient/view.mvc?id=" + row.id;
+                        "/xclient/view.mvc?id=" + row.clientid;
                 },
                 loadData() {
                     let me = this;
@@ -83,6 +76,25 @@
                 },
                 toAdd() {
                     window.open(webRoot + '/xclient/new.mvc');
+                },
+                exportData() {
+                    var param = this.form;
+                    param.type = "2";
+                    $.ajax({
+                        url: webRoot + "/client/client!export.do",
+                        type: 'post',
+                        data: param,
+                        success: function(data) {
+                            if (data.success) {
+                                window.open("/ReportCenter/view.mvc?id=" + data.uuid);
+                            } else {
+                                alert("操作失败：" + data.msg);
+                            }
+                        },
+                        error: function(e) {
+
+                        }
+                    });
                 }
             }
         });
