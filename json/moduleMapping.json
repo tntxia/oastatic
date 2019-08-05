@@ -237,5 +237,9 @@
     "assay_sale_ranking_product": {
         "path": "/oa_static/modules/assay/assay_sale_ranking_product.module.js",
         "template": "/oa_static/template/assay/assay_sale_ranking_product.html"
+    },
+    "assay_sale": {
+        "path": "/oa_static/modules/assay/assay_sale.module.js",
+        "template": "/oa_static/template/assay/assay_sale.html"
     }
 }
