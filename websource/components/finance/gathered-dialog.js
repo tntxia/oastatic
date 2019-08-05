@@ -93,7 +93,7 @@ module.exports = {
             console.log("fetchData");
         },
         editInvoiceBtn: function() {
-            window.open("editTax.mvc?id=" + this.id);
+            window.open(webRoot + "/finance/editTax.mvc?id=" + this.id);
         },
         finishGathering() {
             $.ajax({

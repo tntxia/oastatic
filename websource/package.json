@@ -79,7 +79,7 @@
     }, {
         "group": "warehouse",
         "name": "out-list",
-        "active": true
+        "active": false
     }, {
         "group": "warehouse",
         "name": "out-list-refund",
@@ -126,7 +126,7 @@
     }, {
         "group": "finance",
         "name": "gathering-dialog",
-        "active": false
+        "active": true
     }, {
         "group": "finance",
         "name": "gathered-dialog",
