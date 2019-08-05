@@ -71,6 +71,11 @@
             "url": "/oa_static/components/sale/sale-approved-choose-dialog.js",
             "isDialog": true,
             "ref": "saleApprovedChooseDialog"
+        }, {
+            "name": "finance-gathering-dialog",
+            "url": "/oa_static/components/finance/finance-gathering-dialog.js",
+            "isDialog": true,
+            "ref": "financeGatheringDialog"
         }
 
     ]

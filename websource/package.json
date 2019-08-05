@@ -67,15 +67,15 @@
     }, {
         "group": "warehouse",
         "name": "in-list-refund",
-        "active": true
+        "active": false
     }, {
         "group": "warehouse",
         "name": "in-list-sample",
-        "active": true
+        "active": false
     }, {
         "group": "warehouse",
         "name": "out-list-wait",
-        "active": true
+        "active": false
     }, {
         "group": "warehouse",
         "name": "out-list",
@@ -83,7 +83,7 @@
     }, {
         "group": "warehouse",
         "name": "out-list-refund",
-        "active": true
+        "active": false
     }, {
         "group": "warehouse",
         "name": "out-list-sample",
@@ -123,5 +123,9 @@
         "template": "sale/sale-approved-choose-dialog.html",
         "options": "sale/sale-approved-choose-dialog.js",
         "dist": "../components/sale/sale-approved-choose-dialog.js"
+    }, {
+        "group": "finance",
+        "name": "gathering-dialog",
+        "active": true
     }]
 }

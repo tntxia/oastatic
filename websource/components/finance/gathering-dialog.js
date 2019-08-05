@@ -1,8 +1,7 @@
 module.exports = {
-    name: 'finance-gathering-view',
-    props: ['id'],
     data() {
         return {
+            id: null,
             showFlag: false,
             showNoteFlag: false,
             noteValue: '',
@@ -43,6 +42,9 @@ module.exports = {
     },
     updated() {},
     methods: {
+        setId(id) {
+            this.id = id;
+        },
         show() {
             this.showFlag = true;
         },
@@ -64,9 +66,9 @@ module.exports = {
                     id
                 }
             }).done(function(data) {
-            	if (data.states=="待收款") {
-            		vm.needGather = true;
-            	}
+                if (data.states == "待收款") {
+                    vm.needGather = true;
+                }
                 vm.orderform = data.orderform;
                 vm.custno = data.custno;
                 vm.smoney = data.smoney;
@@ -132,7 +134,7 @@ module.exports = {
 
         },
         addCredit: function() {
-            window.open("addCredit.mvc?id=" + this.id);
+            window.open(webRoot + "/finance/addCredit.mvc?id=" + this.id);
         },
         toNoteIt: function() {
             this.showNoteFlag = true;

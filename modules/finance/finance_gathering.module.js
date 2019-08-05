@@ -80,8 +80,9 @@
                     console.log("query,,,", this.sdate, this.edate);
                 },
                 goGathering(row) {
-                    this.gatheringId = row.id;
-                    this.$refs["view"].show();
+                    let dialog = dialogVue.getDialog("financeGatheringDialog");
+                    dialog.setId(row.id);
+                    dialog.show();
                 },
                 exportGathering() {
                     $.ajax({
