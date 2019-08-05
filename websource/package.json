@@ -87,7 +87,7 @@
     }, {
         "group": "warehouse",
         "name": "out-list-sample",
-        "active": true
+        "active": false
     }, {
         "name": "warehouse-send-bill-add-dialog",
         "template": "warehouse/send_bill_add_dialog.html",
@@ -126,6 +126,10 @@
     }, {
         "group": "finance",
         "name": "gathering-dialog",
+        "active": false
+    }, {
+        "group": "finance",
+        "name": "gathered-dialog",
         "active": true
     }]
 }

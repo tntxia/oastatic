@@ -28,7 +28,7 @@
     updated() {},
     methods: {
         getUrl(row) {
-            return webRoot + "/warehouse/in/view.mvc?id=" + row.id;
+            return webRoot + "/warehouse/out/operate.mvc?id=" + row.ddid;
         },
         query: function() {
             let datagrid = this.$refs["datagrid"];
