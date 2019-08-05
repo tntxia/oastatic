@@ -18,20 +18,62 @@ var mainMenuSelected;
 
 $(function() {
 
-    getComponents().then(components => {
-        let jsList = components.map(c => {
-            return c.url
-        });
-        JsInstall.install(jsList).then(() => {
-            installMainLayout().then((mainLayout) => {
-                $.ajax({
-                    url: '/oa_static/json/moduleMapping.json'
-                }).done(res => {
-                    init(mainLayout, res, components);
-                })
+    $(document.body).append($("<div>", {
+        text: '正在检查登陆状态'
+    }));
+    checkLogin().then(res => {
+        if (res) {
+            $(document.body).append($("<div>", {
+                text: '用户已登陆'
+            }));
+            $(document.body).append($("<div>", {
+                text: '查询系统所需的组件'
+            }));
+            getComponents().then(components => {
+                let jsList = components.map(c => {
+                    return c.url
+                });
+                $(document.body).append($("<div>", {
+                    text: `总共需要，jsList${jsList.length}个组件，开始加载组件`
+                }));
+                JsInstall.install(jsList).then(() => {
+                    $(document.body).append($("<div>", {
+                        text: '组件加载完成，开始渲染'
+                    }));
+                    installMainLayout().then((mainLayout) => {
+                        $.ajax({
+                            url: '/oa_static/json/moduleMapping.json'
+                        }).done(res => {
+                            init(mainLayout, res, components);
+                        })
+                    });
+                });
+            });
+        } else {
+            $(document.body).append($("<div>", {
+                text: '用户还没有登陆，重新刷新页面'
+            }));
+        }
+    })
+
+
+
+    function checkLogin() {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: webRoot + "/checkLogin.do",
+                cache: false
+            }).done(res => {
+                if (res.success) {
+                    resolve(res.login)
+                } else {
+                    reject(new Error("检查登陆状态失败"));
+                }
+            }).fail(e => {
+                reject(new Error("检查登陆状态异常"));
             });
         });
-    });
+    }
 
     function getComponents() {
         return new Promise((resolve, reject) => {
@@ -47,6 +89,7 @@ $(function() {
     }
 
     function installMainLayout() {
+        $(document.body).empty();
         return MainLayoutInstall.install({
             headerHeight: 80,
             headerTemplate: '/oa_static/template/header.html',
