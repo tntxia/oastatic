@@ -2,11 +2,11 @@ module.exports = {
     data() {
         return {
             form: {
-                ddnum: null,
-                orderNumber: null,
                 coname: null,
-                model: null,
-                supplier: null
+                number: null,
+                sub: null,
+                startdate: null,
+                enddate: null
             },
             dataset: {
                 url: webRoot + "/warehouse/warehouse!getOutList.do",
