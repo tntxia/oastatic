@@ -1,8 +1,9 @@
 <div id="app">
     <div>
-        型号：<input v-model="form.epro"> 客户名称: <input v-model="form.coname"> 合同编号：
+        客户名称: <input v-model="form.coname"> 合同编号：
         <input v-model="form.number"> 客户订单号: <input v-model="form.sub"> 销售员:
         <saleman-select v-model="form.man"></saleman-select>
+        型号：<input v-model="form.epro">
         <button @click="query">查询</button>
     </div>
     <div>
