@@ -22,7 +22,10 @@
                 },
                 form: {
                     epro: null,
-                    coname: null
+                    coname: null,
+                    number: null,
+                    sub: null,
+                    man: ''
                 }
             },
             mounted() {
