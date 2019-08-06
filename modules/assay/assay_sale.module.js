@@ -54,8 +54,8 @@
                     this.fetchData();
                 },
 
-                fetchData: function(param) {
-
+                fetchData: function() {
+                    let param = this.form;
                     param.page = this.page;
 
                     $.ajax({
@@ -88,7 +88,7 @@
 
                 },
                 sub() {
-                    vue.fetchData(this.form);
+                    vue.fetchData();
                 }
             }
         });
