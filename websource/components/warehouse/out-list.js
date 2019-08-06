@@ -5,6 +5,7 @@ module.exports = {
                 coname: null,
                 number: null,
                 sub: null,
+                model: null,
                 startdate: null,
                 enddate: null
             },
