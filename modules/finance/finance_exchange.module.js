@@ -49,7 +49,7 @@
             },
             methods: {
                 getUrl(row) {
-                    return webRoot + "/system/money/w-view.jsp?id=" + row.id
+                    return webRoot + "/finance/money/w-view.jsp?id=" + row.id
                 },
                 loadData() {
                     let me = this;

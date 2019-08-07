@@ -32,7 +32,7 @@
             <jxiaui-datagrid-item label="#" type="index"></jxiaui-datagrid-item>
             <jxiaui-datagrid-item label="凭证日期">
                 <template v-slot="row">
-					<a href="javascript:void(0)" @click="getUrl(row)">{{row.l_date}}</a>
+					<a :href="getUrl(row)" target="_blank">{{row.l_date}}</a>
 				</template>
             </jxiaui-datagrid-item>
             <jxiaui-datagrid-item label="销售单号" field="xsdh"></jxiaui-datagrid-item>
