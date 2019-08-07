@@ -1,29 +1,28 @@
 <div style="display: flex;flex-direction: column;height:100%;" id="app">
     <div id="searchForm">
         科目
-        <select name="km" id="km"> 
+        <select v-model="form.km"> 
             <option value="">请选择</option>
             <option v-for="a in accountList">{{a.coun_name }}</option>
         </select> 科目明细
-        <select name="l_topic" id="l_topic"> 
+        <select v-model="form.l_topic"> 
             <option value="">请选择</option> 
             <option v-for="a in accountTypeList">{{a.km_mx }}</option>
         </select> 贷方／借方
-        <select name="l_c_d" id="l_c_d"> 
+        <select v-model="form.l_c_d"> 
                 <option></option> 
                 <option value="借方">借方</option> 
                 <option value="贷方">贷方</option> 
             </select> 凭证编号
         <font size="2">
-            <input type="text" name="l_menber" size="10" maxlength="25"> 销售单号
-            <input type="text" name="xsdh" size="10" maxlength="25"> 单据备注
-            <input type="text" name="remarks" size="10" maxlength="25"> 采购单号
-            <input type="text" name="cgdh" size="10" maxlength="25"> 公司名称
-            <input name="coname" type="text" id="l_coname" size="10" maxlength="25"> 起始日期
-            <input type="text" name="sdate" size="10" maxlength="10"> 终止日期 <input type="text" name="edate" size="10" maxlength="10">
-            <button id="searchBtn">检索</button> |
-            <a href="#" onClick="window.open('yksqt.jsp','_blank', 'height=458, width=955, top=50, left=50, toolbar=yes, menubar=no, scrollbars=yes, resizable=yes,location=no, status=no')">
-            新增</a>
+            <input v-model="form.l_menber" size="10" maxlength="25"> 销售单号
+            <input v-model="form.xsdh" size="10" maxlength="25"> 单据备注
+            <input v-model="form.remarks" size="10" maxlength="25"> 采购单号
+            <input v-model="form.cgdh" size="10" maxlength="25"> 公司名称
+            <input v-model="form.coname" id="l_coname" size="10" maxlength="25"> 起始日期
+            <input v-model="form.sdate" size="10" maxlength="10">
+            <span>终止日期</span> <input name="form.edate" size="10" maxlength="10"> |
+            <button @click="toAdd">新增</button>
             <button @click="query">搜索</button>
             <button @click="exportGathering">导出</button>
     </div>

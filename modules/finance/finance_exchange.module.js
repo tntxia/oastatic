@@ -23,10 +23,17 @@
                     pageSize: 50
                 },
                 form: {
-                    year: '',
-                    month: '',
+                    km: '',
+                    l_topic: '',
+                    l_c_d: null,
+                    l_menber: null,
+                    xsdh: null,
+                    remarks: null,
+                    cgdh: null,
                     coname: null,
-                    fpnum: null,
+                    sdate: null,
+                    edate: null,
+
                     sdate: null,
                     edate: null,
                 },
@@ -64,6 +71,9 @@
                         },
                         dataType: 'json'
                     });
+                },
+                toAdd() {
+                    window.open('yksqt.jsp', '_blank', 'height=458, width=955, top=50, left=50, toolbar=yes, menubar=no, scrollbars=yes, resizable=yes,location=no, status=no');
                 },
                 query() {
                     let datagrid = this.$refs["gatheringTable"];
