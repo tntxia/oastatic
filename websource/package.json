@@ -27,6 +27,12 @@
         "dist": "../components/logo-and-name.js",
         "active": false
     }, {
+        "name": "my-todo-dialog",
+        "active": true
+    }, {
+        "name": "change-password-dialog",
+        "active": false
+    }, {
         "name": "mail-new-dialog",
         "template": "mail-new-dialog.html",
         "options": "mail-new-dialog.js",
@@ -52,11 +58,6 @@
         "options": "gathering-view.js",
         "dist": "../components/finance/finance-gathering-view.js"
     }, {
-        "name": "my-todo-dialog",
-        "template": "my-todo-dialog.html",
-        "options": "my-todo-dialog.js",
-        "dist": "../components/my-todo-dialog.js"
-    }, {
         "group": "warehouse",
         "name": "in-list-wait",
         "active": false
@@ -79,7 +80,7 @@
     }, {
         "group": "warehouse",
         "name": "out-list",
-        "active": true
+        "active": false
     }, {
         "group": "warehouse",
         "name": "out-list-refund",

@@ -1,9 +1,22 @@
 {
     "components": [{
+            "name": "logo-and-name",
+            "url": "/oa_static/components/logo-and-name.js"
+        }, {
+            "name": "my-todo-dialog",
+            "url": "/oa_static/components/my-todo-dialog.js",
+            "isDialog": true,
+            "ref": "myTodoDialog"
+        }, {
             "name": "mail-new-dialog",
             "url": "/oa_static/components/mail-new-dialog.js",
             "isDialog": true,
             "ref": "mailNewDialog"
+        }, {
+            "name": "change-password-dialog",
+            "url": "/oa_static/components/change-password-dialog.js",
+            "isDialog": true,
+            "ref": "changePasswordDialog"
         }, {
             "name": "brand-select",
             "url": "/oa_static/components/brand-select.js"
@@ -13,14 +26,6 @@
         }, {
             "name": "saleman-select",
             "url": "/oa_static/components/saleman-select.js"
-        }, {
-            "name": "logo-and-name",
-            "url": "/oa_static/components/logo-and-name.js"
-        }, {
-            "name": "my-todo-dialog",
-            "url": "/oa_static/components/my-todo-dialog.js",
-            "isDialog": true,
-            "ref": "myTodoDialog"
         }, {
             "name": "warehouse-in-list-wait",
             "url": "/oa_static/components/warehouse/warehouse-in-list-wait.js"

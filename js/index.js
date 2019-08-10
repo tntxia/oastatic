@@ -17,15 +17,8 @@ var $globe = {};
 var mainMenuSelected;
 
 $(function() {
-
-    $(document.body).append($("<div>", {
-        text: '正在检查登陆状态'
-    }));
-    checkLogin().then(res => {
-        if (res) {
-            $(document.body).append($("<div>", {
-                text: '用户已登陆'
-            }));
+    checkLogin().then(() => {
+        loadWebConfig().then(() => {
             $(document.body).append($("<div>", {
                 text: '查询系统所需的组件'
             }));
@@ -36,7 +29,11 @@ $(function() {
                 $(document.body).append($("<div>", {
                     text: `总共需要，jsList${jsList.length}个组件，开始加载组件`
                 }));
-                JsInstall.install(jsList).then(() => {
+
+                WebInstall.install({
+                    cssList: [],
+                    jsList
+                }).then(() => {
                     $(document.body).append($("<div>", {
                         text: '组件加载完成，开始渲染'
                     }));
@@ -49,23 +46,30 @@ $(function() {
                     });
                 });
             });
-        } else {
-            $(document.body).append($("<div>", {
-                text: '用户还没有登陆，重新刷新页面'
-            }));
-        }
+        });
     })
 
-
-
     function checkLogin() {
+        $(document.body).append($("<div>", {
+            text: '正在检查登陆状态'
+        }));
         return new Promise((resolve, reject) => {
             $.ajax({
                 url: webRoot + "/checkLogin.do",
                 cache: false
             }).done(res => {
                 if (res.success) {
-                    resolve(res.login)
+                    if (res.login) {
+                        $(document.body).append($("<div>", {
+                            text: '用户已登陆'
+                        }));
+                        resolve();
+                    } else {
+                        $(document.body).append($("<div>", {
+                            text: '用户还没有登陆，重新刷新页面'
+                        }));
+                        reject(new Error("用户还没有登陆"));
+                    }
                 } else {
                     reject(new Error("检查登陆状态失败"));
                 }
@@ -73,6 +77,24 @@ $(function() {
                 reject(new Error("检查登陆状态异常"));
             });
         });
+    }
+
+    function loadWebConfig() {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: '/oa_static/json/webConfig.json'
+            }).done(res => {
+                WebInstall.install(res).then(() => {
+                    resolve();
+                }, e => {
+                    reject(e);
+                });
+            }).fail(e => {
+                console.error(e);
+                reject(e);
+            })
+        });
+
     }
 
     function getComponents() {
@@ -245,7 +267,8 @@ $(function() {
                     })
                 },
                 passchange: function() {
-                    openChangePassDialog();
+                    let dialog = dialogVue.getDialog("changePasswordDialog");
+                    dialog.show();
                 },
                 selectMenu(key) {
                     this.menus.forEach(m => {
@@ -300,37 +323,5 @@ $(function() {
                 }
             }
         });
-
-        function openChangePassDialog() {
-            BootstrapUtils.createDialog({
-                id: 'changePassModal',
-                template: webRoot + '/template/changePass.html',
-                onConfirm: function() {
-                    var password = this.find("[name=password]").val();
-                    var password2 = this.find("[name=password2]").val();
-
-                    if (password != password2) {
-                        alert("两次输入的密码不一定，请重新输入！");
-                    }
-
-                    $.ajax({
-                        url: webRoot +
-                            "/user!changePass.do",
-                        data: {
-                            password: password
-                        },
-                        success: function(data) {
-                            if (data.success) {
-                                alert("密码修改成功！");
-                                $("#changePassModal").modal("hide");
-                            } else {
-                                alert("修改失败！");
-                            }
-                        }
-                    });
-                }
-            });
-            $("#changePassModal").modal("show");
-        }
     }
 });
