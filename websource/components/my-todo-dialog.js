@@ -32,6 +32,9 @@ module.exports = {
                     console.error(e);
                 }
             });
+        },
+        handleClick() {
+            this.hide();
         }
     }
 }

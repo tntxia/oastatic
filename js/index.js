@@ -154,8 +154,8 @@ $(function() {
             target: $(".main_sec"),
             defaultModule: 'index_main',
             mapping: mapping,
-            onChange(module) {
-                let moduleName = module.name;
+            onChange(moduleName) {
+                let module = mapping[moduleName];
                 let leftbarFlag = module.leftbar;
                 if (leftbarFlag === false) {
                     mainLayout.hideLeftbar();

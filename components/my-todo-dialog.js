@@ -42,10 +42,13 @@
                     console.error(e);
                 }
             });
+        },
+        handleClick() {
+            this.hide();
         }
     }
 }
-module.exports.template = "<jxiaui-dialog @close=\"hide\" v-if=\"showFlag\" :title=\"title\">\r\n    <div class=\"my-todo-dialog-content\">\r\n        <jxiaui-table-form v-if=\"items && items.length\">\r\n            <jxiaui-table-form-item :key=\"index\" :label=\"item.label\" v-for=\"(item,index) in items\" v-if=\"item.count>0\">\r\n                <a :href=\"item.url\"> \r\n                    {{item.count}}\r\n                </a>\r\n            </jxiaui-table-form-item>\r\n        </jxiaui-table-form>\r\n    </div>\r\n</jxiaui-dialog>"
+module.exports.template = "<jxiaui-dialog @close=\"hide\" v-if=\"showFlag\" :title=\"title\">\r\n    <div class=\"my-todo-dialog-content\">\r\n        <jxiaui-table-form v-if=\"items && items.length\">\r\n            <jxiaui-table-form-item :key=\"index\" :label=\"item.label\" v-for=\"(item,index) in items\" v-if=\"item.count>0\">\r\n                <a :href=\"item.url\" @click=\"handleClick\"> \r\n                    {{item.count}}\r\n                </a>\r\n            </jxiaui-table-form-item>\r\n        </jxiaui-table-form>\r\n    </div>\r\n</jxiaui-dialog>"
         return module.exports;
     })(),
 
