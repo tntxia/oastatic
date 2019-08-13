@@ -1,10 +1,19 @@
 <div id="app">
     <div>
-        客户名称: <input v-model="form.coname"> 合同编号：
-        <input v-model="form.number"> 客户订单号: <input v-model="form.sub"> 销售员:
-        <saleman-select v-model="form.man"></saleman-select>
-        型号：<input v-model="form.epro">
-        <button @click="query">查询</button>
+        <div>
+            客户名称: <input v-model="form.coname"> 合同编号：
+            <input v-model="form.number"> 客户订单号: <input v-model="form.sub"> 销售员:
+            <saleman-select v-model="form.man"></saleman-select>
+            型号：<input v-model="form.epro">
+        </div>
+        <div>
+            下单 开始时间：
+            <jxiaui-datepicker v-model="form.startdate"></jxiaui-datepicker>
+            结束时间：
+            <jxiaui-datepicker v-model="form.enddate"></jxiaui-datepicker>
+            <button @click="query">查询</button>
+        </div>
+
     </div>
     <div>
         <jxiaui-datagrid class="table" ref="datagrid" :dataset="dataset">
@@ -36,9 +45,9 @@
             </jxiaui-datagrid-item>
             <jxiaui-datagrid-item label="审批人" field="spman">
             </jxiaui-datagrid-item>
-            <jxiaui-datagrid-item label="复审人" field="swman">
-            </jxiaui-datagrid-item>
             <jxiaui-datagrid-item label="审批状态" field="state">
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="下单时间" field="datetime">
             </jxiaui-datagrid-item>
         </jxiaui-datagrid>
     </div>
