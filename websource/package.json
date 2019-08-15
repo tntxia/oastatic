@@ -126,7 +126,7 @@
     }, {
         "group": "finance",
         "name": "gathered-dialog",
-        "active": false
+        "active": true
     }, {
         "group": "finance",
         "name": "quick-gather-dialog",

@@ -39,7 +39,7 @@ module.exports = {
             subjectList: [],
             form: {
                 id: null,
-                ticketNo: null,
+                remark: null,
                 toGather: 0,
                 subject: null
             }

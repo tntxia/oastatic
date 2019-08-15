@@ -45,7 +45,6 @@
         },
         hide() {
             this.showFlag = false;
-            router.goRoute("finance_gathering");
         },
         gather() {
             let gatheringList = this.gatheringList;
