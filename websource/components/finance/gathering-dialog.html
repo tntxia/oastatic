@@ -7,53 +7,53 @@
                     <strong style="color:#213e9b">收款信息 </strong>
                 </td>
                 <td colspan="3" bgcolor="#d3d8eb" align="right">
-                    <button @click="editInvoiceBtn">填写发票</button>
-                    <button v-if="needGather" @click="finishGathering">完成收款</button>
-                    <button @click="hide">返回</button>
-                    <button @click="del">删除</button>
+                    <jxiaui-button v-if="needGather" @click="gather">
+                        收款
+                    </jxiaui-button>
                 </td>
             </tr>
 
             <tr>
                 <td bgcolor="#e8ebf5">
-                    <FONT SIZE="2">合同编号</font>&nbsp;</td>
-                <td>
-                    <FONT SIZE="2" COLOR="#000000">{{orderform}}</font>&nbsp;</td>
+                    合同编号</td>
+                <td>{{orderform}}</td>
                 <td bgcolor="#e8ebf5">
-                    <FONT SIZE="2">PO#</font>&nbsp;</td>
+                    票据号</td>
                 <td>
-                    <FONT SIZE="2" COLOR="#000000">{{custno}}</font>
+                    <input v-model="form.ticketNo">
                 </td>
             </tr>
             <tr>
-                <td width="17%" bgcolor="#e8ebf5">
-                    <FONT SIZE="2">实收金额</font>&nbsp;</td>
+                <td bgcolor="#e8ebf5">
+                    合同金额</td>
                 <td>
-                    <FONT SIZE="2" COLOR="#000000">{{smoney }}</FONT>
-                    <FONT SIZE="2" COLOR="#000080">
-                    </font>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                    {{total }}</td>
+                <td bgcolor="#e8ebf5">
+                    运费金额</td>
+                <td>
+                    {{bank }}</td>
             </tr>
             <tr>
                 <td bgcolor="#e8ebf5">
-                    <font size="2"> 合同金额</font>&nbsp;</td>
+                    实收金额</td>
                 <td>
-                    <font size="2" color="#000000">{{priceTotal.orderTotal }}</font>&nbsp;</td>
-                <td bgcolor="#e8ebf5">
-                    <font size="2"> 运费金额</font>&nbsp;</td>
-                <td>
-                    <font size="2" color="#000000">{{bank }}</font>&nbsp;</td>
+                    {{smoney }}
+                </td>
+                <td>收款金额</td>
+                <td><input v-model="form.toGather"></td>
             </tr>
             <tr>
-                <td width="17%" bgcolor="#e8ebf5">
-                    <FONT SIZE="2">客户名称</font>&nbsp;</td>
-                <td>
-                    <FONT SIZE="2" COLOR="#000000"> <a href="#" @click="openCoView()">{{coname }}</a></font>&nbsp;</td>
                 <td bgcolor="#e8ebf5">
-                    <FONT SIZE="2">客户类别</font>&nbsp;</td>
+                    科目
+                </td>
                 <td>
-                    <FONT SIZE="2" COLOR="#000000"> <a href="#" @click="openCoView()">{{co_number}}</a></font>&nbsp;</td>
+                    <select v-model="form.subject">
+                        <option v-for="s in subjectList">{{s.name}}</option>
+                    </select>
+                </td>
+                <td bgcolor="#e8ebf5">
+                    客户名称</td>
+                <td> <a href="#" @click="openCoView()">{{coname }}</a></td>
             </tr>
             <tr>
                 <td width="17%" bgcolor="#e8ebf5">
@@ -121,12 +121,12 @@
 
                     <div v-if="showNoteFlag">
                         <select v-model="noteValue">
-	              <option value=""></option>
-	              <option value="已收款">已收款</option>
-	              <option value="未收款">未收款</option>
-	              <option value="收款中">收款中</option>
-	                <option value="部分收款">部分收款</option>
-	            </select>
+                        <option value=""></option>
+                        <option value="已收款">已收款</option>
+                        <option value="未收款">未收款</option>
+                        <option value="收款中">收款中</option>
+                            <option value="部分收款">部分收款</option>
+                        </select>
                         <button @click="noteIt">确定</button><button @click="cancelNote">取消</button>
 
                     </div>
@@ -222,24 +222,21 @@
                     <div align="right">合计金额：</div>
                 </td>
                 <td>
-                    <div align="right">{{priceTotal.orderTotal }}</div>
+                    <div align="right">{{total }}</div>
                 </td>
                 <td>
-                    <div align="right">{{priceTotal.outTotal }}</div>
+                    <div align="right">{{total_out_house }}</div>
                 </td>
             </tr>
 
             <tr>
                 <td colspan="5">
-                    <div align="right">
-                        <a @click="addCredit">新增往来帐目</a>
-
-                        <font size="2">欠款金额：</font>
+                    <div align="right">欠款金额：
                     </div>
                 </td>
                 <td width="111">
                     <div align="right">
-                        {{priceTotal.outTotal-smoney}}
+                        {{total_out_house-smoney}}
                     </div>
                 </td>
                 <td>

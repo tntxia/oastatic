@@ -81,7 +81,7 @@
                 },
                 goGathering(row) {
                     let dialog = dialogVue.getDialog("financeGatheringDialog");
-                    dialog.setId(row.id);
+                    dialog.setData(row);
                     dialog.show();
                 },
                 exportGathering() {
@@ -96,6 +96,16 @@
                     }).fail(e => {
                         alert("操作异常");
                     });
+                },
+                quickGather() {
+                    let datagrid = this.$refs["gatheringTable"];
+                    let selectedRows = datagrid.getSelectedRows();
+                    let dialog = dialogVue.getDialog("financeQuickGatherDialog");
+                    dialog.setCallback(() => {
+                        this.query();
+                    });
+                    dialog.setGatheringList(selectedRows);
+                    dialog.show();
                 }
             }
         });

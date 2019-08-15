@@ -28,7 +28,7 @@
         "active": false
     }, {
         "name": "my-todo-dialog",
-        "active": true
+        "active": false
     }, {
         "name": "change-password-dialog",
         "active": false
@@ -52,11 +52,6 @@
         "template": "saleman-select.html",
         "options": "saleman-select.js",
         "dist": "../components/saleman-select.js"
-    }, {
-        "name": "gathering-view",
-        "template": "gathering-view.html",
-        "options": "gathering-view.js",
-        "dist": "../components/finance/finance-gathering-view.js"
     }, {
         "group": "warehouse",
         "name": "in-list-wait",
@@ -127,10 +122,14 @@
     }, {
         "group": "finance",
         "name": "gathering-dialog",
-        "active": false
+        "active": true
     }, {
         "group": "finance",
         "name": "gathered-dialog",
         "active": false
+    }, {
+        "group": "finance",
+        "name": "quick-gather-dialog",
+        "active": true
     }]
 }

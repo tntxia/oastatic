@@ -8,6 +8,7 @@ module.exports = {
             orderform: null,
             custno: null,
             total: null,
+            total_out_house: null,
             ymoney: null,
             smoney: null,
             bank: null,
@@ -34,16 +35,32 @@ module.exports = {
             bankaccounts: null,
             remark: null,
             proList: [],
-            needGather: false
+            needGather: false,
+            subjectList: [],
+            form: {
+                id: null,
+                ticketNo: null,
+                toGather: 0,
+                subject: null
+            }
         }
     },
     mounted() {
+        this.initToGather();
         this.fetchData();
     },
     updated() {},
     methods: {
-        setId(id) {
-            this.id = id;
+        setData(data) {
+            for (let k in data) {
+                this[k] = data[k];
+            }
+            this.form.id = data.id;
+            this.initToGather();
+        },
+        // 初始化待收款金额
+        initToGather() {
+            this.form.toGather = (this.total - this.smoney) + "";
         },
         show() {
             this.showFlag = true;
@@ -53,6 +70,13 @@ module.exports = {
             router.goRoute("finance_gathering");
         },
         fetchData: function() {
+
+            this.$http.post(webRoot + "/finance/finance!getFinanceAccountList.do").then(res => {
+                this.subjectList = res.body;
+                if (this.subjectList && this.subjectList.length) {
+                    this.form.subject = this.subjectList[0].name;
+                }
+            })
 
             var vm = this;
             let id = this.id;
@@ -95,43 +119,19 @@ module.exports = {
         editInvoiceBtn: function() {
             window.open(webRoot + "/finance/editTax.mvc?id=" + this.id);
         },
-        finishGathering() {
-            $.ajax({
-                url: webRoot + "/finance/finance!markGatheringFinish.do",
-                type: 'post',
-                data: {
-                    id: this.id
-                }
-            }).done(function(data) {
-                if (data.success) {
-                    window.location.reload();
-                } else {
-                    alert("操作失败");
-                }
-            }).fail(function() {
-                alert("操作异常");
-            })
-
-        },
-        del() {
-            if (confirm("是否确认将这个收款信息删除")) {
-                $.ajax({
-                    url: webRoot + "/finance/finance!delGathering.do",
-                    type: 'post',
-                    data: {
-                        id: id
-                    }
-                }).done(function(data) {
+        gather() {
+            if (confirm("是否确认收款，收款金额：" + this.form.toGather)) {
+                this.$http.post(webRoot + "/finance/finance!gather.do", this.form).then(res => {
+                    let data = res.body;
                     if (data.success) {
                         window.location.reload();
                     } else {
                         alert("操作失败");
                     }
-                }).fail(function() {
+                }, e => {
                     alert("操作异常");
-                })
+                });
             }
-
         },
         addCredit: function() {
             window.open(webRoot + "/finance/addCredit.mvc?id=" + this.id);

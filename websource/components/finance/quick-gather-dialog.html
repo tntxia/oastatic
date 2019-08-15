@@ -1,0 +1,26 @@
+<jxiaui-dialog @close="hide" v-if="showFlag" :width="1000">
+    <div style="padding: 10px;">
+        <button @click="gather">全部收款</button>
+    </div>
+
+    <div class="jxiaui-table-form" style="padding: 10px;">
+        <table class="jxiaui-table-form-table">
+            <tr v-for="g in gatheringList">
+                <th>销售单号</th>
+                <td>{{g.orderform}}</td>
+                <th>票据号</th>
+                <td><input v-model="g.remark"></td>
+                <th>客户名称</th>
+                <td>{{g.coname}}</td>
+                <th>金额</th>
+                <td><input v-model="g.toGather"></td>
+                <th>科目名称</th>
+                <td>
+                    <select v-model="g.subject">
+                        <option v-for="s in subjectList">{{s.name}}</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </div>
+</jxiaui-dialog>

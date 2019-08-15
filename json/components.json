@@ -82,6 +82,11 @@
             "isDialog": true,
             "ref": "financeGatheringDialog"
         }, {
+            "name": "finance-quick-gather-dialog",
+            "url": "/oa_static/components/finance/finance-quick-gather-dialog.js",
+            "isDialog": true,
+            "ref": "financeQuickGatherDialog"
+        }, {
             "name": "finance-gathered-dialog",
             "url": "/oa_static/components/finance/finance-gathered-dialog.js",
             "isDialog": true,
