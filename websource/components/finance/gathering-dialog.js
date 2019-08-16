@@ -42,6 +42,9 @@ module.exports = {
                 remark: null,
                 toGather: 0,
                 subject: null
+            },
+            saleinfo: {
+                man: null
             }
         }
     },
@@ -57,6 +60,7 @@ module.exports = {
             }
             this.form.id = data.id;
             this.initToGather();
+            this.fetchData();
         },
         // 初始化待收款金额
         initToGather() {
@@ -76,43 +80,21 @@ module.exports = {
                 if (this.subjectList && this.subjectList.length) {
                     this.form.subject = this.subjectList[0].name;
                 }
-            })
+            });
 
             var vm = this;
-            let id = this.id;
-
-            if (!id) {
+            let fyid = this.fyid;
+            if (!fyid) {
                 return;
             }
             $.ajax({
-                url: webRoot + "/finance/finance!getGatheringDataById.do",
+                url: webRoot + "/finance/finance!getSaleData.do",
                 data: {
-                    id
+                    id: fyid
                 }
             }).done(function(data) {
-                if (data.states == "待收款") {
-                    vm.needGather = true;
-                }
-                vm.orderform = data.orderform;
-                vm.custno = data.custno;
-                vm.smoney = data.smoney;
-                vm.total = data.total;
-                vm.ymoney = data.ymoney;
-                vm.bank = data.bank;
-                vm.coname = data.coname;
-                vm.co_number = data.co_number;
-                vm.note = data.note;
-                vm.yjskdate = data.yjskdate;
-                vm.sjdate = data.sjdate;
-                vm.sjskdate = data.sjskdate;
-                vm.rate = data.rate;
-                vm.i_man = data.i_man;
-                vm.sendcompany = data.sendcompany;
-                vm.mode = data.mode;
-                vm.bankaccounts = data.bankaccounts;
-                vm.remark = data.remark;
-                vm.proList = data.proList;
-                vm.priceTotal = data.priceTotal;
+                vm.saleinfo = data.data;
+                console.log(data);
             })
             console.log("fetchData");
         },
@@ -132,9 +114,6 @@ module.exports = {
                     alert("操作异常");
                 });
             }
-        },
-        addCredit: function() {
-            window.open(webRoot + "/finance/addCredit.mvc?id=" + this.id);
         },
         toNoteIt: function() {
             this.showNoteFlag = true;
@@ -162,10 +141,5 @@ module.exports = {
             })
         }
 
-    },
-    watch: {
-        id() {
-            this.fetchData();
-        }
     }
 }

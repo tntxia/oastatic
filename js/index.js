@@ -180,6 +180,7 @@ $(function() {
                 leftbar.empty();
                 $.ajax({
                     url: 'leftbar.do',
+                    cache: false,
                     data: {
                         type: type
                     }

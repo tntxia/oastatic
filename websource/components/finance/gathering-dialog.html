@@ -7,7 +7,10 @@
                     <strong style="color:#213e9b">收款信息 </strong>
                 </td>
                 <td colspan="3" bgcolor="#d3d8eb" align="right">
-                    <jxiaui-button v-if="needGather" @click="gather">
+                    <jxiaui-button @click="editInvoiceBtn">
+                        填写发票
+                    </jxiaui-button>
+                    <jxiaui-button @click="gather">
                         收款
                     </jxiaui-button>
                 </td>
@@ -104,8 +107,7 @@
             <tr>
                 <td bgcolor="#e8ebf5">
                     <font size="2">销 售 员</font>&nbsp;</td>
-                <td>
-                    <font size="2" color="#000000">{{saleman}}</font>&nbsp;</td>
+                <td>{{saleinfo.man}}</td>
                 <td bgcolor="#e8ebf5">
                     <font size="2">所在部门</font>&nbsp;</td>
                 <td>
