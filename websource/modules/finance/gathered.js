@@ -1,14 +1,4 @@
-(function(name, module) {
-    if (!window.modules) {
-        window.modules = Object.create(null);
-    };
-    window.modules[name] = module();
-})('finance_gathered', function() {
-    var module = Object.create(null);
-    var exports = Object.create(null);
-    module.exports = exports;
-    exports.init = function() {
-        let url = webRoot + "/finance/finance!listGathered.do";
+let url = webRoot + "/finance/finance!listGathered.do";
 
 new Vue({
     el: '#gathering-container',
@@ -91,7 +81,4 @@ $("#exportBtn").click(function() {
         alert("操作异常");
     })
 
-});
-    };
-    return module.exports;
 });

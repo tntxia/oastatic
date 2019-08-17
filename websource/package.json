@@ -12,9 +12,17 @@
         "file": "rule.js",
         "targetDir": "../modules"
     }, {
-        "name": "hr_my_attandance",
-        "file": "hr/hr_my_attandance.js",
-        "targetDir": "../modules/hr"
+        "group": "finance",
+        "name": "gathered",
+        "active": true
+    }, {
+        "group": "hr",
+        "name": "attandance_manage",
+        "active": false
+    }, {
+        "group": "hr",
+        "name": "my_attandance",
+        "active": false
     }, {
         "name": "trade_policy",
         "group": "market",
@@ -122,14 +130,14 @@
     }, {
         "group": "finance",
         "name": "gathering-dialog",
-        "active": true
+        "active": false
     }, {
         "group": "finance",
         "name": "gathered-dialog",
-        "active": true
+        "active": false
     }, {
         "group": "finance",
         "name": "quick-gather-dialog",
-        "active": true
+        "active": false
     }]
 }

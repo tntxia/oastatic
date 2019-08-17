@@ -230,6 +230,10 @@
         "path": "/oa_static/modules/hr/hr_my_attandance.module.js",
         "template": "/oa_static/template/hr/hr_my_attandance.html"
     },
+    "hr_attandance_manage": {
+        "path": "/oa_static/modules/hr/hr_attandance_manage.module.js",
+        "template": "/oa_static/template/hr/hr_attandance_manage.html"
+    },
     "market_trade_policy": {
         "path": "/oa_static/modules/market/market_trade_policy.module.js",
         "template": "/oa_static/template/market/market_trade_policy.html"
