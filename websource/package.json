@@ -14,7 +14,7 @@
     }, {
         "group": "finance",
         "name": "gathered",
-        "active": true
+        "active": false
     }, {
         "group": "hr",
         "name": "attandance_manage",
@@ -130,7 +130,7 @@
     }, {
         "group": "finance",
         "name": "gathering-dialog",
-        "active": false
+        "active": true
     }, {
         "group": "finance",
         "name": "gathered-dialog",

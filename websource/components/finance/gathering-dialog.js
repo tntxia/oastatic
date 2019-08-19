@@ -44,7 +44,8 @@ module.exports = {
                 subject: null
             },
             saleinfo: {
-                man: null
+                man: null,
+                proList: []
             }
         }
     },
