@@ -12,6 +12,7 @@
         <span class="fa fa-spinner fa-spin" v-if="loading"></span>
         <jxiaui-datagrid ref="datagrid" :dataset="dataset">
             <jxiaui-datagrid-item label="#" type="index"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="用户" field="username"></jxiaui-datagrid-item>
             <jxiaui-datagrid-item label="打卡日期" field="clock_date"></jxiaui-datagrid-item>
             <jxiaui-datagrid-item label="签到时间" field="clock_in_time"></jxiaui-datagrid-item>
             <jxiaui-datagrid-item label="签退时间" field="clock_out_time"></jxiaui-datagrid-item>
