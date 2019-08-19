@@ -71,8 +71,7 @@
                     });
                 },
                 newMail() {
-                    let dialog = dialogVue.getDialog("mailNewDialog");
-                    dialog.show();
+                    mainLayout.showDialog("mailNewDialog");
                 },
                 pushInHandling() {
                     let datagrid = this.$refs["datagrid"];

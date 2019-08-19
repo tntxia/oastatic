@@ -52,10 +52,6 @@ new Vue({
             }).fail(function() {
                 alert("操作异常");
             });
-        },
-        newMail() {
-            let dialog = dialogVue.getDialog("mailNewDialog");
-            dialog.show();
         }
     }
 });

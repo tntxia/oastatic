@@ -11,7 +11,7 @@ function initDatetime() {
     $("#timeDiv").html("今天是:" + today.getFullYear() + "年" + (today.getMonth() + 1) + "月" + today.getDate() + "日  星期" + week[today.getDay()]);
 }
 
-var dialogVue;
+var mainLayout;
 var topVue;
 var $globe = {};
 var mainMenuSelected;
@@ -30,6 +30,8 @@ $(function() {
                     text: `总共需要，jsList${jsList.length}个组件，开始加载组件`
                 }));
 
+                let dialogs = components.filter(c => c.isDialog);
+
                 WebInstall.install({
                     cssList: [],
                     jsList
@@ -37,7 +39,8 @@ $(function() {
                     $(document.body).append($("<div>", {
                         text: '组件加载完成，开始渲染'
                     }));
-                    installMainLayout().then((mainLayout) => {
+                    installMainLayout(dialogs).then((mainLayout) => {
+                        window.mainLayout = mainLayout;
                         $.ajax({
                             url: '/oa_static/json/moduleMapping.json'
                         }).done(res => {
@@ -110,45 +113,21 @@ $(function() {
 
     }
 
-    function installMainLayout() {
+    function installMainLayout(dialogs) {
         $(document.body).empty();
         return MainLayoutInstall.install({
             headerHeight: 80,
             headerTemplate: '/oa_static/template/header.html',
             mainSecTemplate: '/oa_static/template/content.html',
+            dialogs: dialogs
         });
     }
 
-    function init(mainLayout, mapping, components) {
+    function init(mainLayout, mapping) {
 
         initTop();
         let currLeftbar;
         initDatetime();
-
-        let dialogsDiv = $("<div>", {
-            id: 'dialogsDiv'
-        });
-        dialogsDiv.css({
-            position: 'relative',
-            'z-index': 10000
-        })
-        mainLayout.append(dialogsDiv);
-        components.forEach(comp => {
-            if (comp.isDialog) {
-                let compEl = $("<" + comp.name + ">");
-                compEl.attr("ref", comp.ref);
-                dialogsDiv.append(compEl);
-            }
-        });
-
-        dialogVue = new Vue({
-            el: '#dialogsDiv',
-            methods: {
-                getDialog(name) {
-                    return this.$refs[name];
-                }
-            }
-        })
 
         router.register({
             target: $(".main_sec"),
@@ -241,8 +220,8 @@ $(function() {
                     history.forward();
                 },
                 showToDo() {
-                    let dialog = dialogVue.getDialog("myTodoDialog");
-                    dialog.show();
+                    mainLayout.showDialog("myTodoDialog");
+
                 },
                 fetchData() {
                     let vm = this;
@@ -268,8 +247,7 @@ $(function() {
                     })
                 },
                 passchange: function() {
-                    let dialog = dialogVue.getDialog("changePasswordDialog");
-                    dialog.show();
+                    mainLayout.showDialog("changePasswordDialog");
                 },
                 selectMenu(key) {
                     this.menus.forEach(m => {

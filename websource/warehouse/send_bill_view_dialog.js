@@ -85,7 +85,7 @@ module.exports = {
         },
         toEdit() {
             this.hide();
-            let dialog = dialogVue.getDialog("warehouseSendBillEditDialog");
+            let dialog = mainLayout.showDialog("warehouseSendBillEditDialog");
             dialog.show(this.id);
         }
     },

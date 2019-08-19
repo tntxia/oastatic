@@ -80,9 +80,8 @@
                     console.log("query,,,", this.sdate, this.edate);
                 },
                 goGathering(row) {
-                    let dialog = dialogVue.getDialog("financeGatheringDialog");
+                    let dialog = mainLayout.showDialog("financeGatheringDialog");
                     dialog.setData(row);
-                    dialog.show();
                 },
                 exportGathering() {
                     $.ajax({
@@ -100,12 +99,12 @@
                 quickGather() {
                     let datagrid = this.$refs["gatheringTable"];
                     let selectedRows = datagrid.getSelectedRows();
-                    let dialog = dialogVue.getDialog("financeQuickGatherDialog");
+
+                    let dialog = mainLayout.showDialog("financeQuickGatherDialog");
                     dialog.setCallback(() => {
                         this.query();
                     });
                     dialog.setGatheringList(selectedRows);
-                    dialog.show();
                 }
             }
         });
