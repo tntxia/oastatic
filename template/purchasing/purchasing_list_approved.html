@@ -15,9 +15,7 @@
 		</select> 责任人:
         <select v-model="form.man">
 			<option value="">请选择</option>
-			<#list purchasingManList as p>
-			<option>${p.name }</option>
-			</#list>
+			<option v-for="m in purchasingManList">{{m.name }}</option>
 		</select> 状态:
         <select v-model="form.status">
 			<option value="">请选择</option>

@@ -21,10 +21,13 @@
                 },
                 stasticLoading: false,
                 brandList: [],
+                purchasingManList: [],
                 form: {
+                    man: '',
                     pro_model: null,
                     brand: null,
-                    supplier: ''
+                    supplier: '',
+                    status: ''
                 },
                 gatheringId: null,
                 totalAll: null,
@@ -40,7 +43,14 @@
                 getUrl: function(row) {
                     return webRoot + "/purchasing/detail.mvc?id=" + row.id
                 },
-                loadData() {},
+                loadData() {
+                    $.ajax({
+                        url: webRoot + "/purchasing/purchasing!listAllPurchaseMan.do"
+                    }).done(res => {
+                        this.purchasingManList = res;
+                    })
+
+                },
                 query() {
                     let datagrid = this.$refs["datagrid"];
                     datagrid.setParams(this.form);

@@ -10,8 +10,7 @@
         "/static/lib/jxiaui/0.1/css/jxiaui.combobox.css",
         "/static/lib/jxiaui/0.1/css/jxiaui-table-form.css",
         "/static/lib/main-layout-install/css/main-layout.css",
-        "css/cwface.css", "css/tntxiaui/style.css",
-        "css/style.css"
+        "css/cwface.css", "css/tntxiaui/style.css"
     ],
     "jsList": ["/static/lib/module_route/module_route.js", "/static/lib/main-layout-install/js/main-layout-install.js"]
 }

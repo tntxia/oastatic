@@ -1,4 +1,4 @@
-let url = webRoot + "/checkwork/checkwork!list.do";
+let url = webRoot + "/checkwork/checkwork!my.do";
 
 let pid = router.getParam("id");
 
@@ -16,19 +16,9 @@ new Vue({
             pageSize: 50
         },
         form: {
-            year: '',
-            month: '',
-            coname: null,
-            fpnum: null,
             sdate: null,
             edate: null,
-        },
-        gatheringId: null,
-        totalAll: null,
-        stotalAll: null,
-        rTotalAll: null,
-        gatheredAll: null,
-        leftAll: null
+        }
     },
     mounted() {
         this.loadData();
@@ -45,7 +35,7 @@ new Vue({
         },
         loadData() {},
         query() {
-            let datagrid = this.$refs["gatheringTable"];
+            let datagrid = this.$refs["datagrid"];
             datagrid.setParams(this.form);
             datagrid.loadData();
             this.loadData();

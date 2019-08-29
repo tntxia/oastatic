@@ -18,6 +18,11 @@
         "path": "/oa_static/modules/rule.module.js",
         "template": "/oa_static/template/rule.html"
     },
+    "system": {
+        "leftbar": false,
+        "path": "/oa_static/modules/system.module.js",
+        "template": "/oa_static/template/system.html"
+    },
     "mail_inbox": {
         "path": "/oa_static/modules/mail/mail_inbox.module.js",
         "template": "/oa_static/template/mail/mail_inbox.html"

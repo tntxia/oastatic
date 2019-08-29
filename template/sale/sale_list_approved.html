@@ -4,7 +4,11 @@
             客户名称: <input v-model="form.coname"> 合同编号：
             <input v-model="form.number"> 客户订单号: <input v-model="form.sub"> 销售员:
             <saleman-select v-model="form.man"></saleman-select>
-            型号：<input v-model="form.epro">
+            <span>型号</span><input v-model="form.epro">
+            <span>审批状态</span>
+            <select v-model="form.statexs"><option value="">请选择</option>
+                <option v-for="s in statusList">{{s}}</option>
+            </select>
         </div>
         <div>
             下单 开始时间：

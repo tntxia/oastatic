@@ -12,6 +12,9 @@
         "file": "rule.js",
         "targetDir": "../modules"
     }, {
+        "name": "system",
+        "active": true
+    }, {
         "group": "finance",
         "name": "gathered",
         "active": false
@@ -22,7 +25,7 @@
     }, {
         "group": "hr",
         "name": "my_attandance",
-        "active": false
+        "active": true
     }, {
         "name": "trade_policy",
         "group": "market",

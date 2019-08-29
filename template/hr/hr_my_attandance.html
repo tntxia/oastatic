@@ -1,4 +1,11 @@
 <div style="padding: 10px;" id="app">
+    <div>
+        开始时间：
+        <jxiaui-datepicker v-model="form.sdate"></jxiaui-datepicker>
+        结束时间：
+        <jxiaui-datepicker v-model="form.edate"></jxiaui-datepicker>
+        <jxiaui-button @click="query">查询</jxiaui-button>
+    </div>
     <div style="height: calc(100vh - 146px);">
         <span class="fa fa-spinner fa-spin" v-if="loading"></span>
         <jxiaui-datagrid ref="datagrid" :dataset="dataset">

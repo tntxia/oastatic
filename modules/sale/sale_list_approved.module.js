@@ -15,6 +15,7 @@
             el: '#app',
             data: {
                 loading: false,
+                statusList: ["已发运", "待出库", "全部退货", "部分退货"],
                 dataset: {
                     url: url,
                     method: 'post',
@@ -25,7 +26,8 @@
                     coname: null,
                     number: null,
                     sub: null,
-                    man: ''
+                    man: '',
+                    statexs: ''
                 }
             },
             mounted() {
