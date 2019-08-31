@@ -1,0 +1,33 @@
+.but {
+    width: 130px;
+    background-color: #E1E1E1;
+    font-family: 宋体;
+    font-size: 9pt;
+    border: 1 groove #C3D9FF;
+}
+
+.manageButton {
+    margin: 15px 15px;
+    text-align: center;
+    width: 130px;
+    float: left;
+    background-color: #E1E1E1;
+    font-family: 宋体;
+    font-size: 9pt;
+    border: 1 groove #C3D9FF;
+}
+
+.line {
+    BORDER-BOTTOM-STYLE: dotted;
+    BORDER-LEFT-STYLE: dotted;
+    BORDER-RIGHT-STYLE: dotted;
+    BORDER-TOP-STYLE: dotted;
+}
+
+hr {
+    BORDER-BOTTOM-STYLE: dotted;
+    BORDER-LEFT-STYLE: dotted;
+    BORDER-RIGHT-STYLE: dotted;
+    BORDER-TOP-STYLE: dotted;
+    color: #a9a9a9;
+}

@@ -136,14 +136,15 @@ $(function() {
             onChange(moduleName) {
                 let module = mapping[moduleName];
                 let leftbarFlag = module.leftbar;
+                let type = moduleName.split("_")[0];
+                mainMenuSelected = type;
+                topVue.selectMenu(type);
                 if (leftbarFlag === false) {
                     mainLayout.hideLeftbar();
                     return;
                 }
+
                 mainLayout.showLeftbar();
-                let type = moduleName.split("_")[0];
-                mainMenuSelected = type;
-                topVue.selectMenu(type);
                 if (type === currLeftbar) {
                     $(".leftbar li").removeClass("selected");
                     $(".leftbar li").each(function() {
@@ -208,6 +209,11 @@ $(function() {
                     vm.menus = res;
                 })
                 this.fetchData();
+                $(window).on("hashchange", function(e) {
+                    let route = router.getRoute();
+                    let type = route.split("_")[0];
+                    console.log(type);
+                });
             },
             methods: {
                 home: function() {
