@@ -113,10 +113,11 @@ module.exports = {
             })
 
         },
-        del() {
+        back() {
             if (confirm("是否确认将这个收款信息删除")) {
+                let id = this.id;
                 $.ajax({
-                    url: webRoot + "/finance/finance!delGathering.do",
+                    url: webRoot + "/finance/finance!backGathering.do",
                     type: 'post',
                     data: {
                         id: id

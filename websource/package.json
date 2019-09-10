@@ -13,7 +13,7 @@
         "targetDir": "../modules"
     }, {
         "name": "system",
-        "active": true
+        "active": false
     }, {
         "group": "finance",
         "name": "gathered",
@@ -133,11 +133,11 @@
     }, {
         "group": "finance",
         "name": "gathering-dialog",
-        "active": true
+        "active": false
     }, {
         "group": "finance",
         "name": "gathered-dialog",
-        "active": false
+        "active": true
     }, {
         "group": "finance",
         "name": "quick-gather-dialog",
