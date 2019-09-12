@@ -1,0 +1,261 @@
+<form id="hiddenForm" target="_blank" method="post">
+	<input name="coname" type="hidden" value="${coname }">
+	<input name="coname1" type="hidden" value="${coname }">
+	<input name="coaddr" type="hidden" value="${coaddr }">
+	<input name="cotel" type="hidden" value="${cotel}">
+	<input name="conet" type="hidden" value="${conet}">
+	<input name="email" type="hidden" value="${email}">
+	<input name="coman" type="hidden" value="${co21}">
+	<input name="co_number" type="hidden" value="${co_number}">
+	
+</form>
+
+<div id="changeNameDiv" style="display:none">
+	<input id="nameToChange" value="${coname }"><button id="changeNameConfirmBtn">修改</button>
+</div>
+
+<input id="clientId" value="${clientid }" type="hidden" />
+<br>  
+<div id="app">
+    <div class="jxiaui-table-form">
+        <table style="width: 100%">
+            <tr>
+                <td colspan="4" bgcolor="#ffffff">
+                <a href="#" class="STYLE1" onClick="window.open('custo/conversation.mvc?id=${clientid }','_blank')">客户跟进</a>
+                <button @click="viewContact">联系人</button>
+                <a href="#" class="STYLE1" onClick="window.open('../sale/Inquiry/clientInquiry.mvc?coId=${clientid }')">客户询价</a>
+                 | <a href="#"><span class="STYLE1" onClick="submitByForm('zxmglm.jsp')">客户项目</span></a>
+                  | <a href="#" class="STYLE1" onClick="submitByForm('main.jsp')">客户报价</a> 
+                  | <a href="#" class="STYLE1" onClick="submitByForm('ddmain.jsp')">客户订单</a>
+                   | <a href="#" class="STYLE1" onClick="submitByForm('skxxm.jsp')">客户收款</a>
+                |<a href="#" class="STYLE1" onClick="submitByForm('report.jsp')">客户报表</a> | 
+                <a href="#" class="STYLE1" ONCLICK="submitByForm('mydoc.jsp')">客户文档</a>
+                <button @click="update">修改</button>
+                <button @click="del">删除</button>
+                </td>
+            </tr>
+            <tr> 
+                <th>公司编号</th>
+                <td>{{form.co_number }}</td>
+                <th>是否共享</th>
+                <td>
+                    <select v-model="form.share">
+                        <option>是</option>
+                        <option>否</option>
+                    </select>
+                </td>
+            </tr> 
+            <tr>
+                <th>公司名称</th>
+                <td>{{form.coname}}</td>
+                <th>电　　话</th>
+                <td><input v-model="form.cotel"></td>
+            </tr>
+            <tr>
+                <th>公司地址</th>
+                <td><input v-model="form.coaddr"></td>
+                <th>传　　真</th>
+                <td><input v-model="form.cofax"></td>
+            </tr> 
+            <tr>
+                <th>网　　址</th>
+                <td>
+                    <input v-model="form.conet">
+                </td>
+                <th>电子邮件</th>
+                <td>
+                    <input v-model="form.email">
+                </td>
+            </tr> 
+            <tr> 
+                <th>邮　　编</th>
+                <td>
+                    <input v-model="form.post">
+                </td>
+                <th>城　　市</th>
+                <td>
+                    <input v-model="form.city">
+                </td>
+            </tr>
+            <tr> 
+                <th>省　　市</th>
+                <td>
+                    <input v-model="form.province">
+                </td>
+                <th>国　　家</th>
+                <td>
+                    <input v-model="form.coman">
+                </td>
+            </tr>
+            
+            <tr>
+                <th>组织形式</th>
+                <td>
+                    <select v-model="form.cozzxs">
+                        <option>私营有限公司</option>
+                        <option>国营有限公司</option>
+                        <option>股份制公司</option>
+                        <option>外资企业</option>
+                        <option>中外合资企业</option>
+                        <option>个体户</option>
+                    </select>
+                </td>
+                <th>付款方式</th>
+                <td>
+                    <jxiaui-select v-model="form.cozczb" :url="paywaySelectUrl" value="payment" label="payment"></jxiaui-select>
+                </td>
+            </tr>
+            <tr>
+                <th>付款逾期期限</th>
+                <td colspan="3">
+                    <input v-model="form.pay_deadline">天
+                </td>
+            </tr>
+            <tr>
+                <th>行业性质</th>
+                <td>
+                    <input v-model="form.tradetypes">
+                </td>
+                <th>开户名称</th>
+                <td>
+                    <input v-model="form.coclrq">
+                </td>
+            </tr>
+            <tr>
+                <th>银行名称</th>
+                <td>
+                    <input v-model="form.bank_name">
+                </td>
+                <th>银行地址</th>
+                <td>
+                    <input v-model="form.bank_addr">
+                </td>
+            </tr>
+            <tr>
+                <th>Swift Code</th>
+                <td>
+                    <input v-model="form.swift_code">
+                </td>
+                <th>IBAN</th>
+                <td>
+                    <input v-model="form.iban">
+                </td>
+            </tr>
+            <tr>
+                <th>Route</th>
+                <td>
+                    <input v-model="form.route">
+                </td>
+                <th>BIC #</th>
+                <td>
+                    <input v-model="form.bic">
+                </td>
+            </tr>
+            <tr>
+                <th>信用级别</th>
+                <td>
+                    <input v-model="form.cokhjb">
+                </td>
+                <th>银行帐号</th>
+                <td>
+                    <input v-model="form.coyhzh">
+                </td>
+            </tr>
+            <tr>
+                <th>运输方式</th>
+                <td>
+                    <input v-model="form.cokhjb">
+                    帐号：<input v-model="form.cokhjb">
+                </td>
+                <th>评    分</th>
+                <td>
+                    <div id="scoreDiv"></div>
+            <table style="font-size:12px">
+            
+                          <tr><td>询价单(RFQs)回应速度:</td><td><span id="score-rfq"></span></td>
+                          <td><span id="score-rfq-show"></span></td>
+                          
+                          </tr>
+                          
+                          <tr><td>购买机率:</td><td><span id="score-gmjl"></span></td>
+                          <td><span id="score-gmjl-show"></span></td></tr>
+                          
+                          <tr><td>付款情况:</td><td><span id="score-fk"></td><td>
+                          <span id="score-fk-show"></span></td></tr>
+                          
+                          <tr><td>退货速度:</td><td><span id="score-th"></td><td>
+                          <span id="score-th-show"></span></td></tr>
+                          
+                  </table>
+                  
+                  <a href="javascript:pf()">我要评分</a> 
+                </td>
+            </tr>
+             <tr> 
+                <th>使用货币</th>
+                <td>
+                    <select v-model="form.cosyhb">
+                        <option>CNY</option>
+                        <option>USD</option>
+                    </select>
+                </td>
+                <th>注册资本</th>
+                <td>
+                    <input v-model="form.nsnumber"> 万元
+                </td> 
+            </tr>
+            <tr> 
+                <th>员工总数</th>
+                <td>
+                    <input v-model="form.number"> 人
+                </td> 
+                <th>创建用户</th>
+                <td>
+                    {{form.username}}
+                </td>
+            </tr> 
+            <tr> 
+                <th>所在部门</th>
+                <td>
+                    {{form.dept}}
+                </td> 
+                <th>创建日期</th>
+                <td>
+                    {{form.rg_date}}
+                </td>
+            </tr> 
+            <tr> 
+                <th>修改用户</th>
+                <td>
+                    {{form.modman}}
+                </td> 
+                <th>修改日期</th>
+                <td>
+                    {{form.mod_date}}
+                </td>
+            </tr> 
+            <tr> 
+                <th>生产产品及转移记录</th>
+                <td colspan="3">
+                    {{form.mproduct}}
+                </td> 
+            </tr>
+            <tr>
+                <th>经营情况</th>
+                <td>
+                    {{form.company_management}}
+                </td>
+                <th>推荐产品</th>
+                <td>
+                    {{form.product}}
+                </td>
+            </tr>
+            <tr> 
+                <th>备　　注</th>
+                <td colspan="3">
+                    {{form.describee}}
+                </td> 
+            </tr>
+        </table>
+    </div>
+</div>

@@ -171,6 +171,10 @@
         "path": "/oa_static/modules/sale/sale_client_list.module.js",
         "template": "/oa_static/template/sale/sale_client_list.html"
     },
+    "sale_client_view": {
+        "path": "/oa_static/modules/sale/sale_client_view.module.js",
+        "template": "/oa_static/template/sale/sale_client_view.html"
+    },
     "sale_client_contact_list": {
         "path": "/oa_static/modules/sale/sale_client_contact_list.module.js",
         "template": "/oa_static/template/sale/sale_client_contact_list.html"

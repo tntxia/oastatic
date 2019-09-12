@@ -19,6 +19,14 @@
         "name": "gathered",
         "active": false
     }, {
+        "group": "sale",
+        "name": "client_list",
+        "active": true
+    }, {
+        "group": "sale",
+        "name": "client_view",
+        "active": true
+    }, {
         "group": "hr",
         "name": "attandance_manage",
         "active": false
