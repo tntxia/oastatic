@@ -1,0 +1,34 @@
+<div id="app">
+    <div>
+        客户项目
+    </div>
+    <div>
+        <button @click="toAdd">增加项目</button>
+        <button @click="back">返回</button>
+    </div>
+    <div>
+        <jxiaui-datagrid class="table" ref="datagrid" :dataset="dataset">
+            <jxiaui-datagrid-item label="序号" type="index"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="申请人">
+                <template v-slot="row">
+                    <a :href="getUrl(row)" target="_blank">{{row.application}}</a>
+                </template>
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="项目名称">
+                <template v-slot="row">
+                    <a :href="getUrl(row)" target="_blank">{{row.programername}}</a>
+                </template>
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="客户名称" field="prog_coname">
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="负责人" field="spman">
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="发起时间" field="starttime">
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="当前状态" field="states">
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="最后更新时间" field="last_update_time">
+            </jxiaui-datagrid-item>
+        </jxiaui-datagrid>
+    </div>
+</div>

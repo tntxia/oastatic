@@ -1,0 +1,34 @@
+<div id="app">
+    <div>
+        客户报价
+    </div>
+    <div>
+        <button @click="back">返回</button>
+    </div>
+    <div>
+        <jxiaui-datagrid class="table" ref="datagrid" :dataset="dataset">
+            <jxiaui-datagrid-item label="序号" type="index"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="报价编号">
+                <template v-slot="row">
+                    <a :href="getUrl(row)" target="_blank">{{row.number}}</a>
+                </template>
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="收件人">
+                <template v-slot="row">
+                    <a :href="getUrl(row)" target="_blank">{{row.coname}}</a>
+                </template>
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="客户名称">
+                <template v-slot="row">
+                    <a :href="getUrl(row)" target="_blank">{{row.coname}}</a>
+                </template>
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="报价日期" field="quotedatetime">
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="责任人" field="man">
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="状态" field="states">
+            </jxiaui-datagrid-item>
+        </jxiaui-datagrid>
+    </div>
+</div>

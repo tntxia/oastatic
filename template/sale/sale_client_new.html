@@ -14,28 +14,17 @@
     <input id="nameToChange" value="${coname }"><button id="changeNameConfirmBtn">修改</button>
 </div>
 
-<input id="clientId" value="${clientid }" type="hidden" />
-<br>
 <div id="app">
+    <div>
+        <button @click="sub">增加</button>
+    </div>
     <div class="jxiaui-table-form">
         <table style="width: 100%">
             <tr>
-                <td colspan="4" bgcolor="#ffffff">
-                    <button @click="viewFollow">客户跟进</button>
-                    <button @click="viewContact">联系人</button>
-                    <button @click="viewInquiry">客户询价</button>
-                    <button @click="viewProject">客户项目</button>
-                    <button @click="viewQuote">客户报价</button>
-                    <button @click="viewOrder">客户订单</button>
-                    <button @click="viewGather">客户收款</button>
-                    <button @click="update">修改</button>
-                    <button @click="del">删除</button>
-                    <button @click="viewlist">查看列表</button>
+                <th>公司名称</th>
+                <td>
+                    <input v-model="form.coname">
                 </td>
-            </tr>
-            <tr>
-                <th>公司编号</th>
-                <td>{{form.co_number }}</td>
                 <th>是否共享</th>
                 <td>
                     <select v-model="form.share">
@@ -45,14 +34,12 @@
                 </td>
             </tr>
             <tr>
-                <th>公司名称</th>
-                <td>{{form.coname}}</td>
                 <th>电　　话</th>
                 <td><input v-model="form.cotel"></td>
             </tr>
             <tr>
                 <th>公司地址</th>
-                <td><input v-model="form.coaddr" style="width: 80%"></td>
+                <td><input v-model="form.coaddr"></td>
                 <th>传　　真</th>
                 <td><input v-model="form.cofax"></td>
             </tr>
@@ -101,7 +88,7 @@
                 </td>
                 <th>付款方式</th>
                 <td>
-                    <jxiaui-select v-model="form.cozczb" :url="paywaySelectUrl" value-name="payment" label-name="payment"></jxiaui-select>
+                    <payway-select v-model="form.cozczb"></payway-select>
                 </td>
             </tr>
             <tr>
@@ -153,7 +140,13 @@
             <tr>
                 <th>信用级别</th>
                 <td>
-                    <input v-model="form.cokhjb">
+                    <select v-model="form.cokhjb">
+                        <option>*</option>
+                        <option>**</option>
+                        <option>***</option>
+                        <option>****</option>
+                        <option>*****</option>
+                    </select>
                 </td>
                 <th>银行帐号</th>
                 <td>
@@ -163,44 +156,34 @@
             <tr>
                 <th>运输方式</th>
                 <td>
-                    <input v-model="form.cokhjb"> 帐号：
-                    <input v-model="form.cokhjb">
+                    <select v-model="form.cokhyh">
+                        <option>UPS</option>
+                        <option>FedEx</option>
+                        <option>DHL</option>
+                        <option>TNT</option>
+                        <option>Retistered Post Parcel</option>
+                        <option>Kerry EAS</option>
+                        <option>Air</option>
+                        <option>EMS</option>
+                        <option>海运</option>
+                        <option>中铁</option>
+                        <option>邮局</option>
+                        <option>快递</option>
+                        <option>汽运</option>
+                        <option>自提</option>
+                        <option>送货</option>
+                        <option>Other</option>
+                        </select>
                 </td>
-                <th>评 分</th>
+                <th>帐号</th>
                 <td>
-                    <table style="font-size:12px">
-                        <tr>
-                            <td>询价单(RFQs)回应速度:</td>
-                            <td><span>{{scores.rfq}}</span></td>
-                        </tr>
-
-                        <tr>
-                            <td>购买机率:</td>
-                            <td>{{scores.gmjl}}</td>
-                        </tr>
-
-                        <tr>
-                            <td>付款情况:</td>
-                            <td>{{scores.fk}}</td>
-
-                        </tr>
-
-                        <tr>
-                            <td>退货速度:</td>
-                            <td>{{scores.th}}</td>
-                        </tr>
-
-                    </table>
-                    <button @click="score">我要评分</button>
+                    <input v-model="form.coyyzz">
                 </td>
             </tr>
             <tr>
                 <th>使用货币</th>
                 <td>
-                    <select v-model="form.cosyhb">
-                        <option>CNY</option>
-                        <option>USD</option>
-                    </select>
+                    <current-select v-model="form.cosyhb"></current-select>
                 </td>
                 <th>注册资本</th>
                 <td>

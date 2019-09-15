@@ -1,0 +1,51 @@
+
+<div id="app"> 
+    <input name="id" type="hidden" id="id" value="${id }"> 
+    <div>
+            客户跟进
+    </div>
+    <div>
+        <button @click="addConversation">确定</button> 
+    </div>
+    <div class="jxiaui-table-form">
+        <table>
+            <tr> 
+                <th>客户名称</th>
+                <td width="87%">
+                    {{form.coname}}
+                </td>
+            </tr> 
+            <tr> 
+                <th>跟进类型</th>
+                <td>
+                    <jxiaui-select v-model="form.actypes" :url="selectUrl" label-name="act_name" value-name="act_name"></jxiaui-select>
+                </td>
+            </tr> 
+            <tr> 
+                <th>洽谈内容:</th>
+                <td>
+                    <textarea v-model="form.c_nr" cols="75" rows="9" id="c_nr"></textarea>
+                </td>
+            </tr> 
+            <tr> <th>备　　注:</th>
+                <td><textarea v-model="form.remark" cols="75"></textarea> 
+                </td>
+            </tr> 
+            <tr> 
+                <th>提　　醒:</th>
+                <td>
+                    是否需要提醒: 
+                    <select v-model="form.iftx"> 
+                        <option>否</option> 
+                        <option>是</option> 
+                    </select> 
+                    提醒日期: 
+                    <jxiaui-datepicker v-model="form.txtime" default="now"></jxiaui-datepicker>
+                </td>
+            </tr> 
+        </table>
+    </div>
+</div>
+        
+        
+        

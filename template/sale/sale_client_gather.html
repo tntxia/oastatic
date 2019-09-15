@@ -1,0 +1,30 @@
+<div id="app">
+    <div>
+        客户收款
+    </div>
+    <div>
+        <button @click="back">返回</button>
+    </div>
+    <div>
+        <jxiaui-datagrid ref="datagrid" :dataset="dataset">
+            <jxiaui-datagrid-item label="序号" type="index"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="合同编号">
+                <template v-slot="row">
+                    <a href="javascript:void(0)" @click="goGathering(row)">{{row.orderform}}</a>
+                </template>
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="票据号" field="remark"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="是否开发票" field="bankaccounts"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="客户名称" field="coname"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="合同金额" field="total"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="出货金额" field="stotal"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="退货金额" field="rTotal"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="已收款金额" field="smoney"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="欠款金额" field="left"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="财务审批" field="note"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="预计收款日期" field="sjskdate"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="部门" field="sale_dept"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="当前状态" field="states"></jxiaui-datagrid-item>
+        </jxiaui-datagrid>
+    </div>
+</div>

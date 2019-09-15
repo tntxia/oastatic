@@ -24,7 +24,47 @@
         "active": true
     }, {
         "group": "sale",
+        "name": "client_new",
+        "active": true
+    }, {
+        "group": "sale",
         "name": "client_view",
+        "active": true
+    }, {
+        "group": "sale",
+        "name": "client_follow",
+        "active": false
+    }, {
+        "group": "sale",
+        "name": "client_follow_new",
+        "active": false
+    }, {
+        "group": "sale",
+        "name": "client_contact",
+        "active": true
+    }, {
+        "group": "sale",
+        "name": "client_contact_new",
+        "active": false
+    }, {
+        "group": "sale",
+        "name": "client_project",
+        "active": true
+    }, {
+        "group": "sale",
+        "name": "client_quote",
+        "active": true
+    }, {
+        "group": "sale",
+        "name": "client_order",
+        "active": true
+    }, {
+        "group": "sale",
+        "name": "client_gather",
+        "active": true
+    }, {
+        "group": "sale",
+        "name": "client_doc",
         "active": true
     }, {
         "group": "hr",
@@ -33,6 +73,10 @@
     }, {
         "group": "hr",
         "name": "my_attandance",
+        "active": false
+    }, {
+        "group": "hr",
+        "name": "activity",
         "active": true
     }, {
         "name": "trade_policy",
@@ -145,10 +189,22 @@
     }, {
         "group": "finance",
         "name": "gathered-dialog",
-        "active": true
+        "active": false
     }, {
         "group": "finance",
         "name": "quick-gather-dialog",
         "active": false
+    }, {
+        "group": "client",
+        "name": "score-dialog",
+        "active": false
+    }, {
+        "group": "payway",
+        "name": "select",
+        "active": false
+    }, {
+        "group": "current",
+        "name": "select",
+        "active": true
     }]
 }

@@ -1,0 +1,20 @@
+<div style="padding: 10px;" id="app">
+    <div>
+        开始时间：
+        <jxiaui-datepicker v-model="form.sdate"></jxiaui-datepicker>
+        结束时间：
+        <jxiaui-datepicker v-model="form.edate"></jxiaui-datepicker>
+        <jxiaui-button @click="query">查询</jxiaui-button>
+    </div>
+    <div style="height: calc(100vh - 146px);">
+        <span class="fa fa-spinner fa-spin" v-if="loading"></span>
+        <jxiaui-datagrid ref="datagrid" :dataset="dataset">
+            <jxiaui-datagrid-item label="#" type="index"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="活动类型" field="actypes"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="客 　　　户" field="coname"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="开始时间" field="clewtime"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="所在部门" field="state"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="参加者" field="name"></jxiaui-datagrid-item>
+        </jxiaui-datagrid>
+    </div>
+</div>

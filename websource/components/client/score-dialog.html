@@ -1,0 +1,72 @@
+<jxiaui-dialog @close="hide" v-if="showFlag" :width="1000">
+
+    <div>
+        <button @click="score">评分</button>
+    </div>
+    <div id="score-div" class="jxiaui-table-form" style="padding: 10px;">
+        <table height=8 width="100%" id="score-table" bordercolor="#CCBE5A" cellspacing="0" bordercolordark="#ffffff" cellpadding="3" align="center" bgcolor="#ffffff" bordercolorlight="#7f9db9" border="1">
+            <tr>
+                <th>
+                    询价单(RFQs)回应速度
+                </th>
+                <td>
+                    <jxiaui-radio-group v-model="form.rfq">
+                        <jxiaui-radio-group-item value="5" label="5- 极好"></jxiaui-radio-group-item>
+                        <jxiaui-radio-group-item value="4" label="4- 好"></jxiaui-radio-group-item>
+                        <jxiaui-radio-group-item value="3" label="3- 一般"></jxiaui-radio-group-item>
+                        <jxiaui-radio-group-item value="2" label="2- 差"></jxiaui-radio-group-item>
+                        <jxiaui-radio-group-item value="1" label="1- 极差"></jxiaui-radio-group-item>
+                    </jxiaui-radio-group>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    购买机率
+                </th>
+                <td>
+                    <jxiaui-radio-group v-model="form.gmjl">
+                        <jxiaui-radio-group-item value="5" label="5- 极好"></jxiaui-radio-group-item>
+                        <jxiaui-radio-group-item value="4" label="4- 好"></jxiaui-radio-group-item>
+                        <jxiaui-radio-group-item value="3" label="3- 一般"></jxiaui-radio-group-item>
+                        <jxiaui-radio-group-item value="2" label="2- 差"></jxiaui-radio-group-item>
+                        <jxiaui-radio-group-item value="1" label="1- 极差"></jxiaui-radio-group-item>
+                    </jxiaui-radio-group>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    付款情况
+                </th>
+                <td>
+                    <jxiaui-radio-group v-model="form.fk">
+                        <jxiaui-radio-group-item value="5" label="5- 极好"></jxiaui-radio-group-item>
+                        <jxiaui-radio-group-item value="4" label="4- 好"></jxiaui-radio-group-item>
+                        <jxiaui-radio-group-item value="3" label="3- 一般"></jxiaui-radio-group-item>
+                        <jxiaui-radio-group-item value="2" label="2- 差"></jxiaui-radio-group-item>
+                        <jxiaui-radio-group-item value="1" label="1- 极差"></jxiaui-radio-group-item>
+                    </jxiaui-radio-group>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    退货速度
+                </th>
+                <td>
+                    <jxiaui-radio-group v-model="form.th">
+                        <jxiaui-radio-group-item value="5" label="5- 极好"></jxiaui-radio-group-item>
+                        <jxiaui-radio-group-item value="4" label="4- 好"></jxiaui-radio-group-item>
+                        <jxiaui-radio-group-item value="3" label="3- 一般"></jxiaui-radio-group-item>
+                        <jxiaui-radio-group-item value="2" label="2- 差"></jxiaui-radio-group-item>
+                        <jxiaui-radio-group-item value="1" label="1- 极差"></jxiaui-radio-group-item>
+                    </jxiaui-radio-group>
+                </td>
+            </tr>
+            <tr>
+                <th>评论：</th>
+                <td>
+                    <textarea name="remark" style="width:100%"></textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+</jxiaui-dialog>

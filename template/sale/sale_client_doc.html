@@ -1,0 +1,28 @@
+<div id="app">
+    <div>
+        客户文档
+    </div>
+    <div>
+        <button @click="back">返回</button>
+    </div>
+    <div>
+        <jxiaui-datagrid ref="datagrid" :dataset="dataset">
+            <jxiaui-datagrid-item label="序号" type="index"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="文件名">
+                <template v-slot="row">
+                        <a :href="getUrl(row)" target="_blank">{{row.pic_path}}</a>
+                    </template>
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="说　明">
+                <template v-slot="row">
+                        <a :href="getUrl(row)" target="_blank">{{row.pic_sm}}</a>
+                    </template>
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="操作" field="mode">
+                <template v-slot="row">
+                            <a :href="getUrl(row)" target="_blank">{{row.pic_sm}}</a>
+                        </template>
+            </jxiaui-datagrid-item>
+        </jxiaui-datagrid>
+    </div>
+</div>

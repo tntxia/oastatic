@@ -3,13 +3,14 @@
         window.modules = Object.create(null);
     };
     window.modules[name] = module();
-})('sale_project_list_executing', function() {
+})('sale_client_follow', function() {
     var module = Object.create(null);
     var exports = Object.create(null);
     module.exports = exports;
     exports.init = function() {
+        let id = router.getParam("id");
 
-        let url = webRoot + '/sale/sale!listProject.do';
+let url = `${webRoot}/client/client!listFollow.do?id=${id}`;
 
         new Vue({
             el: '#app',
@@ -24,15 +25,8 @@
                 departmentList: [],
                 userList: [],
                 form: {
-                    model: null,
                     coname: null,
-                    number: null,
-                    pro_number: null,
-                    depts: '',
-                    man: '',
-                    pStates: null,
-                    startdate: null,
-                    enddate: null
+                    follower: null
                 },
                 gatheringId: null,
                 totalAll: null,
@@ -46,8 +40,7 @@
             },
             methods: {
                 getUrl: function(row) {
-                    return webRoot +
-                        "/sale/xmgl/view.mvc?id=" + row.id;
+                    return "#sale_client_view?id=" + row.clientid;
                 },
                 loadData() {
                     let me = this;
@@ -57,9 +50,7 @@
                         type: 'post',
                         success: function(data) {
                             let departmentList = [];
-                            $.each(data, function(i, r) {
-                                departmentList.push(r.departname);
-                            });
+                            
                             me.departmentList = departmentList;
                         },
                         dataType: 'json'
@@ -82,11 +73,27 @@
                     datagrid.loadData();
                 },
                 toAdd() {
-                    window.open(webRoot + '/sale/xmgl/xmglt.jsp');
+                    router.goRoute("sale_client_follow_new", {id});
+                },
+                del(id) {
+                    $.ajax({
+                        url: webRoot + "/client/client!delFollow.do",
+                        type: 'post',
+                        data: {
+                            id: id
+                        },
+                        success: function(data) {
+
+                        },
+                        error: function(e) {
+                        }
+                    });
+                },
+                back() {
+                    router.goRoute("sale_client_view", {id});
                 }
             }
         });
-
     };
     return module.exports;
 });

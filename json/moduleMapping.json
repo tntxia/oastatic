@@ -175,9 +175,49 @@
         "path": "/oa_static/modules/sale/sale_client_view.module.js",
         "template": "/oa_static/template/sale/sale_client_view.html"
     },
+    "sale_client_new": {
+        "path": "/oa_static/modules/sale/sale_client_new.module.js",
+        "template": "/oa_static/template/sale/sale_client_new.html"
+    },
+    "sale_client_follow": {
+        "path": "/oa_static/modules/sale/sale_client_follow.module.js",
+        "template": "/oa_static/template/sale/sale_client_conversation.html"
+    },
+    "sale_client_follow_new": {
+        "path": "/oa_static/modules/sale/sale_client_follow_new.module.js",
+        "template": "/oa_static/template/sale/sale_client_follow_new.html"
+    },
+    "sale_client_contact": {
+        "path": "/oa_static/modules/sale/sale_client_contact.module.js",
+        "template": "/oa_static/template/sale/sale_client_contact.html"
+    },
+    "sale_client_contact_new": {
+        "path": "/oa_static/modules/sale/sale_client_contact_new.module.js",
+        "template": "/oa_static/template/sale/sale_client_contact_new.html"
+    },
     "sale_client_contact_list": {
         "path": "/oa_static/modules/sale/sale_client_contact_list.module.js",
         "template": "/oa_static/template/sale/sale_client_contact_list.html"
+    },
+    "sale_client_project": {
+        "path": "/oa_static/modules/sale/sale_client_project.module.js",
+        "template": "/oa_static/template/sale/sale_client_project.html"
+    },
+    "sale_client_quote": {
+        "path": "/oa_static/modules/sale/sale_client_quote.module.js",
+        "template": "/oa_static/template/sale/sale_client_quote.html"
+    },
+    "sale_client_order": {
+        "path": "/oa_static/modules/sale/sale_client_order.module.js",
+        "template": "/oa_static/template/sale/sale_client_order.html"
+    },
+    "sale_client_gather": {
+        "path": "/oa_static/modules/sale/sale_client_gather.module.js",
+        "template": "/oa_static/template/sale/sale_client_gather.html"
+    },
+    "sale_client_doc": {
+        "path": "/oa_static/modules/sale/sale_client_doc.module.js",
+        "template": "/oa_static/template/sale/sale_client_doc.html"
     },
     "sale_client_request_list": {
         "path": "/oa_static/modules/sale/sale_client_request_list.module.js",
@@ -242,6 +282,10 @@
     "hr_attandance_manage": {
         "path": "/oa_static/modules/hr/hr_attandance_manage.module.js",
         "template": "/oa_static/template/hr/hr_attandance_manage.html"
+    },
+    "hr_activity": {
+        "path": "/oa_static/modules/hr/hr_activity.module.js",
+        "template": "/oa_static/template/hr/hr_activity.html"
     },
     "market_trade_policy": {
         "path": "/oa_static/modules/market/market_trade_policy.module.js",
