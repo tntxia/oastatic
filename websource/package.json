@@ -121,6 +121,10 @@
         "name": "refund_list_approved",
         "leftbar": true
     }, {
+        "group": "purchasing",
+        "name": "refund_list_deleted",
+        "leftbar": true
+    }, {
         "group": "finance",
         "name": "gathered",
         "leftbar": true,
