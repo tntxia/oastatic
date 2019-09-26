@@ -7,6 +7,7 @@
     var module = Object.create(null);
     var exports = Object.create(null);
     module.exports = exports;
+    exports.leftbar = false;
     exports.init = function() {
         $.ajax({
     url: "/oa_static/json/manage_items.json",

@@ -16,40 +16,32 @@ var topVue;
 var $globe = {};
 var mainMenuSelected;
 
-$(function() {
-    checkLogin().then(() => {
-        loadWebConfig().then(() => {
+(function() {
+
+    WebInstall.install({
+        configUrl: '/oa_static/json/webConfig.json',
+        mainLayout: {
+            headerHeight: 80,
+            headerTemplate: '/oa_static/template/header.html',
+            mainSecTemplate: '/oa_static/template/content.html'
+        }
+    }).then(function(webApp) {
+
+        $(document.body).append($("<div>", {
+            text: '组件加载完成，开始渲染'
+        }));
+        window.mainLayout = webApp.mainLayout;
+        $.ajax({
+            url: '/oa_static/json/moduleMapping.json'
+        }).done(res => {
+            init(mainLayout, res);
+        })
+
+        checkLogin().then(() => {
             $(document.body).append($("<div>", {
                 text: '查询系统所需的组件'
             }));
-            getComponents().then(components => {
-                let jsList = components.map(c => {
-                    return c.url
-                });
-                $(document.body).append($("<div>", {
-                    text: `总共需要，jsList${jsList.length}个组件，开始加载组件`
-                }));
-
-                let dialogs = components.filter(c => c.isDialog);
-
-                WebInstall.install({
-                    cssList: [],
-                    jsList
-                }).then(() => {
-                    $(document.body).append($("<div>", {
-                        text: '组件加载完成，开始渲染'
-                    }));
-                    installMainLayout(dialogs).then((mainLayout) => {
-                        window.mainLayout = mainLayout;
-                        $.ajax({
-                            url: '/oa_static/json/moduleMapping.json'
-                        }).done(res => {
-                            init(mainLayout, res, components);
-                        })
-                    });
-                });
-            });
-        });
+        })
     })
 
     function checkLogin() {
@@ -58,7 +50,7 @@ $(function() {
         }));
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: webRoot + "/checkLogin.do",
+                url: "checkLogin.do",
                 cache: false
             }).done(res => {
                 if (res.success) {
@@ -82,47 +74,6 @@ $(function() {
         });
     }
 
-    function loadWebConfig() {
-        return new Promise((resolve, reject) => {
-            $.ajax({
-                url: '/oa_static/json/webConfig.json'
-            }).done(res => {
-                WebInstall.install(res).then(() => {
-                    resolve();
-                }, e => {
-                    reject(e);
-                });
-            }).fail(e => {
-                console.error(e);
-                reject(e);
-            })
-        });
-
-    }
-
-    function getComponents() {
-        return new Promise((resolve, reject) => {
-            $.ajax({
-                url: '/oa_static/json/components.json'
-            }).done(res => {
-                resolve(res.components)
-            }).fail(e => {
-                reject(e);
-            })
-        });
-
-    }
-
-    function installMainLayout(dialogs) {
-        $(document.body).empty();
-        return MainLayoutInstall.install({
-            headerHeight: 80,
-            headerTemplate: '/oa_static/template/header.html',
-            mainSecTemplate: '/oa_static/template/content.html',
-            dialogs: dialogs
-        });
-    }
-
     function init(mainLayout, mapping) {
 
         initTop();
@@ -132,11 +83,20 @@ $(function() {
         router.register({
             target: $(".main_sec"),
             defaultModule: 'index_main',
+            resourcePath: '/oa_static',
             mapping: mapping,
             onChange(moduleName) {
                 let module = mapping[moduleName];
+                if (!module) {
+                    module = window.modules[moduleName];
+                }
                 let leftbarFlag = module.leftbar;
-                let type = moduleName.split("_")[0];
+                let type;
+                if (moduleName.indexOf("/") >= 0) {
+                    type = moduleName.split("/")[0];
+                } else {
+                    type = moduleName.split("_")[0];
+                }
                 mainMenuSelected = type;
                 topVue.selectMenu(type);
                 if (leftbarFlag === false) {
@@ -196,7 +156,7 @@ $(function() {
             mounted() {
                 let vm = this;
                 $.ajax({
-                    url: webRoot + "/menu!list.do"
+                    url: "menu!list.do"
                 }).done(res => {
                     res.forEach(m => {
                         if (m.key_name === mainMenuSelected) {
@@ -232,7 +192,7 @@ $(function() {
                 fetchData() {
                     let vm = this;
                     $.ajax({
-                        url: webRoot + "/userAlertCount.do",
+                        url: "userAlertCount.do",
                         success: function(data) {
                             vm.toDoCount = data;
                         },
@@ -241,7 +201,7 @@ $(function() {
                         }
                     });
                     $.ajax({
-                        url: webRoot + "/logininfo.do"
+                        url: "logininfo.do"
                     }).done(res => {
                         vm.username = res.username;
                         vm.todoDialogTitle = vm.username + "的待办事项"
@@ -265,25 +225,23 @@ $(function() {
                     })
                 },
                 openWork: function() {
-                    var url = webRoot +
-                        '/setting/setting.dispatch?method=toWorkAgent';
-
+                    var url = 'setting/setting.dispatch?method=toWorkAgent';
                     window.open(url);
                 },
                 openHelp: function() {
-                    var url = webRoot + '/setting/help.jsp';
+                    var url = 'setting/help.jsp';
 
                     window.open(url);
 
                 },
                 openAboat: function() {
-                    var url = webRoot + '/viewSystemInfo.dispatch';
+                    var url = 'viewSystemInfo.dispatch';
 
                     window.open(url);
                 },
                 checkwork: function() {
                     $.ajax({
-                        url: webRoot + '/checkwork/checkwork!record.do',
+                        url: 'checkwork/checkwork!record.do',
                         success: function(data) {
                             if (data.success) {
                                 if (confirm("打卡成功！是否查看我的考勤？")) {
@@ -300,7 +258,7 @@ $(function() {
                 },
                 logout: function() {
                     $.ajax({
-                        url: webRoot + '/logout.do',
+                        url: 'logout.do',
                         success: function() {
                             window.location.reload();
                         }
@@ -309,4 +267,4 @@ $(function() {
             }
         });
     }
-});
+})();

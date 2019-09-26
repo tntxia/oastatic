@@ -1,0 +1,23 @@
+<div id="app">
+    <button @click="toAdd">增加</button>
+    <div>
+        <jxiaui-datagrid class="table" ref="datagrid" :dataset="dataset">
+            <jxiaui-datagrid-item label="公司名称">
+                <template v-slot="row">
+                <a :href="getUrl(row)" target="_blank">{{row.companyname}}</a>
+            </template>
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="公司电话" field="companytel">
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="公司传真" field="companyfax">
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="联系人" field="linkman">
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="操作">
+                <template v-slot="row">
+                <button @click="del(row)">删除</button>
+            </template>
+            </jxiaui-datagrid-item>
+        </jxiaui-datagrid>
+    </div>
+</div>

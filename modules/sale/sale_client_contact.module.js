@@ -7,6 +7,7 @@
     var module = Object.create(null);
     var exports = Object.create(null);
     module.exports = exports;
+    exports.leftbar = ;
     exports.init = function() {
         let id = router.getParam("id");
 

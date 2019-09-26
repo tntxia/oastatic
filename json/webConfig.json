@@ -15,5 +15,121 @@
         "/oa_static/css/manageIndex.css",
         "css/cwface.css", "css/tntxiaui/style.css"
     ],
-    "jsList": ["/static/lib/module_route/module_route.js", "/static/lib/main-layout-install/js/main-layout-install.js"]
+    "jsList": [
+        "/static/lib/jquery/jquery.js", "/static/lib/vue/vue.js",
+        "/static/lib/vue/vue-resource.js",
+        "/static/lib/echarts/echarts.js", "/static/lib/jxiaui/0.1/dist/jxiaui.js",
+        "/static/lib/bootstrap/js/bootstrap.js",
+        "/static/lib/bootstrap-plus/js/bootstrap-utils.js", "/static/lib/module_route/module_route.js",
+        "/static/lib/main-layout-install/js/main-layout-install.js",
+
+        "/oa_static/components/logo-and-name.js", "/oa_static/components/my-todo-dialog.js",
+        "/oa_static/components/mail-new-dialog.js", "/oa_static/components/change-password-dialog.js",
+        "/oa_static/components/brand-select.js", "/oa_static/components/user-select.js",
+        "/oa_static/components/saleman-select.js", "/oa_static/components/warehouse/warehouse-in-list-wait.js",
+        "/oa_static/components/warehouse/warehouse-in-list.js", "/oa_static/components/warehouse/warehouse-in-list-refund.js",
+        "/oa_static/components/warehouse/warehouse-in-list-sample.js", "/oa_static/components/warehouse/warehouse-out-list-wait.js",
+        "/oa_static/components/warehouse/warehouse-out-list-sample.js", "/oa_static/components/warehouse/warehouse-out-list-refund.js",
+        "/oa_static/components/warehouse/warehouse-out-list.js", "/oa_static/components/warehouse/warehouse-send-bill-add-dialog.js",
+        "/oa_static/components/warehouse/warehouse-send-bill-view-dialog.js", "/oa_static/components/warehouse/warehouse-send-bill-edit-dialog.js",
+        "/oa_static/components/purchasing/purchasing-inquiry-list.js", "/oa_static/components/purchasing/purchasing-inquiry-list-waiting.js",
+        "/oa_static/components/sale/sale-approved-choose-dialog.js", "/oa_static/components/finance/finance-gathering-dialog.js",
+        "/oa_static/components/finance/finance-quick-gather-dialog.js", "/oa_static/components/finance/finance-gathered-dialog.js",
+        "/oa_static/components/client/client-score-dialog.js", "/oa_static/components/payway/payway-select.js",
+        "/oa_static/components/current/current-select.js"
+    ],
+    "components": [{
+        "name": "logo-and-name",
+        "url": "/oa_static/components/logo-and-name.js"
+    }, {
+        "name": "brand-select",
+        "url": "/oa_static/components/brand-select.js"
+    }, {
+        "name": "user-select",
+        "url": "/oa_static/components/user-select.js"
+    }, {
+        "name": "saleman-select",
+        "url": "/oa_static/components/saleman-select.js"
+    }, {
+        "name": "warehouse-in-list-wait",
+        "url": "/oa_static/components/warehouse/warehouse-in-list-wait.js"
+    }, {
+        "name": "warehouse-in-list",
+        "url": "/oa_static/components/warehouse/warehouse-in-list.js"
+    }, {
+        "name": "warehouse-in-list-refund",
+        "url": "/oa_static/components/warehouse/warehouse-in-list-refund.js"
+    }, {
+        "name": "warehouse-in-list-sample",
+        "url": "/oa_static/components/warehouse/warehouse-in-list-sample.js"
+    }, {
+        "name": "warehouse-out-list-wait",
+        "url": "/oa_static/components/warehouse/warehouse-out-list-wait.js"
+    }, {
+        "name": "warehouse-out-list-sample",
+        "url": "/oa_static/components/warehouse/warehouse-out-list-sample.js"
+    }, {
+        "name": "warehouse-out-list-refund",
+        "url": "/oa_static/components/warehouse/warehouse-out-list-refund.js"
+    }, {
+        "name": "warehouse-out-list",
+        "url": "/oa_static/components/warehouse/warehouse-out-list.js"
+    }, {
+        "name": "payway-select",
+        "url": "/oa_static/components/payway/payway-select.js"
+    }, {
+        "name": "current-select",
+        "url": "/oa_static/components/current/current-select.js"
+    }, {
+        "name": "purchasing-inquiry-list",
+        "url": "/oa_static/components/purchasing/purchasing-inquiry-list.js"
+    }, {
+        "name": "purchasing-inquiry-list-waiting",
+        "url": "/oa_static/components/purchasing/purchasing-inquiry-list-waiting.js"
+    }],
+    "dialogs": [{
+        "name": "my-todo-dialog",
+        "url": "/oa_static/components/my-todo-dialog.js",
+        "ref": "myTodoDialog"
+    }, {
+        "name": "mail-new-dialog",
+        "url": "/oa_static/components/mail-new-dialog.js",
+        "ref": "mailNewDialog"
+    }, {
+        "name": "change-password-dialog",
+        "url": "/oa_static/components/change-password-dialog.js",
+        "ref": "changePasswordDialog"
+    }, {
+        "name": "warehouse-send-bill-add-dialog",
+        "url": "/oa_static/components/warehouse/warehouse-send-bill-add-dialog.js",
+        "ref": "warehouseSendBillAddDialog"
+    }, {
+        "name": "warehouse-send-bill-view-dialog",
+        "url": "/oa_static/components/warehouse/warehouse-send-bill-view-dialog.js",
+        "ref": "warehouseSendBillViewDialog"
+    }, {
+        "name": "warehouse-send-bill-edit-dialog",
+        "url": "/oa_static/components/warehouse/warehouse-send-bill-edit-dialog.js",
+        "ref": "warehouseSendBillEditDialog"
+    }, {
+        "name": "sale-approved-choose-dialog",
+        "url": "/oa_static/components/sale/sale-approved-choose-dialog.js",
+        "ref": "saleApprovedChooseDialog"
+    }, {
+        "name": "finance-gathering-dialog",
+        "url": "/oa_static/components/finance/finance-gathering-dialog.js",
+        "ref": "financeGatheringDialog"
+    }, {
+        "name": "finance-quick-gather-dialog",
+        "url": "/oa_static/components/finance/finance-quick-gather-dialog.js",
+        "ref": "financeQuickGatherDialog"
+    }, {
+        "name": "finance-gathered-dialog",
+        "url": "/oa_static/components/finance/finance-gathered-dialog.js",
+        "ref": "financeGatheredDialog"
+    }, {
+        "name": "client-score-dialog",
+        "url": "/oa_static/components/client/client-score-dialog.js",
+        "ref": "clientScoreDialog"
+    }]
 }
