@@ -19,7 +19,7 @@ new Vue({
             data: {
                 id
             }
-        }).done(res=> {
+        }).done(res => {
             this.form.coname = res.coname;
         })
     },
@@ -28,18 +28,18 @@ new Vue({
             $.ajax({
                 url: webRoot + "/client/client!addClientFollow.do",
                 data: this.form
-            }).done(res=> {
+            }).done(res => {
                 if (res.success) {
                     alert("操作成功");
-                    router.goRoute("sale_client_follow", {id});
-                }else {
+                    router.goRoute("sale/client_follow", { id });
+                } else {
                     alert("操作失败");
                 }
             })
         },
         // 查看客户跟进
         viewFollow() {
-            router.goRoute("sale_client_follow", {id});
+            router.goRoute("sale/client_follow", { id });
         },
         viewContact() {
             let url = `${webRoot}/xclient/contact.mvc?coid=${id}`;

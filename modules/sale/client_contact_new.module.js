@@ -7,7 +7,7 @@
     var module = Object.create(null);
     var exports = Object.create(null);
     module.exports = exports;
-    exports.leftbar = false;
+    exports.leftbar = true;
     exports.init = function() {
         let id = router.getParam("id");
 
@@ -53,7 +53,7 @@ new Vue({
                 type: 'post',
                 success: function(data) {
                     if (data.success) {
-                        router.goRoute("sale_client_contact", { id });
+                        router.goRoute("sale/client_contact", { id });
                     } else {
                         alert("操作失败");
                     }
@@ -64,7 +64,7 @@ new Vue({
             });
         },
         back() {
-            router.goRoute("sale_client_contact", { id });
+            router.goRoute("sale/client_contact", { id });
         }
     }
 });

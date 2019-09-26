@@ -42,7 +42,7 @@ new Vue({
                 type: 'post',
                 success: function(data) {
                     if (data.success) {
-                        router.goRoute("sale_client_contact", { id });
+                        router.goRoute("sale/client_contact", { id });
                     } else {
                         alert("操作失败");
                     }
@@ -53,7 +53,7 @@ new Vue({
             });
         },
         back() {
-            router.goRoute("sale_client_contact", { id });
+            router.goRoute("sale/client_contact", { id });
         }
     }
 });

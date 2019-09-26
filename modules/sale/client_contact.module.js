@@ -7,7 +7,7 @@
     var module = Object.create(null);
     var exports = Object.create(null);
     module.exports = exports;
-    exports.leftbar = false;
+    exports.leftbar = true;
     exports.init = function() {
         let id = router.getParam("id");
 
@@ -28,20 +28,14 @@ new Vue({
         form: {
             coname: null,
             follower: null
-        },
-        gatheringId: null,
-        totalAll: null,
-        stotalAll: null,
-        rTotalAll: null,
-        gatheredAll: null,
-        leftAll: null
+        }
     },
     mounted() {
         this.loadData();
     },
     methods: {
         getUrl: function(row) {
-            return "#sale_client_view?id=" + row.clientid;
+            return "#sale/client_view?id=" + row.clientid;
         },
         loadData() {
             let me = this;
@@ -74,7 +68,7 @@ new Vue({
             datagrid.loadData();
         },
         toAdd() {
-            router.goRoute("sale_client_contact_new", { id });
+            router.goRoute("sale/client_contact_new", { id });
         },
         del(id) {
             let me = this;
@@ -91,7 +85,7 @@ new Vue({
             });
         },
         back() {
-            router.goRoute("sale_client_view", { id });
+            router.goRoute("sale/client_view", { id });
         }
     }
 });

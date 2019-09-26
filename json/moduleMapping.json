@@ -1,16 +1,4 @@
 {
-    "purchasing_refund_list_draft": {
-        "path": "/oa_static/modules/purchasing/purchasing_refund_list_draft.module.js",
-        "template": "/oa_static/template/purchasing/purchasing_refund_list_draft.html"
-    },
-    "purchasing_refund_list_approving": {
-        "path": "/oa_static/modules/purchasing/purchasing_refund_list_approving.module.js",
-        "template": "/oa_static/template/purchasing/purchasing_refund_list_approving.html"
-    },
-    "purchasing_refund_list_approved": {
-        "path": "/oa_static/modules/purchasing/purchasing_refund_list_approved.module.js",
-        "template": "/oa_static/template/purchasing/purchasing_refund_list_approved.html"
-    },
     "purchasing_refund_list_deleted": {
         "path": "/oa_static/modules/purchasing/purchasing_refund_list_deleted.module.js",
         "template": "/oa_static/template/purchasing/purchasing_refund_list_deleted.html"
@@ -58,38 +46,6 @@
     "sale_client_list_potential": {
         "path": "/oa_static/modules/sale/sale_client_list_potential.module.js",
         "template": "/oa_static/template/sale/sale_client_list_potential.html"
-    },
-    "sale_client_list": {
-        "path": "/oa_static/modules/sale/sale_client_list.module.js",
-        "template": "/oa_static/template/sale/sale_client_list.html"
-    },
-    "sale_client_view": {
-        "path": "/oa_static/modules/sale/sale_client_view.module.js",
-        "template": "/oa_static/template/sale/sale_client_view.html"
-    },
-    "sale_client_new": {
-        "path": "/oa_static/modules/sale/sale_client_new.module.js",
-        "template": "/oa_static/template/sale/sale_client_new.html"
-    },
-    "sale_client_follow": {
-        "path": "/oa_static/modules/sale/sale_client_follow.module.js",
-        "template": "/oa_static/template/sale/sale_client_conversation.html"
-    },
-    "sale_client_follow_new": {
-        "path": "/oa_static/modules/sale/sale_client_follow_new.module.js",
-        "template": "/oa_static/template/sale/sale_client_follow_new.html"
-    },
-    "sale_client_contact": {
-        "path": "/oa_static/modules/sale/sale_client_contact.module.js",
-        "template": "/oa_static/template/sale/sale_client_contact.html"
-    },
-    "sale_client_contact_new": {
-        "path": "/oa_static/modules/sale/sale_client_contact_new.module.js",
-        "template": "/oa_static/template/sale/sale_client_contact_new.html"
-    },
-    "sale_client_contact_list": {
-        "path": "/oa_static/modules/sale/sale_client_contact_list.module.js",
-        "template": "/oa_static/template/sale/sale_client_contact_list.html"
     },
     "sale_client_project": {
         "path": "/oa_static/modules/sale/sale_client_project.module.js",

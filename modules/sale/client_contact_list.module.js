@@ -1,7 +1,15 @@
-let id = router.getParam("id");
-
-let url = `${webRoot}/client/client!getContactList.do?coId=${id}`;
-
+(function(name, module) {
+    if (!window.modules) {
+        window.modules = Object.create(null);
+    };
+    window.modules[name] = module();
+})('sale/client_contact_list', function() {
+    var module = Object.create(null);
+    var exports = Object.create(null);
+    module.exports = exports;
+    exports.leftbar = true;
+    exports.init = function() {
+        let url = webRoot + "/client/client!listContact.do";
 new Vue({
     el: '#app',
     data: {
@@ -15,16 +23,30 @@ new Vue({
         departmentList: [],
         userList: [],
         form: {
+            model: null,
             coname: null,
-            follower: null
-        }
+            number: null,
+            pro_number: null,
+            depts: '',
+            man: '',
+            pStates: null,
+            startdate: null,
+            enddate: null
+        },
+        gatheringId: null,
+        totalAll: null,
+        stotalAll: null,
+        rTotalAll: null,
+        gatheredAll: null,
+        leftAll: null
     },
     mounted() {
         this.loadData();
     },
     methods: {
         getUrl: function(row) {
-            return "#sale/client_view?id=" + row.clientid;
+            return webRoot +
+                "/xclient/c-main-1v.jsp?id=" + row.id;
         },
         loadData() {
             let me = this;
@@ -34,7 +56,9 @@ new Vue({
                 type: 'post',
                 success: function(data) {
                     let departmentList = [];
-
+                    $.each(data, function(i, r) {
+                        departmentList.push(r.departname);
+                    });
                     me.departmentList = departmentList;
                 },
                 dataType: 'json'
@@ -57,24 +81,10 @@ new Vue({
             datagrid.loadData();
         },
         toAdd() {
-            router.goRoute("sale/client_contact_new", { id });
-        },
-        del(id) {
-            let me = this;
-            $.ajax({
-                url: webRoot + "/client/client!delContact.do",
-                type: 'post',
-                data: {
-                    id: id
-                },
-                success: function(data) {
-                    me.query();
-                },
-                error: function(e) {}
-            });
-        },
-        back() {
-            router.goRoute("sale/client_view", { id });
+            window.open(webRoot + '/sale/xmgl/xmglt.jsp');
         }
     }
+});
+    };
+    return module.exports;
 });

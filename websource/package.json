@@ -109,6 +109,18 @@
         "name": "list_deleted",
         "leftbar": true
     }, {
+        "group": "purchasing",
+        "name": "refund_list_draft",
+        "leftbar": true
+    }, {
+        "group": "purchasing",
+        "name": "refund_list_approving",
+        "leftbar": true
+    }, {
+        "group": "purchasing",
+        "name": "refund_list_approved",
+        "leftbar": true
+    }, {
         "group": "finance",
         "name": "gathered",
         "leftbar": true,
@@ -116,7 +128,7 @@
     }, {
         "group": "sale",
         "name": "client_list",
-        "active": false
+        "leftbar": true
     }, {
         "group": "sale",
         "name": "client_new",
@@ -124,23 +136,27 @@
     }, {
         "group": "sale",
         "name": "client_view",
-        "active": false
+        "leftbar": true
     }, {
         "group": "sale",
         "name": "client_follow",
-        "active": false
+        "leftbar": true
     }, {
         "group": "sale",
         "name": "client_follow_new",
-        "active": false
+        "leftbar": true
     }, {
         "group": "sale",
         "name": "client_contact",
-        "active": true
+        "leftbar": true
     }, {
         "group": "sale",
         "name": "client_contact_new",
-        "active": false
+        "leftbar": true
+    }, {
+        "group": "sale",
+        "name": "client_contact_list",
+        "leftbar": true
     }, {
         "group": "sale",
         "name": "client_project",

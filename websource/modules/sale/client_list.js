@@ -15,20 +15,14 @@ new Vue({
         form: {
             coname: null,
             follower: null
-        },
-        gatheringId: null,
-        totalAll: null,
-        stotalAll: null,
-        rTotalAll: null,
-        gatheredAll: null,
-        leftAll: null
+        }
     },
     mounted() {
         this.loadData();
     },
     methods: {
         getUrl: function(row) {
-            return "#sale_client_view?id=" + row.clientid;
+            return "#sale/client_view?id=" + row.clientid;
         },
         loadData() {
             let me = this;

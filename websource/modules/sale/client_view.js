@@ -69,10 +69,11 @@ new Vue({
         },
         // 查看客户跟进
         viewFollow() {
-            router.goRoute("sale_client_follow", { id });
+            router.goRoute("sale/client_follow", { id });
         },
+        // 查看客户联系人
         viewContact() {
-            router.goRoute("sale_client_contact", { id });
+            router.goRoute("sale/client_contact", { id });
         },
         viewInquiry() {
             window.open('sale/Inquiry/clientInquiry.mvc?coId=' + id);

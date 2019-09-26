@@ -7,7 +7,7 @@
     var module = Object.create(null);
     var exports = Object.create(null);
     module.exports = exports;
-    exports.leftbar = false;
+    exports.leftbar = true;
     exports.init = function() {
         let id = router.getParam("id");
 
@@ -80,10 +80,11 @@ new Vue({
         },
         // 查看客户跟进
         viewFollow() {
-            router.goRoute("sale_client_follow", { id });
+            router.goRoute("sale/client_follow", { id });
         },
+        // 查看客户联系人
         viewContact() {
-            router.goRoute("sale_client_contact", { id });
+            router.goRoute("sale/client_contact", { id });
         },
         viewInquiry() {
             window.open('sale/Inquiry/clientInquiry.mvc?coId=' + id);
