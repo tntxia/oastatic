@@ -1,10 +1,14 @@
-let id = router.getParam("id");
+let type = router.getParam("type");
+if (!type) {
+    type = "1"
+}
 
 new Vue({
     el: '#app',
     data: {
         paywaySelectUrl: webRoot + '/payway!list.do',
         form: {
+            type: type,
             coname: null,
             share: '否',
             cozzxs: '私营有限公司',
@@ -14,7 +18,7 @@ new Vue({
     },
     mounted() {},
     methods: {
-        sub() {
+        check() {
             let form = this.form;
             if (!form.coname) {
                 alert("请输入客户名称!");
@@ -25,17 +29,21 @@ new Vue({
                 alert("请您输入电话号码!");
                 return false;
             }
-
+            return true;
+        },
+        sub() {
+            if (!this.check()) {
+                return;
+            }
+            let me = this;
+            let form = this.form;
             $.ajax({
                 url: webRoot + "/client/client!add.do",
                 type: 'post',
                 data: form,
                 success: function(data) {
                     if (data.success) {
-                        if (window.opener) {
-                            window.opener.location.reload();
-                        }
-                        window.close();
+                        me.back();
                     } else {
                         alert("操作失败！" + data.msg);
                     }
@@ -45,23 +53,13 @@ new Vue({
                 }
 
             });
+        },
+        back() {
+            if (this.form.type === "2") {
+                router.goRoute("sale/client_list_potential");
+            } else {
+                router.goRoute("sale/client_list");
+            }
         }
     }
-});
-
-$("#exportBtn").click(function() {
-
-    http.post({
-        url: webRoot + "/finance/finance!exportToGather.do"
-    }).then(data => {
-        if (data.success) {
-            window.open("/ReportCenter/view.mvc?id=" + data.uuid);
-        } else {
-            alert("操作失败：" + data.msg);
-        }
-
-    }, e => {
-        alert("操作异常");
-    })
-
 });

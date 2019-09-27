@@ -1,22 +1,7 @@
-<form id="hiddenForm" target="_blank" method="post">
-    <input name="coname" type="hidden" value="${coname }">
-    <input name="coname1" type="hidden" value="${coname }">
-    <input name="coaddr" type="hidden" value="${coaddr }">
-    <input name="cotel" type="hidden" value="${cotel}">
-    <input name="conet" type="hidden" value="${conet}">
-    <input name="email" type="hidden" value="${email}">
-    <input name="coman" type="hidden" value="${co21}">
-    <input name="co_number" type="hidden" value="${co_number}">
-
-</form>
-
-<div id="changeNameDiv" style="display:none">
-    <input id="nameToChange" value="${coname }"><button id="changeNameConfirmBtn">修改</button>
-</div>
-
 <div id="app">
     <div>
         <button @click="sub">增加</button>
+        <button @click="back">返回</button>
     </div>
     <div class="jxiaui-table-form">
         <table style="width: 100%">
@@ -36,6 +21,11 @@
             <tr>
                 <th>电　　话</th>
                 <td><input v-model="form.cotel"></td>
+                <th>类型</th>
+                <td>
+                    {{form.type === "2" ? "潜在客户": "现有客户"}}
+
+                </td>
             </tr>
             <tr>
                 <th>公司地址</th>

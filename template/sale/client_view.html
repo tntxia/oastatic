@@ -1,26 +1,13 @@
-<form id="hiddenForm" target="_blank" method="post">
-    <input name="coname" type="hidden" value="${coname }">
-    <input name="coname1" type="hidden" value="${coname }">
-    <input name="coaddr" type="hidden" value="${coaddr }">
-    <input name="cotel" type="hidden" value="${cotel}">
-    <input name="conet" type="hidden" value="${conet}">
-    <input name="email" type="hidden" value="${email}">
-    <input name="coman" type="hidden" value="${co21}">
-    <input name="co_number" type="hidden" value="${co_number}">
-
-</form>
-
 <div id="changeNameDiv" style="display:none">
     <input id="nameToChange" value="${coname }"><button id="changeNameConfirmBtn">修改</button>
 </div>
 
-<input id="clientId" value="${clientid }" type="hidden" />
 <br>
 <div id="app">
     <div class="jxiaui-table-form">
         <table style="width: 100%">
             <tr>
-                <td colspan="4" bgcolor="#ffffff">
+                <td colspan="4">
                     <button @click="viewFollow">客户跟进</button>
                     <button @click="viewContact">联系人</button>
                     <button @click="viewInquiry">客户询价</button>
@@ -86,7 +73,6 @@
                     <input v-model="form.coman">
                 </td>
             </tr>
-
             <tr>
                 <th>组织形式</th>
                 <td>
@@ -173,23 +159,18 @@
                             <td>询价单(RFQs)回应速度:</td>
                             <td><span>{{scores.rfq}}</span></td>
                         </tr>
-
                         <tr>
                             <td>购买机率:</td>
                             <td>{{scores.gmjl}}</td>
                         </tr>
-
                         <tr>
                             <td>付款情况:</td>
                             <td>{{scores.fk}}</td>
-
                         </tr>
-
                         <tr>
                             <td>退货速度:</td>
                             <td>{{scores.th}}</td>
                         </tr>
-
                     </table>
                     <button @click="score">我要评分</button>
                 </td>

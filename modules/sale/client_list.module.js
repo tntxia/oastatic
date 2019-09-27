@@ -68,7 +68,7 @@ new Vue({
             datagrid.loadData();
         },
         toAdd() {
-            return router.goRoute("sale_client_new");
+            router.goRoute("sale/client_new");
         },
         exportData() {
             var param = this.form;

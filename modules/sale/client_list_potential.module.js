@@ -3,15 +3,13 @@
         window.modules = Object.create(null);
     };
     window.modules[name] = module();
-})('sale_client_contact', function() {
+})('sale/client_list_potential', function() {
     var module = Object.create(null);
     var exports = Object.create(null);
     module.exports = exports;
-    exports.leftbar = ;
+    exports.leftbar = true;
     exports.init = function() {
-        let id = router.getParam("id");
-
-let url = `${webRoot}/client/client!getContactList.do?coId=${id}`;
+        let url = webRoot + "/client/client!listPotential.do";
 
 new Vue({
     el: '#app',
@@ -26,22 +24,23 @@ new Vue({
         departmentList: [],
         userList: [],
         form: {
+            model: null,
             coname: null,
-            follower: null
-        },
-        gatheringId: null,
-        totalAll: null,
-        stotalAll: null,
-        rTotalAll: null,
-        gatheredAll: null,
-        leftAll: null
+            number: null,
+            pro_number: null,
+            depts: '',
+            man: '',
+            pStates: null,
+            startdate: null,
+            enddate: null
+        }
     },
     mounted() {
         this.loadData();
     },
     methods: {
         getUrl: function(row) {
-            return "#sale_client_view?id=" + row.clientid;
+            return "#sale/client_view?id=" + row.clientid;
         },
         loadData() {
             let me = this;
@@ -51,7 +50,9 @@ new Vue({
                 type: 'post',
                 success: function(data) {
                     let departmentList = [];
-
+                    $.each(data, function(i, r) {
+                        departmentList.push(r.departname);
+                    });
                     me.departmentList = departmentList;
                 },
                 dataType: 'json'
@@ -74,24 +75,9 @@ new Vue({
             datagrid.loadData();
         },
         toAdd() {
-            router.goRoute("sale_client_contact_new", { id });
-        },
-        del(id) {
-            let me = this;
-            $.ajax({
-                url: webRoot + "/client/client!delContact.do",
-                type: 'post',
-                data: {
-                    id: id
-                },
-                success: function(data) {
-                    me.query();
-                },
-                error: function(e) {}
+            router.goRoute("sale/client_new", {
+                type: "2"
             });
-        },
-        back() {
-            router.goRoute("sale_client_view", { id });
         }
     }
 });

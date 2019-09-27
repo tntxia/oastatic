@@ -1,28 +1,4 @@
 {
-    "sale_list_draft": {
-        "path": "/oa_static/modules/sale/sale_list_draft.module.js",
-        "template": "/oa_static/template/sale/sale_list_draft.html"
-    },
-    "sale_list_approving": {
-        "path": "/oa_static/modules/sale/sale_list_approving.module.js",
-        "template": "/oa_static/template/sale/sale_list_approving.html"
-    },
-    "sale_list_approved": {
-        "path": "/oa_static/modules/sale/sale_list_approved.module.js",
-        "template": "/oa_static/template/sale/sale_list_approved.html"
-    },
-    "sale_list_deleted": {
-        "path": "/oa_static/modules/sale/sale_list_deleted.module.js",
-        "template": "/oa_static/template/sale/sale_list_deleted.html"
-    },
-    "sale_product_list": {
-        "path": "/oa_static/modules/sale/sale_product_list.module.js",
-        "template": "/oa_static/template/sale/sale_product_list.html"
-    },
-    "sale_inquiry_list": {
-        "path": "/oa_static/modules/sale/sale_inquiry_list.module.js",
-        "template": "/oa_static/template/sale/sale_inquiry_list.html"
-    },
     "sale_quote_list_draft": {
         "path": "/oa_static/modules/sale/sale_quote_list_draft.module.js",
         "template": "/oa_static/template/sale/sale_quote_list_draft.html"

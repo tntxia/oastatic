@@ -1,4 +1,15 @@
-let url = webRoot + "/client/client!list.do";
+(function(name, module) {
+    if (!window.modules) {
+        window.modules = Object.create(null);
+    };
+    window.modules[name] = module();
+})('sale/inquiry_list', function() {
+    var module = Object.create(null);
+    var exports = Object.create(null);
+    module.exports = exports;
+    exports.leftbar = true;
+    exports.init = function() {
+        let url = webRoot + '/sale/sale!listInquiry.do';
 
 new Vue({
     el: '#app',
@@ -13,16 +24,29 @@ new Vue({
         departmentList: [],
         userList: [],
         form: {
+            model: null,
             coname: null,
-            follower: null
-        }
+            number: null,
+            pro_number: null,
+            depts: '',
+            man: '',
+            pStates: null,
+            startdate: null,
+            enddate: null
+        },
+        gatheringId: null,
+        totalAll: null,
+        stotalAll: null,
+        rTotalAll: null,
+        gatheredAll: null,
+        leftAll: null
     },
     mounted() {
         this.loadData();
     },
     methods: {
         getUrl: function(row) {
-            return "#sale/client_view?id=" + row.clientid;
+            return webRoot + "/sale/Inquiry/quote-view.jsp?id=" + row.id;
         },
         loadData() {
             let me = this;
@@ -57,26 +81,13 @@ new Vue({
             datagrid.loadData();
         },
         toAdd() {
-            router.goRoute("sale/client_new");
+            window.open(webRoot + "/sale/Inquiry/quoteform.jsp");
         },
-        exportData() {
-            var param = this.form;
-            param.type = "2";
-            $.ajax({
-                url: webRoot + "/client/client!export.do",
-                type: 'post',
-                data: param,
-                success: function(data) {
-                    if (data.success) {
-                        window.open("/ReportCenter/view.mvc?id=" + data.uuid);
-                    } else {
-                        alert("操作失败：" + data.msg);
-                    }
-                },
-                error: function(e) {
-
-                }
-            });
+        viewTop() {
+            window.open(webRoot + "/sale/Inquiry/top50.jsp");
         }
     }
+});
+    };
+    return module.exports;
 });

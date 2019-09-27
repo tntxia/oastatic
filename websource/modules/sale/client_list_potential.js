@@ -1,4 +1,4 @@
-let url = webRoot + "/client/client!list.do";
+let url = webRoot + "/client/client!listPotential.do";
 
 new Vue({
     el: '#app',
@@ -13,8 +13,15 @@ new Vue({
         departmentList: [],
         userList: [],
         form: {
+            model: null,
             coname: null,
-            follower: null
+            number: null,
+            pro_number: null,
+            depts: '',
+            man: '',
+            pStates: null,
+            startdate: null,
+            enddate: null
         }
     },
     mounted() {
@@ -57,25 +64,8 @@ new Vue({
             datagrid.loadData();
         },
         toAdd() {
-            router.goRoute("sale/client_new");
-        },
-        exportData() {
-            var param = this.form;
-            param.type = "2";
-            $.ajax({
-                url: webRoot + "/client/client!export.do",
-                type: 'post',
-                data: param,
-                success: function(data) {
-                    if (data.success) {
-                        window.open("/ReportCenter/view.mvc?id=" + data.uuid);
-                    } else {
-                        alert("操作失败：" + data.msg);
-                    }
-                },
-                error: function(e) {
-
-                }
+            router.goRoute("sale/client_new", {
+                type: "2"
             });
         }
     }

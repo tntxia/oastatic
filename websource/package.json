@@ -125,10 +125,33 @@
         "name": "refund_list_deleted",
         "leftbar": true
     }, {
-        "group": "finance",
-        "name": "gathered",
-        "leftbar": true,
-        "active": false
+        "group": "sale",
+        "name": "list_draft",
+        "leftbar": true
+    }, {
+        "group": "sale",
+        "name": "list_approving",
+        "leftbar": true
+    }, {
+        "group": "sale",
+        "name": "list_approved",
+        "leftbar": true
+    }, {
+        "group": "sale",
+        "name": "list_deleted",
+        "leftbar": true
+    }, {
+        "group": "sale",
+        "name": "product_list",
+        "leftbar": true
+    }, {
+        "group": "sale",
+        "name": "inquiry_list",
+        "leftbar": true
+    }, {
+        "group": "sale",
+        "name": "client_list_potential",
+        "leftbar": true
     }, {
         "group": "sale",
         "name": "client_list",
@@ -136,7 +159,7 @@
     }, {
         "group": "sale",
         "name": "client_new",
-        "active": false
+        "leftbar": true
     }, {
         "group": "sale",
         "name": "client_view",
@@ -180,6 +203,11 @@
     }, {
         "group": "sale",
         "name": "client_doc",
+        "active": false
+    }, {
+        "group": "finance",
+        "name": "gathered",
+        "leftbar": true,
         "active": false
     }, {
         "group": "hr",

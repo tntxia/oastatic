@@ -1,10 +1,8 @@
 <div id="app">
     <div>
-        客户名称:<input v-model="form.coname"> 业务跟进人：
-        <input v-model='form.follower'>
+
         <button @click="toAdd">新增</button>
         <button @click="query">查询</button>
-        <button @click="exportData">导出</button>
     </div>
     <div>
         <jxiaui-datagrid class="table" ref="datagrid" :dataset="dataset">
@@ -24,13 +22,7 @@
 					<a :href="getUrl(row)" target="_blank">{{row.cotel}}</a>
 				</template>
             </jxiaui-datagrid-item>
-            <jxiaui-datagrid-item label="是否共享" field="share">
-            </jxiaui-datagrid-item>
             <jxiaui-datagrid-item label="地址" field="coaddr">
-            </jxiaui-datagrid-item>
-            <jxiaui-datagrid-item label="EAU" field="company_management">
-            </jxiaui-datagrid-item>
-            <jxiaui-datagrid-item label="创建用户" field="username">
             </jxiaui-datagrid-item>
         </jxiaui-datagrid>
     </div>
