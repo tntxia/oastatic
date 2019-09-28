@@ -150,6 +150,22 @@
         "leftbar": true
     }, {
         "group": "sale",
+        "name": "quote_list_draft",
+        "leftbar": true
+    }, {
+        "group": "sale",
+        "name": "project_list_executing",
+        "leftbar": true
+    }, {
+        "group": "sale",
+        "name": "project_list_finish",
+        "leftbar": true
+    }, {
+        "group": "sale",
+        "name": "partner_list",
+        "leftbar": true
+    }, {
+        "group": "sale",
         "name": "client_list_potential",
         "leftbar": true
     }, {
@@ -187,15 +203,15 @@
     }, {
         "group": "sale",
         "name": "client_project",
-        "active": false
+        "leftbar": true
     }, {
         "group": "sale",
         "name": "client_quote",
-        "active": false
+        "leftbar": true
     }, {
         "group": "sale",
         "name": "client_order",
-        "active": false
+        "leftbar": true
     }, {
         "group": "sale",
         "name": "client_gather",
@@ -203,7 +219,23 @@
     }, {
         "group": "sale",
         "name": "client_doc",
-        "active": false
+        "leftbar": true
+    }, {
+        "group": "sale",
+        "name": "sample_list_draft",
+        "leftbar": true
+    }, {
+        "group": "sale",
+        "name": "sample_list_approving",
+        "leftbar": true
+    }, {
+        "group": "sale",
+        "name": "sample_new",
+        "leftbar": true
+    }, {
+        "group": "sale",
+        "name": "sample_view",
+        "leftbar": true
     }, {
         "group": "finance",
         "name": "gathered",
@@ -234,6 +266,10 @@
         "active": false
     }, {
         "name": "my-todo-dialog",
+        "active": false
+    }, {
+        "group": "client",
+        "name": "choose-dialog",
         "active": false
     }, {
         "name": "change-password-dialog",
@@ -341,6 +377,14 @@
         "group": "client",
         "name": "score-dialog",
         "active": false
+    }, {
+        "group": "client",
+        "name": "choose-dialog",
+        "active": true
+    }, {
+        "group": "client",
+        "name": "contact-choose-dialog",
+        "active": true
     }, {
         "group": "payway",
         "name": "select",

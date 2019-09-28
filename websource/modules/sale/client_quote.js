@@ -58,7 +58,7 @@ new Vue({
             datagrid.loadData();
         },
         back() {
-            router.goRoute("sale_client_view", { id });
+            router.goRoute("sale/client_view", { id });
         }
     }
 });

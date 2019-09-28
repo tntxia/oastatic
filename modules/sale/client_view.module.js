@@ -90,19 +90,19 @@ new Vue({
             window.open('sale/Inquiry/clientInquiry.mvc?coId=' + id);
         },
         viewProject() {
-            router.goRoute("sale_client_project", { id });
+            router.goRoute("sale/client_project", { id });
         },
         viewQuote() {
-            router.goRoute("sale_client_quote", { id });
+            router.goRoute("sale/client_quote", { id });
         },
         viewOrder() {
-            router.goRoute("sale_client_order", { id });
+            router.goRoute("sale/client_order", { id });
         },
         viewGather() {
-            router.goRoute("sale_client_gather", { id });
+            router.goRoute("sale/client_gather", { id });
         },
         viewDoc() {
-            router.goRoute("sale_client_doc", { id });
+            router.goRoute("sale/client_doc", { id });
         },
         viewlist() {
             router.goRoute("sale_client_list");

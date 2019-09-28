@@ -1,48 +1,4 @@
 {
-    "sale_quote_list_draft": {
-        "path": "/oa_static/modules/sale/sale_quote_list_draft.module.js",
-        "template": "/oa_static/template/sale/sale_quote_list_draft.html"
-    },
-    "sale_project_list_executing": {
-        "path": "/oa_static/modules/sale/sale_project_list_executing.module.js",
-        "template": "/oa_static/template/sale/sale_project_list_executing.html"
-    },
-    "sale_project_list_finish": {
-        "path": "/oa_static/modules/sale/sale_project_list_finish.module.js",
-        "template": "/oa_static/template/sale/sale_project_list_finish.html"
-    },
-    "sale_partner_list": {
-        "path": "/oa_static/modules/sale/sale_partner_list.module.js",
-        "template": "/oa_static/template/sale/sale_partner_list.html"
-    },
-    "sale_client_list_potential": {
-        "path": "/oa_static/modules/sale/sale_client_list_potential.module.js",
-        "template": "/oa_static/template/sale/sale_client_list_potential.html"
-    },
-    "sale_client_project": {
-        "path": "/oa_static/modules/sale/sale_client_project.module.js",
-        "template": "/oa_static/template/sale/sale_client_project.html"
-    },
-    "sale_client_quote": {
-        "path": "/oa_static/modules/sale/sale_client_quote.module.js",
-        "template": "/oa_static/template/sale/sale_client_quote.html"
-    },
-    "sale_client_order": {
-        "path": "/oa_static/modules/sale/sale_client_order.module.js",
-        "template": "/oa_static/template/sale/sale_client_order.html"
-    },
-    "sale_client_gather": {
-        "path": "/oa_static/modules/sale/sale_client_gather.module.js",
-        "template": "/oa_static/template/sale/sale_client_gather.html"
-    },
-    "sale_client_doc": {
-        "path": "/oa_static/modules/sale/sale_client_doc.module.js",
-        "template": "/oa_static/template/sale/sale_client_doc.html"
-    },
-    "sale_client_request_list": {
-        "path": "/oa_static/modules/sale/sale_client_request_list.module.js",
-        "template": "/oa_static/template/sale/sale_client_request_list.html"
-    },
     "finance_fund": {
         "path": "/oa_static/modules/finance/finance_fund.module.js",
         "template": "/oa_static/template/finance/finance_fund.html"

@@ -22,22 +22,7 @@
         "/static/lib/echarts/echarts.js", "/static/lib/jxiaui/0.1/dist/jxiaui.js",
         "/static/lib/bootstrap/js/bootstrap.js",
         "/static/lib/bootstrap-plus/js/bootstrap-utils.js", "/static/lib/module_route/module_route.js",
-        "/static/lib/main-layout-install/js/main-layout-install.js",
-
-        "/oa_static/components/logo-and-name.js", "/oa_static/components/my-todo-dialog.js",
-        "/oa_static/components/mail-new-dialog.js", "/oa_static/components/change-password-dialog.js",
-        "/oa_static/components/brand-select.js", "/oa_static/components/user-select.js",
-        "/oa_static/components/saleman-select.js", "/oa_static/components/warehouse/warehouse-in-list-wait.js",
-        "/oa_static/components/warehouse/warehouse-in-list.js", "/oa_static/components/warehouse/warehouse-in-list-refund.js",
-        "/oa_static/components/warehouse/warehouse-in-list-sample.js", "/oa_static/components/warehouse/warehouse-out-list-wait.js",
-        "/oa_static/components/warehouse/warehouse-out-list-sample.js", "/oa_static/components/warehouse/warehouse-out-list-refund.js",
-        "/oa_static/components/warehouse/warehouse-out-list.js", "/oa_static/components/warehouse/warehouse-send-bill-add-dialog.js",
-        "/oa_static/components/warehouse/warehouse-send-bill-view-dialog.js", "/oa_static/components/warehouse/warehouse-send-bill-edit-dialog.js",
-        "/oa_static/components/purchasing/purchasing-inquiry-list.js", "/oa_static/components/purchasing/purchasing-inquiry-list-waiting.js",
-        "/oa_static/components/sale/sale-approved-choose-dialog.js", "/oa_static/components/finance/finance-gathering-dialog.js",
-        "/oa_static/components/finance/finance-quick-gather-dialog.js", "/oa_static/components/finance/finance-gathered-dialog.js",
-        "/oa_static/components/client/client-score-dialog.js", "/oa_static/components/payway/payway-select.js",
-        "/oa_static/components/current/current-select.js"
+        "/static/lib/main-layout-install/js/main-layout-install.js"
     ],
     "components": [{
         "name": "logo-and-name",
@@ -132,5 +117,13 @@
         "name": "client-score-dialog",
         "url": "/oa_static/components/client/client-score-dialog.js",
         "ref": "clientScoreDialog"
+    }, {
+        "name": "client-choose-dialog",
+        "url": "/oa_static/components/client/client-choose-dialog.js",
+        "ref": "clientChooseDialog"
+    }, {
+        "name": "client-contact-choose-dialog",
+        "url": "/oa_static/components/client/client-contact-choose-dialog.js",
+        "ref": "clientContactChooseDialog"
     }]
 }

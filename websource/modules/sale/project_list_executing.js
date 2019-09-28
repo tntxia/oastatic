@@ -1,17 +1,4 @@
-(function(name, module) {
-    if (!window.modules) {
-        window.modules = Object.create(null);
-    };
-    window.modules[name] = module();
-})('sale/client_quote', function() {
-    var module = Object.create(null);
-    var exports = Object.create(null);
-    module.exports = exports;
-    exports.leftbar = true;
-    exports.init = function() {
-        let id = router.getParam("id");
-
-let url = `${webRoot}/client/client!listQuote.do?id=${id}`;
+let url = webRoot + '/sale/sale!listProject.do';
 
 new Vue({
     el: '#app',
@@ -26,8 +13,15 @@ new Vue({
         departmentList: [],
         userList: [],
         form: {
+            model: null,
             coname: null,
-            follower: null
+            number: null,
+            pro_number: null,
+            depts: '',
+            man: '',
+            pStates: null,
+            startdate: null,
+            enddate: null
         }
     },
     mounted() {
@@ -46,7 +40,9 @@ new Vue({
                 type: 'post',
                 success: function(data) {
                     let departmentList = [];
-
+                    $.each(data, function(i, r) {
+                        departmentList.push(r.departname);
+                    });
                     me.departmentList = departmentList;
                 },
                 dataType: 'json'
@@ -68,11 +64,8 @@ new Vue({
             datagrid.setParams(this.form);
             datagrid.loadData();
         },
-        back() {
-            router.goRoute("sale/client_view", { id });
+        toAdd() {
+            window.open(webRoot + '/sale/xmgl/xmglt.jsp');
         }
     }
-});
-    };
-    return module.exports;
 });

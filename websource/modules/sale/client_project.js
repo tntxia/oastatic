@@ -40,17 +40,6 @@ new Vue({
                 },
                 dataType: 'json'
             });
-
-            this.stasticLoading = true;
-            $.ajax({
-                url: webRoot + "/sale/sale!getSaleUserList.do",
-                type: 'post',
-                data: this.form
-            }).done(function(data) {
-                me.userList = data;
-            }).fail(function() {
-                me.stasticLoading = false;
-            })
         },
         query() {
             let datagrid = this.$refs["datagrid"];
@@ -74,7 +63,7 @@ new Vue({
             });
         },
         back() {
-            router.goRoute("sale_client_view", { id });
+            router.goRoute("sale/client_view", { id });
         }
     }
 });
