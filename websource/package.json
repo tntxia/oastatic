@@ -259,6 +259,10 @@
         "active": false
     }],
     "components": [{
+        "group": "header",
+        "name": "main",
+        "active": true
+    }, {
         "name": "logo-and-name",
         "template": "components/logo-and-name.html",
         "options": "components/logo-and-name.js",
@@ -380,11 +384,11 @@
     }, {
         "group": "client",
         "name": "choose-dialog",
-        "active": true
+        "active": false
     }, {
         "group": "client",
         "name": "contact-choose-dialog",
-        "active": true
+        "active": false
     }, {
         "group": "payway",
         "name": "select",
@@ -392,6 +396,6 @@
     }, {
         "group": "current",
         "name": "select",
-        "active": true
+        "active": false
     }]
 }

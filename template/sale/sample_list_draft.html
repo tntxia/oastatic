@@ -12,7 +12,7 @@
             </jxiaui-datagrid-item>
             <jxiaui-datagrid-item label="客户名称">
                 <template v-slot="row">
-                        <a :href="getUrl(row)" target="_blank">{{row.coname}}</a>
+                        <a :href="getUrl(row)">{{row.coname}}</a>
                     </template>
             </jxiaui-datagrid-item>
             <jxiaui-datagrid-item label="运输方式" field="delivery_terms">

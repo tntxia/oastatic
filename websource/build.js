@@ -32,6 +32,7 @@ fs.readFile("package.json", "utf8", (err, content) => {
         if (!comp.active) {
             return;
         }
+        console.log("开始编译组件", comp.group, comp.name);
         buildCompFile(comp);
     });
 
