@@ -34,6 +34,7 @@
                     console.log("query,,,", this.sdate, this.edate);
                 },
                 goGathering(row) {
+                    let mainLayout = webApp.layout;
                     let dialog = mainLayout.showDialog("financeGatheredDialog");
                     dialog.setId(row.id);
                 }

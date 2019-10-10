@@ -73,9 +73,6 @@
                     }).fail(function() {
                         alert("操作异常");
                     });
-                },
-                newMail() {
-                    mainLayout.showDialog("mailNewDialog");
                 }
             }
         });

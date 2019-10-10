@@ -80,6 +80,7 @@
                     console.log("query,,,", this.sdate, this.edate);
                 },
                 goGathering(row) {
+                    let mainLayout = webApp.layout;
                     let dialog = mainLayout.showDialog("financeGatheringDialog");
                     dialog.setData(row);
                 },
@@ -99,7 +100,7 @@
                 quickGather() {
                     let datagrid = this.$refs["gatheringTable"];
                     let selectedRows = datagrid.getSelectedRows();
-
+                    let mainLayout = webApp.layout;
                     let dialog = mainLayout.showDialog("financeQuickGatherDialog");
                     dialog.setCallback(() => {
                         this.query();
