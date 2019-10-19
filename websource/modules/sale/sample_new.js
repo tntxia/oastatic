@@ -38,6 +38,7 @@ new Vue({
                 alert("请先选择客户");
                 return;
             }
+            let mainLayout = webApp.layout;
             let dialog = mainLayout.showDialog("clientContactChooseDialog");
             dialog.setCoId(clientId);
             let me = this;

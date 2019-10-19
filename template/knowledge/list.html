@@ -10,7 +10,7 @@
             <jxiaui-datagrid-item label="类别" field="km_name"></jxiaui-datagrid-item>
             <jxiaui-datagrid-item label="主题">
                 <template v-slot="row">
-					<a :href="getUrl(row)" target="_blank">{{row.titel}}</a>
+					<a :href="getUrl(row)">{{row.titel}}</a>
 				</template>
             </jxiaui-datagrid-item>
             <jxiaui-datagrid-item label="创建日期" field="fvdate"></jxiaui-datagrid-item>

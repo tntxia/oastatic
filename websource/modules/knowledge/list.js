@@ -35,13 +35,13 @@ new Vue({
     },
     methods: {
         back() {
-            router.goRoute("knowledge_type");
+            router.goRoute("knowledge/type");
         },
         toAdd() {
             window.open("knowledgeNew.mvc?typeId=" + pid);
         },
         getUrl(row) {
-            return "knowledgeView.mvc?id=" + row.id
+            return "#knowledge/view?id=" + row.id
         },
         loadData() {},
         query() {

@@ -20,7 +20,7 @@
     "jsList": [
         "/static/lib/jquery/jquery.js", "/static/lib/vue/vue.js",
         "/static/lib/vue/vue-resource.js",
-        "/static/lib/echarts/echarts.js", "/static/lib/jxiaui/0.1/dist/jxiaui.js",
+        "/static/lib/jxiaui/0.1/dist/jxiaui.js",
         "/static/lib/bootstrap/js/bootstrap.js",
         "/static/lib/bootstrap-plus/js/bootstrap-utils.js", "/static/lib/module_route/module_route.js"
     ],
@@ -199,6 +199,7 @@
             "template": "/oa_static/template/market/market_trade_policy.html"
         },
         "assay_sale_ranking_product": {
+            "depentJs": "/static/lib/echarts/echarts.js",
             "path": "/oa_static/modules/assay/assay_sale_ranking_product.module.js",
             "template": "/oa_static/template/assay/assay_sale_ranking_product.html"
         },

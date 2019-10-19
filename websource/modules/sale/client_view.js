@@ -103,6 +103,7 @@ new Vue({
             console.log("query,,,", this.sdate, this.edate);
         },
         score() {
+            let mainLayout = webApp.layout;
             let dialog = mainLayout.showDialog("clientScoreDialog");
             dialog.setId(id);
             dialog.show();

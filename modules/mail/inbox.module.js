@@ -71,6 +71,7 @@ new Vue({
             });
         },
         newMail() {
+            let mainLayout = webApp.layout;
             mainLayout.showDialog("mailNewDialog");
         },
         pushInHandling() {

@@ -85,6 +85,7 @@ module.exports = {
         },
         toEdit() {
             this.hide();
+            let mainLayout = webApp.layout;
             let dialog = mainLayout.showDialog("warehouseSendBillEditDialog");
             dialog.show(this.id);
         }

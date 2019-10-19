@@ -33,6 +33,7 @@ new Vue({
 
         },
         view(row) {
+            let mainLayout = webApp.layout;
             let dialog = mainLayout.showDialog("warehouseSendBillViewDialog");
             dialog.show(row.id);
         },

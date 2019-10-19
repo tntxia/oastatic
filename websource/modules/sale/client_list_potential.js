@@ -11,17 +11,9 @@ new Vue({
         },
         stasticLoading: false,
         departmentList: [],
-        userList: [],
         form: {
-            model: null,
             coname: null,
-            number: null,
-            pro_number: null,
-            depts: '',
-            man: '',
-            pStates: null,
-            startdate: null,
-            enddate: null
+            follower: null
         }
     },
     mounted() {

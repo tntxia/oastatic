@@ -18,9 +18,7 @@ fs.readFile("package.json", "utf8", (err, content) => {
         let file = "modules/" + moduleName + ".js";
         if (isNeedBuild(file)) {
             console.log("准备编译模块", name);
-            let stat = fs.statSync(file);
-            let mtimeMs = stat.mtimeMs;
-            setCache(file, mtimeMs);
+            setCache(file);
             let target = "../modules/" + moduleName + ".module.js";
             buildModuleFile(moduleName, leftbar, file, target);
         }
@@ -28,11 +26,6 @@ fs.readFile("package.json", "utf8", (err, content) => {
 
     let components = obj.components;
     components.forEach(comp => {
-        // 当组件属性为激活才去编译，避免太慢
-        if (!comp.active) {
-            return;
-        }
-        console.log("开始编译组件", comp.group, comp.name);
         buildCompFile(comp);
     });
 
@@ -50,11 +43,13 @@ function getCache() {
     return cache;
 }
 
-function setCache(key, value) {
+function setCache(file) {
+    let stat = fs.statSync(file);
+    let mtimeMs = stat.mtimeMs;
     if (!cache) {
         cache = {};
     }
-    cache[key] = value;
+    cache[file] = mtimeMs;
 }
 
 function isNeedBuild(file) {
@@ -68,17 +63,31 @@ function isNeedBuild(file) {
 
 function buildCompFile(c) {
 
+    let name = c.name;
+    let group = c.group;
+
+    let optionsjsFile = "components/" + (group ? group + "/" : '') + name + ".js";
+    let templateFile = "components/" + (group ? group + "/" : '') + name + ".html";
+
+    if (!isNeedBuild(optionsjsFile) && !isNeedBuild(optionsjsFile)) {
+        return;
+    }
+
+    console.log("开始编译组件", comp.group, comp.name);
+
+    setCache(optionsjsFile);
+    setCache(templateFile);
+
     let buildTemplateFile = './build/template/component.js';
     let buildTemplateFileContent = fs.readFileSync(buildTemplateFile).toString();
     let buildRenderer = _.template(buildTemplateFileContent);
 
     let initContent = [];
-    let name = c.name;
-    let group = c.group;
-    let optionsjsFile = "components/" + (group ? group + "/" : '') + name + ".js";
+
+
     let options = fs.readFileSync(optionsjsFile);
     initContent.push(options);
-    let templateFile = "components/" + (group ? group + "/" : '') + name + ".html";
+
     if (templateFile) {
         let template = fs.readFileSync(templateFile);
         initContent.push('module.exports.template = ' + JSON.stringify(template.toString()));
