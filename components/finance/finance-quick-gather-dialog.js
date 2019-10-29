@@ -36,7 +36,8 @@
                 g.subject = this.subjectList[0].name;
                 let total = g.total;
                 let smoney = g.smoney;
-                g.toGather = (total - smoney) + "";
+                let toGather = Math.round((total - smoney) * 1000000) / 1000000;
+                g.toGather = toGather + "";
             })
             this.gatheringList = list;
         },
