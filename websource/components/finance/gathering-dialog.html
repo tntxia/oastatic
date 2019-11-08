@@ -1,126 +1,83 @@
-<jxiaui-dialog @close="hide" v-if="showFlag">
-    <div style="padding: 10px;">
-        <table height=8 width="100%" bordercolor="#CCBE5A" cellspacing="0" bordercolordark="#ffffff" cellpadding="3" align="center" bgcolor="#ffffff" bordercolorlight="#7f9db9" border="1">
-
-            <tr bgcolor="#d3d8eb" height="5">
-                <td width="17%" bgcolor="#d3d8eb">
+<jxiaui-dialog ref="dialog" width="700">
+    <div style="padding: 10px;" class="jxiaui-table-form">
+        <table style="width: 100%;">
+            <tr>
+                <th>
                     <strong style="color:#213e9b">收款信息 </strong>
-                </td>
-                <td colspan="3" bgcolor="#d3d8eb" align="right">
-                    <jxiaui-button @click="editInvoiceBtn">
-                        填写发票
-                    </jxiaui-button>
-                    <jxiaui-button @click="gather">
-                        收款
-                    </jxiaui-button>
+                </th>
+                <td colspan="3" style="text-align: right;">
+                    <jxiaui-button @click="editInvoiceBtn">填写发票</jxiaui-button>
+                    <jxiaui-button @click="gather">收款</jxiaui-button>
                 </td>
             </tr>
-
             <tr>
-                <td bgcolor="#e8ebf5">
-                    合同编号</td>
+                <th>合同编号</th>
                 <td>{{orderform}}</td>
-                <td bgcolor="#e8ebf5">
-                    票据号</td>
-                <td>
-                    <input v-model="form.remark">
-                </td>
+                <th>票据号</th>
+                <td><input v-model="form.remark"></td>
             </tr>
             <tr>
-                <td bgcolor="#e8ebf5">
-                    合同金额</td>
-                <td>
-                    {{total }}</td>
-                <td bgcolor="#e8ebf5">
-                    运费金额</td>
-                <td>
-                    {{bank }}</td>
+                <th>合同金额</th>
+                <td>{{total }}</td>
+                <th>运费金额</th>
+                <td>{{bank }}</td>
             </tr>
             <tr>
-                <td bgcolor="#e8ebf5">
-                    实收金额</td>
-                <td>
-                    {{smoney }}
-                </td>
+                <th>实收金额</th>
+                <td>{{smoney }}</td>
                 <td>收款金额</td>
                 <td><input v-model="form.toGather"></td>
             </tr>
             <tr>
-                <td bgcolor="#e8ebf5">
-                    科目
-                </td>
+                <th>科目</th>
                 <td>
                     <select v-model="form.subject">
                         <option v-for="s in subjectList">{{s.name}}</option>
                     </select>
                 </td>
-                <td bgcolor="#e8ebf5">
-                    客户名称</td>
+                <th>客户名称</th>
                 <td> <a href="#" @click="openCoView()">{{coname }}</a></td>
             </tr>
             <tr>
-                <td width="17%" bgcolor="#e8ebf5">
-                    <FONT SIZE="2">目标起运日</font>&nbsp;</td>
-                <td width="27%">
-                    <FONT SIZE="2" COLOR="#000000">{{yjskdate }}</font>&nbsp;</td>
-                <td width="17%" bgcolor="#e8ebf5">
-                    <FONT SIZE="2">实际起运日</font>&nbsp;</td>
-                <td width="40%">
-                    <FONT SIZE="2" COLOR="#000000">{{sjdate }}</font>&nbsp;</td>
+                <th>目标起运日</th>
+                <td>{{yjskdate }}</td>
+                <th>实际起运日</th>
+                <td>{{sjdate }}</td>
             </tr>
             <tr>
-                <td width="17%" bgcolor="#e8ebf5">
-                    <FONT SIZE="2">预计收款日期</font>&nbsp;</td>
-                <td width="27%">
-                    <FONT SIZE="2" COLOR="#000000">{{sjskdate }}</font>&nbsp;</td>
-                <td width="17%" height="15" bgcolor="#e8ebf5">
-                    <FONT SIZE="2">付款方式</font>&nbsp;</td>
-                <td width="40%" height="15">
-                    <FONT SIZE="2" COLOR="#000000">{{mode}}</font>&nbsp;</td>
+                <th>预计收款日期</th>
+                <td width="27%">{{sjskdate }}</td>
+                <th>付款方式</th>
+                <td>{{mode}}</td>
             </tr>
             <tr>
-                <td width="16%" bgcolor="#e8ebf5">
-                    <font size="2">币　　值</font>&nbsp;</td>
-                <td width="29%">
-                    <font size="2" color="#000000"></font>&nbsp;</td>
-                <td bgcolor="#e8ebf5">是否已开票</td>
+                <th>币　　值</th>
+                <td></td>
+                <th>是否已开票</th>
                 <td>{{bankaccounts }}</td>
             </tr>
             <tr>
-                <td bgcolor="#e8ebf5">
-                    <font size="2">发　　票</font>&nbsp;</td>
-                <td>
-                    <font size="2" color="#000000" face="Arial, Helvetica, sans-serif">{{rate }}</font>&nbsp;</td>
-                <td bgcolor="#e8ebf5">
-                    <font size="2">开票金额</font>&nbsp;</td>
-                <td>
-                    <font size="2" color="#000000" face="Arial, Helvetica, sans-serif">{{i_man }}</font>&nbsp;</td>
+                <th>发　　票</th>
+                <td>{{rate }}</td>
+                <th>开票金额</th>
+                <td>{{i_man }}</td>
             </tr>
             <tr>
-                <td bgcolor="#e8ebf5">开票日期&nbsp;</td>
-                <td>{{sendcompany}}&nbsp;</td>
-                <td bgcolor="#e8ebf5">
-                    <font size="2">票据号</font>&nbsp;</td>
-                <td>
-                    <font size="2" color="#000000" face="Arial, Helvetica, sans-serif">{{remark}}</font>&nbsp;</td>
+                <th>开票日期</th>
+                <td>{{sendcompany}}</td>
+                <th>票据号</th>
+                <td>{{remark}}</td>
             </tr>
             <tr>
-                <td bgcolor="#e8ebf5">
-                    <font size="2">销 售 员</font>&nbsp;</td>
+                <th>销 售 员</th>
                 <td>{{saleinfo.man}}</td>
-                <td bgcolor="#e8ebf5">
-                    <font size="2">所在部门</font>&nbsp;</td>
-                <td>
-                    <font size="2" color="#000000">{{sale_dept}}</font>&nbsp;</td>
+                <th>所在部门</th>
+                <td>{{sale_dept}}</td>
             </tr>
 
             <tr>
-                <td bgcolor="#e8ebf5">
-                    <font size="2">收款情况</font>&nbsp;</td>
-
-
+                <th>收款情况</th>
                 <td colspan="3"><span id="noteShow">{{note}}</span>&nbsp;
-
                     <div v-if="showNoteFlag">
                         <select v-model="noteValue">
                         <option value=""></option>
@@ -130,12 +87,8 @@
                             <option value="部分收款">部分收款</option>
                         </select>
                         <button @click="noteIt">确定</button><button @click="cancelNote">取消</button>
-
                     </div>
                     <input v-if="!showNoteFlag" id="noteItBut" type="button" value="评论" @click="toNoteIt">
-
-
-
                 </td>
             </tr>
         </table>

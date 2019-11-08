@@ -1,8 +1,6 @@
 module.exports = {
-    name: 'my-todo-dialog',
     data() {
         return {
-            showFlag: false,
             username: null,
             title: null,
             items: []
@@ -13,12 +11,6 @@ module.exports = {
     },
     updated() {},
     methods: {
-        show() {
-            this.showFlag = true;
-        },
-        hide() {
-            this.showFlag = false;
-        },
         fetchData: function() {
             let vm = this;
             $.ajax({

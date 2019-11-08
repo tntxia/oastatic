@@ -1,0 +1,29 @@
+<div id="app">
+    <div>
+        <year-select v-model="form.year"></year-select> 年
+        <month-select v-model="form.month"></month-select> 月
+        <button @click="query">查询</button>
+        <button @click="exportData">导出</button>
+    </div>
+    <div>
+        <jxiaui-datagrid ref="datagrid" :dataset="dataset" :load-data-when-init="false">
+            <jxiaui-datagrid-item label="#" type="index"></jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="合同编号">
+                <template v-slot="row">
+                        <a :href="getUrl(row)">{{row.number}}</a>
+                    </template>
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="客户名称">
+                <template v-slot="row">
+                        <a :href="getUrl(row)">{{row.coname}}</a>
+                    </template>
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="总金额" field="total">
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="责任人" field="man">
+            </jxiaui-datagrid-item>
+            <jxiaui-datagrid-item label="登记日期" field="datetime">
+            </jxiaui-datagrid-item>
+        </jxiaui-datagrid>
+    </div>
+</div>

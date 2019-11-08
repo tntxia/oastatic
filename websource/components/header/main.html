@@ -3,15 +3,15 @@
         <logo-and-name></logo-and-name>
         <div class="right-top-nav">
             <ul>
-                <li @click="showToDo()">
+                <li class="user-info-li">
                     <div>
-                        <span class="glyphicon glyphicon-user"></span> {{username }}
+                        <header-user-pic></header-user-pic>
+                        <span>{{username }}</span>
                         <span class="message-num-circle">{{toDoCount}}</span>
                     </div>
-                    <!--  
-                    <div style="position: absolute;top: 30px;width: 180px;background:white;display:none;">
-                        部门: ${dept } 职位：${role }
-                    </div> -->
+                    <div class="drop-down-layer">
+                        <header-my-todo></header-my-todo>
+                    </div>
                 </li>
                 <li>
                     <a>个人设置</a><span class="glyphicon glyphicon-chevron-down"></span>
@@ -57,4 +57,5 @@
             <li v-for="m in menus" :class="{selected: m.selected}"><a :href="m.url">{{m.name}}</a></li>
         </ul>
     </div>
+    <update-password-dialog ref="updatePasswordDialog"></update-password-dialog>
 </div>

@@ -172,8 +172,8 @@ body {
     float: left;
     margin-left: 12px;
     position: relative;
-    cursor: pointer;
     color: blue;
+    line-height: 25px;
 }
 
 .right-top-nav li .submenu {
@@ -258,12 +258,38 @@ li .back-forward-link {
     top: 35px;
 }
 
+.user-info-li {
+    position: relative;
+    z-index: 1000;
+}
+
+.user-info-li {
+    position: relative;
+    z-index: 1000;
+}
+
+.user-info-li .drop-down-layer {
+    position: absolute;
+    top: 25px;
+    width: 200px;
+    background: white;
+    padding: 10px;
+    border: 1px solid #ccc;
+    display: none;
+}
+
+.user-info-li:hover .drop-down-layer {
+    display: block;
+}
+
 .message-num-circle {
-    width: 15px;
-    height: 15px;
     display: inline-block;
-    border-radius: 50%;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
     background: red;
     color: white;
     text-align: center;
+    cursor: pointer;
+    line-height: normal;
 }

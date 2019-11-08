@@ -39,13 +39,10 @@ function loginAjax() {
             if (data.success) {
                 localStorage.username = $("[name=user_id]").val();
                 localStorage.password = $("[name=password]").val();
-
                 window.location.reload();
-
-
             } else {
                 $.unblockUI();
-                alert("登陆失败");
+                alert("登陆失败：" + data.msg);
             }
 
         }

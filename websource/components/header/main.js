@@ -1,12 +1,73 @@
-let mainMenuSelected;
-
-
-
-module.exports = {
+let updatePasswordDialogComp = {
+    template: "<jxiaui-dialog ref=\"dialog\" @close=\"hide\" :title=\"title\">\r\n    <table class=\"table table-bordered\">\r\n        <tr>\r\n            <th>原密码：</th>\r\n            <td><input v-model=\"passwordOld\"></td>\r\n        </tr>\r\n        <tr>\r\n            <th>新密码：</th>\r\n            <td><input v-model=\"newPassword\"></td>\r\n        </tr>\r\n        <tr>\r\n            <th>重复输入新密码：</th>\r\n            <td><input v-model=\"newPasswordRepeat\"></td>\r\n        </tr>\r\n    </table>\r\n    <div>\r\n        <button @click=\"sub\">确认</button>\r\n    </div>\r\n</jxiaui-dialog>",
     data() {
         return {
-            companyName: null,
-            companyNameEn: null,
+            title: "修改密码",
+            passwordOld: null,
+            newPassword: null,
+            newPasswordRepeat: null
+        }
+    },
+    methods: {
+        show() {
+            this.$refs.dialog.show();
+        },
+        hide() {
+            this.$refs.dialog.close();
+        },
+        sub() {
+            let me = this;
+            let passwordOld = this.passwordOld;
+            var password = this.newPassword;
+            var password2 = this.newPasswordRepeat;
+
+            if (!passwordOld) {
+                alert("请输入原始密码");
+                return;
+            }
+
+            if (!password) {
+                alert("请输入密码");
+                return;
+            }
+
+            if (!password) {
+                alert("请输入重复密码");
+                return;
+            }
+
+            if (password != password2) {
+                alert("两次输入的密码不一定，请重新输入！");
+                return;
+            }
+
+            $.ajax({
+                url: webRoot +
+                    "/user!changePass.do",
+                data: {
+                    passwordOld: passwordOld,
+                    password: password
+                },
+                success: function(data) {
+                    if (data.success) {
+                        alert("密码修改成功！");
+                        me.hide();
+                    } else {
+                        alert("修改失败！" + data.msg);
+                    }
+                }
+            });
+
+        }
+    }
+}
+
+let mainMenuSelected;
+
+module.exports = {
+    props: ['module'],
+    data() {
+        return {
             username: null,
             loginList: [],
             toDoCount: 0,
@@ -15,20 +76,12 @@ module.exports = {
             timeStr: null
         }
     },
+    components: {
+        'update-password-dialog': updatePasswordDialogComp
+    },
     mounted() {
 
         let me = this;
-
-        router.onChange(function(moduleName) {
-            let type;
-            if (moduleName.indexOf("/") >= 0) {
-                type = moduleName.split("/")[0];
-            } else {
-                type = moduleName.split("_")[0];
-            }
-            mainMenuSelected = type;
-            me.selectMenu(type);
-        });
 
         this.showTime();
 
@@ -46,11 +99,6 @@ module.exports = {
             vm.menus = res;
         })
         this.fetchData();
-        $(window).on("hashchange", function(e) {
-            let route = router.getRoute();
-            let type = route.split("_")[0];
-            console.log(type);
-        });
     },
     updated() {},
     methods: {
@@ -77,10 +125,6 @@ module.exports = {
         forward: function() {
             history.forward();
         },
-        showToDo() {
-            let mainLayout = webApp.layout;
-            mainLayout.showDialog("myTodoDialog");
-        },
         fetchData() {
             let vm = this;
             $.ajax({
@@ -105,8 +149,8 @@ module.exports = {
             })
         },
         passchange: function() {
-            let mainLayout = webApp.layout;
-            mainLayout.showDialog("changePasswordDialog");
+            debugger
+            this.$refs.updatePasswordDialog.show();
         },
         selectMenu(key) {
             this.menus.forEach(m => {
@@ -156,6 +200,19 @@ module.exports = {
                     window.location.reload();
                 }
             });
+        }
+    },
+    watch: {
+        module() {
+            let moduleName = this.module;
+            let type;
+            if (moduleName.indexOf("/") >= 0) {
+                type = moduleName.split("/")[0];
+            } else {
+                type = moduleName.split("_")[0];
+            }
+            mainMenuSelected = type;
+            this.selectMenu(type);
         }
     }
 }

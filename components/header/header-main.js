@@ -8,15 +8,76 @@
 
     (() => {
         let module = {};
-        let mainMenuSelected;
-
-
-
-module.exports = {
+        let updatePasswordDialogComp = {
+    template: "<jxiaui-dialog ref=\"dialog\" @close=\"hide\" :title=\"title\">\r\n    <table class=\"table table-bordered\">\r\n        <tr>\r\n            <th>原密码：</th>\r\n            <td><input v-model=\"passwordOld\"></td>\r\n        </tr>\r\n        <tr>\r\n            <th>新密码：</th>\r\n            <td><input v-model=\"newPassword\"></td>\r\n        </tr>\r\n        <tr>\r\n            <th>重复输入新密码：</th>\r\n            <td><input v-model=\"newPasswordRepeat\"></td>\r\n        </tr>\r\n    </table>\r\n    <div>\r\n        <button @click=\"sub\">确认</button>\r\n    </div>\r\n</jxiaui-dialog>",
     data() {
         return {
-            companyName: null,
-            companyNameEn: null,
+            title: "修改密码",
+            passwordOld: null,
+            newPassword: null,
+            newPasswordRepeat: null
+        }
+    },
+    methods: {
+        show() {
+            this.$refs.dialog.show();
+        },
+        hide() {
+            this.$refs.dialog.close();
+        },
+        sub() {
+            let me = this;
+            let passwordOld = this.passwordOld;
+            var password = this.newPassword;
+            var password2 = this.newPasswordRepeat;
+
+            if (!passwordOld) {
+                alert("请输入原始密码");
+                return;
+            }
+
+            if (!password) {
+                alert("请输入密码");
+                return;
+            }
+
+            if (!password) {
+                alert("请输入重复密码");
+                return;
+            }
+
+            if (password != password2) {
+                alert("两次输入的密码不一定，请重新输入！");
+                return;
+            }
+
+            $.ajax({
+                url: webRoot +
+                    "/user!changePass.do",
+                data: {
+                    passwordOld: passwordOld,
+                    password: password
+                },
+                success: function(data) {
+                    if (data.success) {
+                        alert("密码修改成功！");
+                        me.hide();
+                    } else {
+                        alert("修改失败！" + data.msg);
+                    }
+                }
+            });
+
+        }
+    }
+}
+
+let mainMenuSelected;
+
+module.exports = {
+    props: ['module'],
+    data() {
+        return {
             username: null,
             loginList: [],
             toDoCount: 0,
@@ -25,20 +86,12 @@ module.exports = {
             timeStr: null
         }
     },
+    components: {
+        'update-password-dialog': updatePasswordDialogComp
+    },
     mounted() {
 
         let me = this;
-
-        router.onChange(function(moduleName) {
-            let type;
-            if (moduleName.indexOf("/") >= 0) {
-                type = moduleName.split("/")[0];
-            } else {
-                type = moduleName.split("_")[0];
-            }
-            mainMenuSelected = type;
-            me.selectMenu(type);
-        });
 
         this.showTime();
 
@@ -56,11 +109,6 @@ module.exports = {
             vm.menus = res;
         })
         this.fetchData();
-        $(window).on("hashchange", function(e) {
-            let route = router.getRoute();
-            let type = route.split("_")[0];
-            console.log(type);
-        });
     },
     updated() {},
     methods: {
@@ -87,10 +135,6 @@ module.exports = {
         forward: function() {
             history.forward();
         },
-        showToDo() {
-            let mainLayout = webApp.layout;
-            mainLayout.showDialog("myTodoDialog");
-        },
         fetchData() {
             let vm = this;
             $.ajax({
@@ -115,8 +159,8 @@ module.exports = {
             })
         },
         passchange: function() {
-            let mainLayout = webApp.layout;
-            mainLayout.showDialog("changePasswordDialog");
+            debugger
+            this.$refs.updatePasswordDialog.show();
         },
         selectMenu(key) {
             this.menus.forEach(m => {
@@ -167,9 +211,22 @@ module.exports = {
                 }
             });
         }
+    },
+    watch: {
+        module() {
+            let moduleName = this.module;
+            let type;
+            if (moduleName.indexOf("/") >= 0) {
+                type = moduleName.split("/")[0];
+            } else {
+                type = moduleName.split("_")[0];
+            }
+            mainMenuSelected = type;
+            this.selectMenu(type);
+        }
     }
 }
-module.exports.template = "<div>\r\n    <div class=\"logo_and_nav\">\r\n        <logo-and-name></logo-and-name>\r\n        <div class=\"right-top-nav\">\r\n            <ul>\r\n                <li @click=\"showToDo()\">\r\n                    <div>\r\n                        <span class=\"glyphicon glyphicon-user\"></span> {{username }}\r\n                        <span class=\"message-num-circle\">{{toDoCount}}</span>\r\n                    </div>\r\n                    <!--  \r\n                    <div style=\"position: absolute;top: 30px;width: 180px;background:white;display:none;\">\r\n                        部门: ${dept } 职位：${role }\r\n                    </div> -->\r\n                </li>\r\n                <li>\r\n                    <a>个人设置</a><span class=\"glyphicon glyphicon-chevron-down\"></span>\r\n                    <div class=\"submenu\" style=\"position: absolute; top: 14px; border: 1px solid #ccc; background: white;\">\r\n                        <div>\r\n                            <a @click=\"passchange\">更改口令</a>\r\n                        </div>\r\n                        <div>\r\n                            <a href=\"workAgent.mvc\">工作代理</a>\r\n                        </div>\r\n                        <div>\r\n                            <a @click=\"openHelp\">Office Online 帮助</a>\r\n                        </div>\r\n                        <div>\r\n                            <a @click=\"openAboat\">关于Office Online </a>\r\n                        </div>\r\n                    </div>\r\n                </li>\r\n                <li><a href=\"#knowledge/type\">知识库</a></li>\r\n                <li><a href=\"#rule\">规章制度</a></li>\r\n                <li><a @click=\"checkwork\">打卡登记</a></li>\r\n                <li><a @click=\"logout\">退出</a></li>\r\n            </ul>\r\n            <div id=\"topMessage\"></div>\r\n        </div>\r\n        <div class=\"current-online-info\">\r\n            {{timeStr}} 当前在线人数：{{loginList.length}} 在线人员列表：{{loginList.join(\";\")}}\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"top_bottom_menu\">\r\n        <ul id=\"historyMenu\">\r\n            <li id=\"home\"><span class=\"fa fa-home\" @click=\"home\"></span>\r\n            </li>\r\n            <li id=\"back\"><span class=\"fa fa-arrow-left\" @click=\"back\"></span>\r\n\r\n            </li>\r\n            <li id=\"forward\"><span class=\"fa fa-arrow-right\" @click=\"back\"></span>\r\n            </li>\r\n            <li>|</li>\r\n        </ul>\r\n        <ul id=\"menu1\">\r\n            <li v-for=\"m in menus\" :class=\"{selected: m.selected}\"><a :href=\"m.url\">{{m.name}}</a></li>\r\n        </ul>\r\n    </div>\r\n</div>"
+module.exports.template = "<div>\r\n    <div class=\"logo_and_nav\">\r\n        <logo-and-name></logo-and-name>\r\n        <div class=\"right-top-nav\">\r\n            <ul>\r\n                <li class=\"user-info-li\">\r\n                    <div>\r\n                        <header-user-pic></header-user-pic>\r\n                        <span>{{username }}</span>\r\n                        <span class=\"message-num-circle\">{{toDoCount}}</span>\r\n                    </div>\r\n                    <div class=\"drop-down-layer\">\r\n                        <header-my-todo></header-my-todo>\r\n                    </div>\r\n                </li>\r\n                <li>\r\n                    <a>个人设置</a><span class=\"glyphicon glyphicon-chevron-down\"></span>\r\n                    <div class=\"submenu\" style=\"position: absolute; top: 14px; border: 1px solid #ccc; background: white;\">\r\n                        <div>\r\n                            <a @click=\"passchange\">更改口令</a>\r\n                        </div>\r\n                        <div>\r\n                            <a href=\"workAgent.mvc\">工作代理</a>\r\n                        </div>\r\n                        <div>\r\n                            <a @click=\"openHelp\">Office Online 帮助</a>\r\n                        </div>\r\n                        <div>\r\n                            <a @click=\"openAboat\">关于Office Online </a>\r\n                        </div>\r\n                    </div>\r\n                </li>\r\n                <li><a href=\"#knowledge/type\">知识库</a></li>\r\n                <li><a href=\"#rule\">规章制度</a></li>\r\n                <li><a @click=\"checkwork\">打卡登记</a></li>\r\n                <li><a @click=\"logout\">退出</a></li>\r\n            </ul>\r\n            <div id=\"topMessage\"></div>\r\n        </div>\r\n        <div class=\"current-online-info\">\r\n            {{timeStr}} 当前在线人数：{{loginList.length}} 在线人员列表：{{loginList.join(\";\")}}\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"top_bottom_menu\">\r\n        <ul id=\"historyMenu\">\r\n            <li id=\"home\"><span class=\"fa fa-home\" @click=\"home\"></span>\r\n            </li>\r\n            <li id=\"back\"><span class=\"fa fa-arrow-left\" @click=\"back\"></span>\r\n\r\n            </li>\r\n            <li id=\"forward\"><span class=\"fa fa-arrow-right\" @click=\"back\"></span>\r\n            </li>\r\n            <li>|</li>\r\n        </ul>\r\n        <ul id=\"menu1\">\r\n            <li v-for=\"m in menus\" :class=\"{selected: m.selected}\"><a :href=\"m.url\">{{m.name}}</a></li>\r\n        </ul>\r\n    </div>\r\n    <update-password-dialog ref=\"updatePasswordDialog\"></update-password-dialog>\r\n</div>"
         return module.exports;
     })(),
 

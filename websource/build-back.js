@@ -12,7 +12,8 @@ fs.readFile("package.json", "utf8", (err, content) => {
     modules.forEach(m => {
         let name = m.name;
         let group = m.group;
-        let leftbar = String(m.leftbar);
+        let leftbar = !!m.leftbar;
+
         let moduleName = (group ? group + "/" : '') + name;
         let file = "modules/" + moduleName + ".js";
         if (isNeedBuild(file)) {
@@ -68,11 +69,11 @@ function buildCompFile(c) {
     let optionsjsFile = "components/" + (group ? group + "/" : '') + name + ".js";
     let templateFile = "components/" + (group ? group + "/" : '') + name + ".html";
 
-    if (!isNeedBuild(optionsjsFile) && !isNeedBuild(templateFile)) {
+    if (!isNeedBuild(optionsjsFile) && !isNeedBuild(optionsjsFile)) {
         return;
     }
 
-    console.log("开始编译组件", group, name);
+    console.log("开始编译组件", comp.group, comp.name);
 
     setCache(optionsjsFile);
     setCache(templateFile);

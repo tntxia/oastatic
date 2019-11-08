@@ -12,6 +12,7 @@
         "/static/lib/jxiaui/0.1/css/jxiaui.combobox.css",
         "/static/lib/jxiaui/0.1/css/jxiaui-table-form.css",
         "/static/lib/jxiaui/0.1/css/jxiaui-radio-group.css",
+        "/static/lib/jxiaui/0.1/css/jxiaui-tree.css",
         "/static/lib/main-layout-install/css/main-layout.css",
         "/oa_static/css/top.css",
         "/oa_static/css/manageIndex.css",
@@ -27,6 +28,12 @@
     "components": [{
         "name": "header-main",
         "url": "/oa_static/components/header/header-main.js"
+    }, {
+        "name": "header-user-pic",
+        "url": "/oa_static/components/header/header-user-pic.js"
+    }, {
+        "name": "header-my-todo",
+        "url": "/oa_static/components/header/header-my-todo.js"
     }, {
         "name": "logo-and-name",
         "url": "/oa_static/components/logo-and-name.js"
@@ -77,17 +84,9 @@
         "url": "/oa_static/components/purchasing/purchasing-inquiry-list-waiting.js"
     }],
     "dialogs": [{
-        "name": "my-todo-dialog",
-        "url": "/oa_static/components/my-todo-dialog.js",
-        "ref": "myTodoDialog"
-    }, {
         "name": "mail-new-dialog",
         "url": "/oa_static/components/mail-new-dialog.js",
         "ref": "mailNewDialog"
-    }, {
-        "name": "change-password-dialog",
-        "url": "/oa_static/components/change-password-dialog.js",
-        "ref": "changePasswordDialog"
     }, {
         "name": "warehouse-send-bill-add-dialog",
         "url": "/oa_static/components/warehouse/warehouse-send-bill-add-dialog.js",
@@ -105,18 +104,6 @@
         "url": "/oa_static/components/sale/sale-approved-choose-dialog.js",
         "ref": "saleApprovedChooseDialog"
     }, {
-        "name": "finance-gathering-dialog",
-        "url": "/oa_static/components/finance/finance-gathering-dialog.js",
-        "ref": "financeGatheringDialog"
-    }, {
-        "name": "finance-quick-gather-dialog",
-        "url": "/oa_static/components/finance/finance-quick-gather-dialog.js",
-        "ref": "financeQuickGatherDialog"
-    }, {
-        "name": "finance-gathered-dialog",
-        "url": "/oa_static/components/finance/finance-gathered-dialog.js",
-        "ref": "financeGatheredDialog"
-    }, {
         "name": "client-score-dialog",
         "url": "/oa_static/components/client/client-score-dialog.js",
         "ref": "clientScoreDialog"
@@ -129,95 +116,88 @@
         "url": "/oa_static/components/client/client-contact-choose-dialog.js",
         "ref": "clientContactChooseDialog"
     }],
-    "moduleMapping": {
-        "finance_fund": {
-            "path": "/oa_static/modules/finance/finance_fund.module.js",
-            "template": "/oa_static/template/finance/finance_fund.html"
-        },
-        "finance_wage": {
-            "path": "/oa_static/modules/finance/finance_wage.module.js",
-            "template": "/oa_static/template/finance/finance_wage.html"
-        },
-        "finance_exchange": {
-            "path": "/oa_static/modules/finance/finance_exchange.module.js",
-            "template": "/oa_static/template/finance/finance_exchange.html"
-        },
-        "finance_payment_wait": {
-            "path": "/oa_static/modules/finance/finance_payment_wait.module.js",
-            "template": "/oa_static/template/finance/finance_payment_wait.html"
-        },
-        "finance_payment_finish": {
-            "path": "/oa_static/modules/finance/finance_payment_finish.module.js",
-            "template": "/oa_static/template/finance/finance_payment_finish.html"
-        },
-        "finance_payment_refund_wait": {
-            "path": "/oa_static/modules/finance/finance_payment_refund_wait.module.js",
-            "template": "/oa_static/template/finance/finance_payment_refund_wait.html"
-        },
-        "finance_payment_refund_finish": {
-            "path": "/oa_static/modules/finance/finance_payment_refund_finish.module.js",
-            "template": "/oa_static/template/finance/finance_payment_refund_finish.html"
-        },
-        "finance_tax_wait": {
-            "path": "/oa_static/modules/finance/finance_tax_wait.module.js",
-            "template": "/oa_static/template/finance/finance_tax_wait.html"
-        },
-        "finance_tax_finish": {
-            "path": "/oa_static/modules/finance/finance_tax_finish.module.js",
-            "template": "/oa_static/template/finance/finance_tax_finish.html"
-        },
-        "finance_gathering": {
-            "path": "/oa_static/modules/finance/finance_gathering.module.js",
-            "template": "/oa_static/template/finance/finance_gathering.html"
-        },
-        "finance_gathered": {
-            "path": "/oa_static/modules/finance/finance_gathered.module.js",
-            "template": "/oa_static/template/finance/finance_gathered.html"
-        },
-        "finance_refund": {
-            "path": "/oa_static/modules/finance/finance_refund.module.js",
-            "template": "/oa_static/template/finance/finance_refund.html"
-        },
-        "finance_refund_gathered": {
-            "path": "/oa_static/modules/finance/finance_refund_gathered.module.js",
-            "template": "/oa_static/template/finance/finance_refund_gathered.html"
-        },
-        "hr_my_attandance": {
-            "path": "/oa_static/modules/hr/hr_my_attandance.module.js",
-            "template": "/oa_static/template/hr/hr_my_attandance.html"
-        },
-        "hr_attandance_manage": {
-            "path": "/oa_static/modules/hr/hr_attandance_manage.module.js",
-            "template": "/oa_static/template/hr/hr_attandance_manage.html"
-        },
-        "hr_activity": {
-            "path": "/oa_static/modules/hr/hr_activity.module.js",
-            "template": "/oa_static/template/hr/hr_activity.html"
-        },
-        "market_trade_policy": {
-            "path": "/oa_static/modules/market/market_trade_policy.module.js",
-            "template": "/oa_static/template/market/market_trade_policy.html"
-        },
-        "assay_sale_ranking_product": {
-            "depentJs": "/static/lib/echarts/echarts.js",
-            "path": "/oa_static/modules/assay/assay_sale_ranking_product.module.js",
-            "template": "/oa_static/template/assay/assay_sale_ranking_product.html"
-        },
-        "assay_sale": {
-            "path": "/oa_static/modules/assay/assay_sale.module.js",
-            "template": "/oa_static/template/assay/assay_sale.html"
-        }
-    },
     "layout": {
+        "router": {
+            "defaultModule": "index_main",
+            "moduleMapping": {
+                "finance_fund": {
+                    "path": "/oa_static/modules/finance/finance_fund.module.js",
+                    "template": "/oa_static/template/finance/finance_fund.html"
+                },
+                "finance_wage": {
+                    "path": "/oa_static/modules/finance/finance_wage.module.js",
+                    "template": "/oa_static/template/finance/finance_wage.html"
+                },
+                "finance_exchange": {
+                    "path": "/oa_static/modules/finance/finance_exchange.module.js",
+                    "template": "/oa_static/template/finance/finance_exchange.html"
+                },
+                "finance_payment_wait": {
+                    "path": "/oa_static/modules/finance/finance_payment_wait.module.js",
+                    "template": "/oa_static/template/finance/finance_payment_wait.html"
+                },
+                "finance_payment_finish": {
+                    "path": "/oa_static/modules/finance/finance_payment_finish.module.js",
+                    "template": "/oa_static/template/finance/finance_payment_finish.html"
+                },
+                "finance_payment_refund_wait": {
+                    "path": "/oa_static/modules/finance/finance_payment_refund_wait.module.js",
+                    "template": "/oa_static/template/finance/finance_payment_refund_wait.html"
+                },
+                "finance_payment_refund_finish": {
+                    "path": "/oa_static/modules/finance/finance_payment_refund_finish.module.js",
+                    "template": "/oa_static/template/finance/finance_payment_refund_finish.html"
+                },
+                "finance_tax_wait": {
+                    "path": "/oa_static/modules/finance/finance_tax_wait.module.js",
+                    "template": "/oa_static/template/finance/finance_tax_wait.html"
+                },
+                "finance_tax_finish": {
+                    "path": "/oa_static/modules/finance/finance_tax_finish.module.js",
+                    "template": "/oa_static/template/finance/finance_tax_finish.html"
+                },
+                "finance_refund": {
+                    "path": "/oa_static/modules/finance/finance_refund.module.js",
+                    "template": "/oa_static/template/finance/finance_refund.html"
+                },
+                "finance_refund_gathered": {
+                    "path": "/oa_static/modules/finance/finance_refund_gathered.module.js",
+                    "template": "/oa_static/template/finance/finance_refund_gathered.html"
+                },
+                "hr_my_attandance": {
+                    "path": "/oa_static/modules/hr/hr_my_attandance.module.js",
+                    "template": "/oa_static/template/hr/hr_my_attandance.html"
+                },
+                "hr_attandance_manage": {
+                    "path": "/oa_static/modules/hr/hr_attandance_manage.module.js",
+                    "template": "/oa_static/template/hr/hr_attandance_manage.html"
+                },
+                "hr_activity": {
+                    "path": "/oa_static/modules/hr/hr_activity.module.js",
+                    "template": "/oa_static/template/hr/hr_activity.html"
+                },
+                "market_trade_policy": {
+                    "path": "/oa_static/modules/market/market_trade_policy.module.js",
+                    "template": "/oa_static/template/market/market_trade_policy.html"
+                },
+                "assay_sale_ranking_product": {
+                    "depentJs": "/static/lib/echarts/echarts.js",
+                    "path": "/oa_static/modules/assay/assay_sale_ranking_product.module.js",
+                    "template": "/oa_static/template/assay/assay_sale_ranking_product.html"
+                },
+                "assay_sale": {
+                    "path": "/oa_static/modules/assay/assay_sale.module.js",
+                    "template": "/oa_static/template/assay/assay_sale.html"
+                }
+            }
+        },
         "header": {
+            "vueMount": true,
             "height": 80,
             "template": "/oa_static/template/header.html"
         },
         "main": {
             "template": "/oa_static/template/content.html"
         }
-    },
-    "router": {
-        "defaultModule": "index_main"
     }
 }

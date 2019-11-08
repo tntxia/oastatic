@@ -8,9 +8,36 @@
     }, {
         "group": "knowledge",
         "name": "view"
+    }, {
+        "group": "purchasing",
+        "name": "list_draft"
+    }, {
+        "group": "sale",
+        "name": "sale_report_monthly"
+    }, {
+        "group": "finance",
+        "name": "gathering"
+    }, {
+        "group": "finance",
+        "name": "gathered"
     }],
     "components": [{
         "group": "header",
         "name": "main"
+    }, {
+        "group": "header",
+        "name": "user-pic"
+    }, {
+        "group": "header",
+        "name": "my-todo"
+    }, {
+        "group": "finance",
+        "name": "gathering-dialog"
+    }, {
+        "group": "finance",
+        "name": "quick-gather-dialog"
+    }, {
+        "group": "finance",
+        "name": "gathered-dialog"
     }]
 }
