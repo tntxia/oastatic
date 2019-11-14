@@ -113,3 +113,39 @@ module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"u in un
     })(),
 
 );
+(function(globe) {
+    if (!globe.Vue) { console.warn("可能你还没导入Vue的引用。。。"); }
+    if (arguments.length < 2) { console.warn('参数不对'); return; }
+    for (let i = 1; i < arguments.length; i++) {
+        Vue.component('tax-select', arguments[i]);
+    }
+})(window,
+
+    (() => {
+        let module = Object.create(null);
+        module.exports = {
+    props: ['value'],
+    data() {
+        return {
+            v: "不含税",
+            taxList: ["不含税", "增值发票3%", "普通发票3%", "普通发票13%", "增值发票13%", "普通发票16%", "增值发票16%", "普通发票17%", "增值发票17%", "商业发票"]
+        }
+    },
+    mounted() {
+        if (this.value) {
+            this.v = this.value;
+        }
+    },
+    updated() {},
+    methods: {},
+    watch: {
+        v() {
+            this.$emit("input", this.v);
+        }
+    }
+}
+module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"t in taxList\">{{t}}</option>\r\n</select>"
+        return module.exports;
+    })(),
+
+);
