@@ -1,7 +1,0 @@
-<jxiaui-table-form v-if="items && items.length">
-    <jxiaui-table-form-item :key="index" :label="item.label" v-for="(item,index) in items" v-if="item.count>0">
-        <a :href="item.url" @click="handleClick"> 
-                    {{item.count}}
-                </a>
-    </jxiaui-table-form-item>
-</jxiaui-table-form>

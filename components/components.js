@@ -65,4 +65,51 @@ module.exports.template = "<div style=\"display: inline-block;\">\r\n    <img :s
         return module.exports;
     })(),
 
-)
+);
+(function(globe) {
+    if (!globe.Vue) { console.warn("可能你还没导入Vue的引用。。。"); }
+    if (arguments.length < 2) { console.warn('参数不对'); return; }
+    for (let i = 1; i < arguments.length; i++) {
+        Vue.component('unit-select', arguments[i]);
+    }
+})(window,
+
+    (() => {
+        let module = Object.create(null);
+        module.exports = {
+    props: ['value'],
+    data() {
+        return {
+            v: null,
+            unitList: []
+        }
+    },
+    mounted() {
+        this.loadData();
+    },
+    updated() {},
+    methods: {
+        loadData() {
+            let me = this;
+            $.ajax({
+                url: 'unit!list.do'
+            }).done(function(res) {
+
+                if (res && res.length) {
+                    me.v = res[0].punit_name;
+                }
+                me.unitList = res;
+            })
+        }
+    },
+    watch: {
+        v() {
+            this.$emit("input", this.v);
+        }
+    }
+}
+module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"u in unitList\">{{u.punit_name}}</option>\r\n</select>"
+        return module.exports;
+    })(),
+
+);

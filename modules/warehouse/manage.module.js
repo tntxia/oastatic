@@ -1,15 +1,31 @@
-(function(name, module) {
+(function(name, moduleFun) {
     if (!window.modules) {
         window.modules = Object.create(null);
     };
-    window.modules[name] = module();
+    let module = moduleFun();
+    if (arguments.length > 2) {
+        let components = Object.create(null);
+        for (let i = 2; i < arguments.length; i++) {
+            let name = arguments[i];
+            i++;
+            let func = arguments[i];
+            if (!func) {
+                continue;
+            }
+            let component = func();
+            components[name] = component;
+        }
+        module.components = components;
+    }
+
+    window.modules[name] = module;
 })('warehouse/manage', function() {
-    var module = Object.create(null);
-    var exports = Object.create(null);
-    module.exports = exports;
-    exports.leftbar = true;
-    exports.init = function() {
-        new Vue({
+        var module = Object.create(null);
+        var exports = Object.create(null);
+        module.exports = exports;
+
+        exports.init = function() {
+            new Vue({
     el: '#app',
     data: {
         brandList: [],
@@ -21,45 +37,12 @@
             method: 'post'
         }
     },
+    components: this.components,
     mounted() {},
     methods: {
+
         add() {
-            BootstrapUtils.createDialog({
-                id: 'addProductModal',
-                title: '增加仓库产品',
-                template: webRoot + "/warehouse/template/add.mvc",
-                onFinish: function() {
-                    var sel = this.find("[name=unit]");
-                    OACommonSelects.fillUnitSelect({
-                        sel: sel
-                    });
-                },
-                onConfirm: function() {
-
-                    var paramMap = this.getParamMap();
-                    $.ajax({
-                        url: webRoot + '/warehouse/warehouse!add.do',
-                        data: paramMap
-                    }).done(function(data) {
-                        if (data.success) {
-                            alert("操作成功");
-                            vm.fetchData();
-                            $("#addProductModal").modal('hide');
-
-                        } else {
-                            if (data.msg) {
-                                alert(data.msg);
-                            } else {
-                                alert("操作失败");
-                            }
-
-                        }
-                    }).fail(function(e) {
-                        alert("操作异常");
-                    });
-                }
-            });
-            $("#addProductModal").modal('show');
+            this.$refs.addDialog.show();
         },
         query() {
             let datagrid = this.$refs["datagrid"];
@@ -184,6 +167,48 @@
         }
     }
 });
-    };
-    return module.exports;
-});
+        };
+        return module.exports;
+    }
+
+    ,
+    'add-dialog',
+    function() {
+        var module = Object.create(null);
+        module.exports = {
+    props: ['id'],
+    data() {
+        return {
+            form: {}
+        }
+    },
+    mounted() {},
+    updated() {},
+    methods: {
+        show() {
+            this.form = {};
+            this.$refs.dialog.show();
+        },
+        sub() {
+            let me = this;
+            $.ajax({
+                url: webRoot + "/warehouse/warehouse!add.do",
+                type: 'post',
+                data: this.form
+            }).done(function(data) {
+                if (data.success) {
+                    alert("操作成功");
+                    me.$emit("success");
+                    me.$refs.dialog.close();
+                } else {
+                    alert("操作失败" + data.msg);
+                }
+            });
+        }
+    }
+}
+module.exports.template = "<jxiaui-dialog ref=\"dialog\" title=\"增加仓库产品\">\r\n    <div class=\"jxiaui-table-form\">\r\n        <table style=\"width: 100%;\">\r\n            <tr>\r\n                <td>型号</td>\r\n                <td><input v-model=\"form.promodel\"></td>\r\n            </tr>\r\n            <tr>\r\n                <td>批号</td>\r\n                <td><input v-model=\"form.pro_name\"></td>\r\n            </tr>\r\n            <tr>\r\n                <td>品牌</td>\r\n                <td>\r\n                    <brand-select v-model=\"form.pro_sup_number\"></brand-select>\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <td>数量</td>\r\n                <td><input v-model=\"form.num\">\r\n                    <unit-select></unit-select>\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <td>备注</td>\r\n                <td><input v-model=\"form.pro_remark\"></td>\r\n            </tr>\r\n        </table>\r\n    </div>\r\n    <div style=\"text-align: right;padding: 5px 20px;\">\r\n        <button @click=\"sub\">增加</button>\r\n    </div>\r\n</jxiaui-dialog>";
+        return module.exports;
+    }
+    
+);

@@ -1,7 +1,7 @@
 {
     "title": "深圳市欧锘克电子有限公司",
     "version": "20190926223525",
-    "cssList": ["/static/lib/font-awesome/css/font-awesome.css",
+    "cssList": ["/static/lib/font-awesome/css/font-awesome.css", "/static/lib/font_jxiaui/iconfont.css",
         "/static/lib/bootstrap/css/bootstrap.css", "/static/lib/jxiaui/0.1/css/jxiaui.css",
         "/static/lib/jxiaui/0.1/css/jxiaui.datepicker.css",
         "/static/lib/jxiaui/0.1/css/jxiaui.pagination.css",
@@ -13,24 +13,19 @@
         "/static/lib/jxiaui/0.1/css/jxiaui-table-form.css",
         "/static/lib/jxiaui/0.1/css/jxiaui-radio-group.css",
         "/static/lib/jxiaui/0.1/css/jxiaui-tree.css",
+        "/static/lib/jxiaui/0.1/css/jxiaui-rich-editor.css",
         "/static/lib/main-layout-install/css/main-layout.css",
         "/oa_static/css/top.css",
         "/oa_static/css/manageIndex.css",
         "css/cwface.css", "css/tntxiaui/style.css"
     ],
     "jsList": [
-        "/static/lib/jquery/jquery.js", "/static/lib/vue/vue.js",
-        "/static/lib/vue/vue-resource.js",
-        "/static/lib/jxiaui/0.1/dist/jxiaui.js",
         "/static/lib/bootstrap/js/bootstrap.js",
         "/static/lib/bootstrap-plus/js/bootstrap-utils.js", "/static/lib/module_route/module_route.js"
     ],
     "components": [{
         "name": "header-main",
         "url": "/oa_static/components/header/header-main.js"
-    }, {
-        "name": "header-user-pic",
-        "url": "/oa_static/components/header/header-user-pic.js"
     }, {
         "name": "header-my-todo",
         "url": "/oa_static/components/header/header-my-todo.js"
@@ -46,9 +41,6 @@
     }, {
         "name": "saleman-select",
         "url": "/oa_static/components/saleman-select.js"
-    }, {
-        "name": "warehouse-in-list-wait",
-        "url": "/oa_static/components/warehouse/warehouse-in-list-wait.js"
     }, {
         "name": "warehouse-in-list",
         "url": "/oa_static/components/warehouse/warehouse-in-list.js"
@@ -195,6 +187,10 @@
             "vueMount": true,
             "height": 80,
             "template": "/oa_static/template/header.html"
+        },
+        "leftbar": {
+            "url": "leftbar.do",
+            "width": 110
         },
         "main": {
             "template": "/oa_static/template/content.html"
