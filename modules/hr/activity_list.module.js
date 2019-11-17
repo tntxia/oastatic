@@ -19,56 +19,67 @@
     }
 
     window.modules[name] = module;
-})('sale/client_contact_list', function() {
+})('hr/activity_list', function() {
         var module = Object.create(null);
         var exports = Object.create(null);
         module.exports = exports;
 
         exports.init = function() {
-            let url = webRoot + "/client/client!listContact.do";
+            let url = webRoot + "/activity!list.do";
+
+let pid = router.getParam("id");
+
 new Vue({
     el: '#app',
     data: {
+        loading: false,
+        newMailCount: 0,
         dataset: {
             url: url,
+            params: {
+                pid: pid
+            },
             method: 'post',
             pageSize: 50
         },
         form: {
-            name: null
+            sdate: null,
+            edate: null,
         }
     },
-    mounted() {},
+    mounted() {
+        this.loadData();
+    },
     methods: {
-        getUrl: function(row) {
-            return '#sale/client_contact_view?id=' + row.nameid;
+        back() {
+            router.goRoute("knowledge_type");
         },
+        toAdd() {
+            window.open("fvfg/ngz.jsp");
+        },
+        getUrl(row) {
+            return "knowledgeView.mvc?id=" + row.id
+        },
+        loadData() {},
         query() {
             let datagrid = this.$refs["datagrid"];
             datagrid.setParams(this.form);
             datagrid.loadData();
+            this.loadData();
+            console.log("query,,,", this.sdate, this.edate);
         },
-        toAdd() {
-            window.open(webRoot + '/sale/xmgl/xmglt.jsp');
-        },
-        del(row) {
-            if (!confirm("是否确认删除此联系人，删除后无法恢复")) {
-                return;
-            }
-            let me = this;
+        getMail() {
             $.ajax({
-                url: 'client/contact!del.do',
-                data: {
-                    id: row.nameid
-                }
-            }).done(res => {
-                if (res.success) {
-                    alert("操作成功");
-                    me.query();
+                url: webRoot + '/mail!getMail.do'
+            }).done(function(data) {
+                if (data.success) {
+                    window.location.reload();
                 } else {
-                    alert("操作失败");
+                    alert("操作失败：" + data.msg);
                 }
-            })
+            }).fail(function() {
+                alert("操作异常");
+            });
         }
     }
 });

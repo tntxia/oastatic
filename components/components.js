@@ -149,3 +149,151 @@ module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"t in ta
     })(),
 
 );
+(function(globe) {
+    if (!globe.Vue) { console.warn("可能你还没导入Vue的引用。。。"); }
+    if (arguments.length < 2) { console.warn('参数不对'); return; }
+    for (let i = 1; i < arguments.length; i++) {
+        Vue.component('country-select', arguments[i]);
+    }
+})(window,
+
+    (() => {
+        let module = Object.create(null);
+        module.exports = {
+    props: ['value'],
+    data() {
+        return {
+            v: '中国',
+            countryList: []
+        }
+    },
+    mounted() {
+        this.loadData();
+    },
+    updated() {},
+    methods: {
+        loadData() {
+            let me = this;
+            $.ajax({
+                url: '/gis/country!listAll.do'
+            }).done(function(res) {
+                let data = res.data;
+                me.countryList = data;
+            })
+        }
+    },
+    watch: {
+        v() {
+            this.$emit("input", this.v);
+        }
+    }
+}
+module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"c in countryList\">{{c.name}}</option>\r\n</select>"
+        return module.exports;
+    })(),
+
+);
+(function(globe) {
+    if (!globe.Vue) { console.warn("可能你还没导入Vue的引用。。。"); }
+    if (arguments.length < 2) { console.warn('参数不对'); return; }
+    for (let i = 1; i < arguments.length; i++) {
+        Vue.component('province-select', arguments[i]);
+    }
+})(window,
+
+    (() => {
+        let module = Object.create(null);
+        module.exports = {
+    props: ['value'],
+    data() {
+        return {
+            v: null,
+            provinceList: []
+        }
+    },
+    mounted() {
+        this.loadData();
+    },
+    updated() {},
+    methods: {
+        loadData() {
+            let me = this;
+            $.ajax({
+                url: '/gis/province!listAll.do'
+            }).done(function(res) {
+                let data = res.data;
+                if (data && data.length) {
+                    me.v = data[0].name;
+                }
+                me.provinceList = data;
+            })
+        }
+    },
+    watch: {
+        v() {
+            this.$emit("input", this.v);
+        }
+    }
+}
+module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"c in provinceList\">{{c.name}}</option>\r\n</select>"
+        return module.exports;
+    })(),
+
+);
+(function(globe) {
+    if (!globe.Vue) { console.warn("可能你还没导入Vue的引用。。。"); }
+    if (arguments.length < 2) { console.warn('参数不对'); return; }
+    for (let i = 1; i < arguments.length; i++) {
+        Vue.component('city-select', arguments[i]);
+    }
+})(window,
+
+    (() => {
+        let module = Object.create(null);
+        module.exports = {
+    props: ['value', 'parent'],
+    data() {
+        return {
+            v: null,
+            cityList: []
+        }
+    },
+    mounted() {
+        this.loadData();
+    },
+    updated() {},
+    methods: {
+        loadData() {
+            if (!this.parent) {
+                return;
+            }
+            let me = this;
+            $.ajax({
+                url: '/gis/city!listAllByProvinceName.do',
+                type: 'post',
+                data: {
+                    parent: this.parent
+                }
+            }).done(function(res) {
+                let data = res.data;
+                if (data && data.length) {
+                    me.v = data[0].name;
+                }
+                me.cityList = data;
+            })
+        }
+    },
+    watch: {
+        parent() {
+            this.loadData();
+        },
+        v() {
+            this.$emit("input", this.v);
+        }
+    }
+}
+module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"c in cityList\">{{c.name}}</option>\r\n</select>"
+        return module.exports;
+    })(),
+
+);
