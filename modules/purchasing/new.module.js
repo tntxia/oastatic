@@ -24,6 +24,10 @@
         var exports = Object.create(null);
         module.exports = exports;
 
+        
+        module.exports.template = null;
+        
+
         exports.init = function() {
             let templateId = router.getParam("templateId");
 
@@ -128,6 +132,9 @@ new Vue({
         module.exports = {
     data() {
         return {
+            form: {
+                coname: null
+            },
             dataset: {
                 url: 'purchasing/supplier!list.do'
             }
@@ -142,10 +149,15 @@ new Vue({
         choose: function(row) {
             this.$refs.dialog.close();
             this.$emit("choose", row);
-        }
+        },
+        query() {
+            let datagrid = this.$refs["datagrid"];
+            datagrid.setParams(this.form);
+            datagrid.loadData();
+        },
     }
 }
-module.exports.template = "<jxiaui-dialog ref=\"dialog\" title=\"选择供应商\">\r\n    <jxiaui-datagrid class=\"table\" ref=\"datagrid\" :dataset=\"dataset\">\r\n        <jxiaui-datagrid-item label=\"序号\" type=\"index\"></jxiaui-datagrid-item>\r\n        <jxiaui-datagrid-item label=\"编号\" field=\"co_number\"></jxiaui-datagrid-item>\r\n        <jxiaui-datagrid-item label=\"公司名称\" field=\"coname\"></jxiaui-datagrid-item>\r\n        <jxiaui-datagrid-item label=\"操作\">\r\n            <template v-slot=\"row\">\r\n                    <button @click=\"choose(row)\">选择</button>\r\n                </template>\r\n        </jxiaui-datagrid-item>\r\n    </jxiaui-datagrid>\r\n</jxiaui-dialog>";
+module.exports.template = "<jxiaui-dialog ref=\"dialog\" title=\"选择供应商\">\r\n    <div>\r\n        <div>\r\n            <input v-model=\"form.coname\"> <button @click=\"query\">查询</button>\r\n        </div>\r\n        <jxiaui-datagrid class=\"table\" ref=\"datagrid\" :dataset=\"dataset\">\r\n            <jxiaui-datagrid-item label=\"序号\" type=\"index\"></jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"编号\" field=\"co_number\"></jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"公司名称\" field=\"coname\"></jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"操作\">\r\n                <template v-slot=\"row\">\r\n                                <button @click=\"choose(row)\">选择</button>\r\n                            </template>\r\n            </jxiaui-datagrid-item>\r\n        </jxiaui-datagrid>\r\n    </div>\r\n\r\n</jxiaui-dialog>";
         return module.exports;
     }
     ,
