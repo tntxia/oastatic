@@ -136,7 +136,8 @@ new Vue({
                 coname: null
             },
             dataset: {
-                url: 'purchasing/supplier!list.do'
+                url: 'purchasing/supplier!list.do',
+                method: 'post'
             }
         }
     },
