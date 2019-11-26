@@ -25,7 +25,7 @@
         module.exports = exports;
 
         
-        module.exports.template = null;
+        module.exports.template = "<div id=\"app\">\r\n    <div>\r\n        <button @click=\"sub\">增加</button>\r\n        <button @click=\"back\">返回</button>\r\n    </div>\r\n    <div class=\"jxiaui-table-form\">\r\n        <table style=\"width: 100%\">\r\n            <tr>\r\n                <th>销售合同号</th>\r\n                <td>\r\n                    <input v-model=\"form.sub\">\r\n                </td>\r\n                <th>供应商名称</th>\r\n                <td>\r\n                    <input v-model=\"form.coname\" readonly=\"readonly\"> <button @click=\"chooseSupplier\">选择</button>\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>供应商编码</th>\r\n                <td>\r\n                    <input v-model=\"form.co_number\" readonly=\"readonly\">\r\n                </td>\r\n                <th>供应商联系人</th>\r\n                <td>\r\n                    <input v-model=\"form.lxr\" readonly=\"readonly\">\r\n                    <button @click=\"chooseContact\">选择</button>\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>运费</th>\r\n                <td>\r\n                    <input v-model=\"form.pay_je\" type=\"number\">\r\n                </td>\r\n                <th>运费负担</th>\r\n                <td colspan=\"3\">\r\n                    <select v-model=\"form.freight\">\r\n                        <option value=\"\">请选择</option>\r\n                        <option>卖家支付</option>\r\n                        <option>买家支付</option>\r\n                    </select>\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>付款方式</th>\r\n                <td>\r\n                    <payway-select v-model=\"form.payment\"></payway-select>\r\n                </td>\r\n                <th>发票</th>\r\n                <td colspan=\"3\">\r\n                    <tax-select v-model=\"form.rate\"></tax-select>\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>收件人</th>\r\n                <td><input v-model=\"form.receiver\"></td>\r\n                <th>收件人电话</th>\r\n                <td><input v-model=\"form.receiver_tel\"></td>\r\n            </tr>\r\n            <tr>\r\n                <th>收件地址</th>\r\n                <td colspan=\"3\"><input v-model=\"form.receiver_addr\"></td>\r\n            </tr>\r\n            <tr>\r\n                <th>交货日期</th>\r\n                <td colspan=\"3\">\r\n                    <jxiaui-datepicker v-model=\"form.pay_if\"></jxiaui-datepicker>\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>条款</th>\r\n                <td colspan=\"3\">\r\n                    <jxiaui-rich-editor v-model=\"form.tbyq\"></jxiaui-rich-editor>\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>备注</th>\r\n                <td colspan=\"3\">\r\n                    <jxiaui-rich-editor v-model=\"form.remarks\"></jxiaui-rich-editor>\r\n                </td>\r\n            </tr>\r\n        </table>\r\n    </div>\r\n    <choose-supplier-dialog ref=\"chooseSupplierDialog\" @choose=\"fillSupplierData\"></choose-supplier-dialog>\r\n    <choose-contact-dialog ref=\"chooseContactDialog\" @choose=\"fillContactData\" :supplier-number=\"form.co_number\"></choose-contact-dialog>\r\n</div>";
         
 
         exports.init = function() {
@@ -38,6 +38,7 @@ new Vue({
             coname: null,
             co_number: null,
             lxr: null,
+            rate: null,
             pay_je: 0,
             tbyq: null,
             remarks: null
@@ -63,8 +64,6 @@ new Vue({
                     me.form.receiver = data.q_man;
                     me.form.receiver_tel = data.q_tel;
                     me.form.receiver_addr = data.q_addr;
-
-                    console.log(me.form);
                 }
             }).fail(e => {
                 alert("加载模板信息异常");
@@ -77,6 +76,10 @@ new Vue({
             let form = this.form;
             if (!form.coname) {
                 alert("请输入供应商名称!");
+                return false;
+            }
+            if (!form.co_number) {
+                alert("请输入供应商编号!");
                 return false;
             }
             return true;

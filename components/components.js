@@ -134,6 +134,8 @@ module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"u in un
     mounted() {
         if (this.value) {
             this.v = this.value;
+        } else {
+            this.$emit("input", this.v);
         }
     },
     updated() {},
@@ -293,6 +295,117 @@ module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"c in pr
     }
 }
 module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"c in cityList\">{{c.name}}</option>\r\n</select>"
+        return module.exports;
+    })(),
+
+);
+(function(globe) {
+    if (!globe.Vue) { console.warn("可能你还没导入Vue的引用。。。"); }
+    if (arguments.length < 2) { console.warn('参数不对'); return; }
+    for (let i = 1; i < arguments.length; i++) {
+        Vue.component('client-choose-dialog', arguments[i]);
+    }
+})(window,
+
+    (() => {
+        let module = Object.create(null);
+        module.exports = {
+    data() {
+        return {
+            id: null,
+            callback: null,
+            form: {
+                id: null,
+                rfq: null,
+                gmjl: null,
+                fk: null,
+                th: null
+            },
+            dataset: {
+                url: webRoot + '/client/client!list.do',
+                method: 'post'
+            }
+        }
+    },
+    mounted() {},
+    updated() {},
+    methods: {
+        show() {
+            this.$refs.dialog.show();
+        },
+        choose(row) {
+            this.$emit("choose", row);
+            this.$refs.dialog.close();
+        },
+        query() {
+            let datagrid = this.$refs["datagrid"];
+            datagrid.setParams(this.form);
+            datagrid.loadData();
+        }
+    }
+}
+module.exports.template = "<jxiaui-dialog :width=\"1000\" ref=\"dialog\">\r\n    <div>\r\n        <span>客户名称:</span><input v-model=\"form.coname\"><button @click=\"query\">查询</button>\r\n    </div>\r\n    <div>\r\n        <jxiaui-datagrid class=\"table\" ref=\"datagrid\" :dataset=\"dataset\">\r\n            <jxiaui-datagrid-item label=\"序号\" type=\"index\"></jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"编号\" field=\"co_number\"></jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"名称\" field=\"coname\"></jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"电话\" field=\"cotel\"></jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"地址\" field=\"coaddr\">\r\n            </jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"选择\">\r\n                <template v-slot=\"row\">\r\n                    <button @click=\"choose(row)\">选择</button>\r\n                </template>\r\n            </jxiaui-datagrid-item>\r\n        </jxiaui-datagrid>\r\n    </div>\r\n\r\n</jxiaui-dialog>"
+        return module.exports;
+    })(),
+
+);
+(function(globe) {
+    if (!globe.Vue) { console.warn("可能你还没导入Vue的引用。。。"); }
+    if (arguments.length < 2) { console.warn('参数不对'); return; }
+    for (let i = 1; i < arguments.length; i++) {
+        Vue.component('client-choose-contact-dialog', arguments[i]);
+    }
+})(window,
+
+    (() => {
+        let module = Object.create(null);
+        module.exports = {
+    props: ['pid'],
+    data() {
+        return {
+            showFlag: false,
+            id: null,
+            callback: null,
+            coId: null,
+            dataset: {
+                url: webRoot + '/client/contact!list.do',
+                method: 'post'
+            }
+        }
+    },
+    mounted() {},
+    updated() {},
+    methods: {
+        show() {
+            this.$refs.dialog.show();
+            this.$nextTick(function() {
+                this.query();
+            });
+        },
+        choose(row) {
+            this.$emit("choose", row);
+            this.$refs.dialog.close();
+        },
+        query() {
+            let datagrid = this.$refs["datagrid"];
+            if (!datagrid) {
+                return;
+            }
+            datagrid.loadData({
+                pid: this.pid
+            });
+        }
+    },
+    watch: {
+        pid() {
+            if (!this.pid) {
+                return;
+            }
+            this.query();
+        }
+    }
+}
+module.exports.template = "<jxiaui-dialog :width=\"1000\" ref=\"dialog\">\r\n    <div>\r\n        <jxiaui-datagrid class=\"table\" ref=\"datagrid\" :dataset=\"dataset\" :load-data-when-init=\"false\">\r\n            <jxiaui-datagrid-item label=\"序号\" type=\"index\"></jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"联系人\" field=\"name\"></jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"先生/小姐\" field=\"mr\"></jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"职位\" field=\"job\">\r\n            </jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"办公室电话\" field=\"tel\">\r\n            </jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"手机\" field=\"waptel\">\r\n            </jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"选择\">\r\n                <template v-slot=\"row\">\r\n                    <button @click=\"choose(row)\">选择</button>\r\n                </template>\r\n            </jxiaui-datagrid-item>\r\n        </jxiaui-datagrid>\r\n    </div>\r\n\r\n</jxiaui-dialog>"
         return module.exports;
     })(),
 

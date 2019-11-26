@@ -1,17 +1,33 @@
-(function(name, module) {
+(function(name, moduleFun) {
     if (!window.modules) {
         window.modules = Object.create(null);
     };
-    window.modules[name] = module();
-})('sale/client_contact', function() {
-    var module = Object.create(null);
-    var exports = Object.create(null);
-    module.exports = exports;
-    exports.leftbar = true;
-    exports.init = function() {
-        let id = router.getParam("id");
+    let module = moduleFun();
+    if (arguments.length > 2) {
+        let components = Object.create(null);
+        for (let i = 2; i < arguments.length; i++) {
+            let name = arguments[i];
+            i++;
+            let func = arguments[i];
+            if (!func) {
+                continue;
+            }
+            let component = func();
+            components[name] = component;
+        }
+        module.components = components;
+    }
 
-let url = `${webRoot}/client/client!getContactList.do?coId=${id}`;
+    window.modules[name] = module;
+})('sale/client_contact', function() {
+        var module = Object.create(null);
+        var exports = Object.create(null);
+        module.exports = exports;
+
+        exports.init = function() {
+            let id = router.getParam("id");
+
+let url = `${webRoot}/client/contact!list.do?pid=${id}`;
 
 new Vue({
     el: '#app',
@@ -89,6 +105,9 @@ new Vue({
         }
     }
 });
-    };
-    return module.exports;
-});
+        };
+        return module.exports;
+    }
+
+    
+);

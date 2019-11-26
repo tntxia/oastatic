@@ -1,18 +1,33 @@
-(function(name, module) {
+(function(name, moduleFun) {
     if (!window.modules) {
         window.modules = Object.create(null);
     };
-    window.modules[name] = module();
+    let module = moduleFun();
+    if (arguments.length > 2) {
+        let components = Object.create(null);
+        for (let i = 2; i < arguments.length; i++) {
+            let name = arguments[i];
+            i++;
+            let func = arguments[i];
+            if (!func) {
+                continue;
+            }
+            let component = func();
+            components[name] = component;
+        }
+        module.components = components;
+    }
+
+    window.modules[name] = module;
 })('sale/sample_new', function() {
-    var module = Object.create(null);
-    var exports = Object.create(null);
-    module.exports = exports;
-    exports.leftbar = true;
-    exports.init = function() {
-        new Vue({
+        var module = Object.create(null);
+        var exports = Object.create(null);
+        module.exports = exports;
+
+        exports.init = function() {
+            new Vue({
     el: '#app',
     data: {
-        paywaySelectUrl: webRoot + '/payway!list.do',
         form: {
             clientId: null,
             coname: null,
@@ -32,33 +47,28 @@
     },
     mounted() {},
     methods: {
-        choose() {
-            let me = this;
-            let dialog = mainLayout.showDialog("clientChooseDialog");
-            dialog.setCallback(function(row) {
-                me.form.clientId = row.clientid;
-                me.form.coname = row.coname;
-                me.form.co_number = row.co_number;
-                me.form.coaddr = row.coaddr;
-                console.log("callback", row);
-            });
+        toChooseClient() {
+            this.$refs.clientChooseDialog.show();
         },
-        chooseContact() {
+        chooseClient(client) {
+            let form = this.form;
+            form.clientId = client.clientid;
+            form.coname = client.coname;
+            form.co_number = client.co_number;
+            form.coaddr = client.coaddr;
+        },
+        toChooseContact() {
+            this.$refs.clientContactChooseDialog.show();
+        },
+        chooseContact(contact) {
             let clientId = this.form.clientId;
             if (!clientId) {
                 alert("请先选择客户");
                 return;
             }
-            let mainLayout = webApp.layout;
-            let dialog = mainLayout.showDialog("clientContactChooseDialog");
-            dialog.setCoId(clientId);
-            let me = this;
-            dialog.setCallback(function(row) {
-                me.form.contact = row.name;
-                me.form.contact_tel = row.tel;
-                console.log("callback", row);
-            });
-            dialog.query();
+            let form = this.form;
+            form.contact = contact.name;
+            form.contact_tel = contact.tel;
         },
         check() {
             let form = this.form;
@@ -77,18 +87,15 @@
             $.ajax({
                 url: webRoot + "/sale/sample!addSample.do",
                 type: 'post',
-                data: form,
-                success: function(data) {
-                    if (data.success) {
-                        me.back();
-                    } else {
-                        alert("操作失败！" + data.msg);
-                    }
-                },
-                error: function(e) {
-                    alert("操作异常！");
+                data: form
+            }).done(function(data) {
+                if (data.success) {
+                    me.back();
+                } else {
+                    alert("操作失败！" + data.msg);
                 }
-
+            }).fail(function(e) {
+                alert("操作异常！");
             });
         },
         back() {
@@ -96,6 +103,9 @@
         }
     }
 });
-    };
-    return module.exports;
-});
+        };
+        return module.exports;
+    }
+
+    
+);

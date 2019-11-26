@@ -8,11 +8,11 @@
             <tr>
                 <th>客户名称</th>
                 <td>
-                    <input v-model="form.coname" disabled="disabled"> <button @click="choose">选择</button>
+                    <input v-model="form.coname" readonly="readonly"> <button @click="toChooseClient">选择</button>
                 </td>
                 <th>客户编号</th>
                 <td>
-                    <input v-model="form.co_number" disabled="disabled">
+                    <input v-model="form.co_number" readonly="readonly">
                 </td>
             </tr>
             <tr>
@@ -22,7 +22,7 @@
             <tr>
                 <th>联 系 人</th>
                 <td>
-                    <input v-model="form.contact"> <button @click="chooseContact">选择</button>
+                    <input v-model="form.contact"> <button @click="toChooseContact">选择</button>
                 </td>
                 <th>联系电话</th>
                 <td>
@@ -66,7 +66,7 @@
             <tr>
                 <th>特别要求</th>
                 <td colspan="3">
-                    <textarea v-model="form.tbyq"></textarea>
+                    <jxiaui-rich-editor v-model="form.tbyq"></jxiaui-rich-editor>
                 </td>
             </tr>
             <tr>
@@ -77,4 +77,6 @@
             </tr>
         </table>
     </div>
+    <client-choose-dialog ref="clientChooseDialog" @choose="chooseClient"></client-choose-dialog>
+    <client-choose-contact-dialog :pid="form.clientId" ref="clientContactChooseDialog" @choose="chooseContact"></client-choose-contact-dialog>
 </div>

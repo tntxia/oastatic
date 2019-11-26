@@ -100,10 +100,6 @@
         "url": "/oa_static/components/client/client-score-dialog.js",
         "ref": "clientScoreDialog"
     }, {
-        "name": "client-choose-dialog",
-        "url": "/oa_static/components/client/client-choose-dialog.js",
-        "ref": "clientChooseDialog"
-    }, {
         "name": "client-contact-choose-dialog",
         "url": "/oa_static/components/client/client-contact-choose-dialog.js",
         "ref": "clientContactChooseDialog"

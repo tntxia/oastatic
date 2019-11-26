@@ -24,18 +24,20 @@
         var exports = Object.create(null);
         module.exports = exports;
 
+        
+        module.exports.template = "<div id=\"app\">\r\n    <div>\r\n        型号：<input v-model=\"form.model\"> 客户名称:\r\n        <input v-model=\"form.coname\"> 合同编号:\r\n        <input v-model=\"form.number\"> 产品编号:\r\n        <input v-model=\"form.pro_number\"> 选择部门：\r\n        <select v-model=\"form.depts\">\r\n\t\t\t\t<option value=\"\">请选择</option>\r\n\t\t\t\t<option v-for=\"dept in departmentList\">{{dept}}</option>\r\n\t\t\t\t</select> 销售员:\r\n        <select v-model=\"form.man\">\r\n\t\t\t\t<option value=\"\">请选择</option>\r\n\t\t\t\t<option v-for=\"user in userList\">{{user.name}}</option>\r\n\t\t\t\t</select> 返回原因:\r\n        <select v-model=\"form.pStates\">\r\n\t\t\t\t<option>请选择</option>\r\n\t\t\t\t<option>A、退回重新编辑</option>\r\n\t\t\t\t<option>B、货物检验有质量问题</option>\r\n\t\t\t\t<option>C、货物不符合合同要求</option>\r\n\t\t\t\t<option>D、客户推迟订货时间</option>\r\n\t\t\t\t<option>E、供应商没有货</option>\r\n\t\t\t\t<option>F、没有收到货款</option>\r\n\t\t\t\t<option>G、其他</option>\r\n\t\t\t\t</select> 起始日期：\r\n        <input v-model=\"form.startdate\"> 终止日期:\r\n        <input v-model=\"form.enddate\">\r\n\r\n        <button @click=\"toAdd\">新增合同</button>\r\n        <button @click=\"query\">查询</button>\r\n    </div>\r\n    <div>\r\n        <jxiaui-datagrid ref=\"datagrid\" :dataset=\"dataset\">\r\n            <jxiaui-datagrid-item label=\"序号\" type=\"index\"></jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"合同编号\">\r\n                <template v-slot=\"row\">\r\n\t\t\t\t\t<a :href=\"getUrl(row)\">{{row.number}}</a>\r\n\t\t\t\t</template>\r\n            </jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"客户名称\">\r\n                <template v-slot=\"row\">\r\n\t\t\t\t\t<a :href=\"getUrl(row)\">{{row.coname}}</a>\r\n\t\t\t\t</template>\r\n            </jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"付款方式\" field=\"mode\">\r\n            </jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"责任人\" field=\"man\">\r\n            </jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"返回原因\" field=\"pstates\">\r\n            </jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"创建时间\" field=\"datetime\">\r\n            </jxiaui-datagrid-item>\r\n        </jxiaui-datagrid>\r\n    </div>\r\n    <choose-template-dialog ref=\"chooseTemplateDialog\"></choose-template-dialog>\r\n</div>";
+        
+
         exports.init = function() {
             let url = webRoot + '/sale/sale!list.do';
 new Vue({
     el: '#app',
     data: {
-        loading: false,
         dataset: {
             url: url,
             method: 'post',
             pageSize: 50
         },
-        stasticLoading: false,
         departmentList: [],
         userList: [],
         form: {
@@ -48,13 +50,7 @@ new Vue({
             pStates: null,
             startdate: null,
             enddate: null
-        },
-        gatheringId: null,
-        totalAll: null,
-        stotalAll: null,
-        rTotalAll: null,
-        gatheredAll: null,
-        leftAll: null
+        }
     },
     components: this.components,
     mounted() {
@@ -62,8 +58,7 @@ new Vue({
     },
     methods: {
         getUrl: function(row) {
-            return webRoot +
-                "/sale/ddgl/detailDraft.mvc?id=" + row.id;
+            return "#sale/view?id=" + row.id;
         },
         loadData() {
             let me = this;
@@ -77,8 +72,7 @@ new Vue({
                         departmentList.push(r.departname);
                     });
                     me.departmentList = departmentList;
-                },
-                dataType: 'json'
+                }
             });
 
             this.stasticLoading = true;
@@ -126,7 +120,9 @@ new Vue({
         },
         choose: function(row) {
             this.$refs.dialog.close();
-            window.open("sale/ddgl/new.mvc?id=" + row.id);
+            router.goRoute("sale/new", {
+                templateId: row.id
+            });
         },
         sub() {
             let me = this;
