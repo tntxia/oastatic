@@ -24,6 +24,10 @@
         var exports = Object.create(null);
         module.exports = exports;
 
+        
+        module.exports.template = "<div id=\"app\">\r\n    <div>\r\n        <button @click=\"toReturn\">返回合同</button>\r\n        <button @click=\"toPrintDeliveryBill\">打印送货单</button>\r\n        <button @click=\"outAll\">出库所有产品</button>\r\n        <button @click=\"back\">返回出库管理</button>\r\n    </div>\r\n\r\n    <div class=\"jxiaui-table-form\">\r\n        <table>\r\n            <tr>\r\n                <th>销售单号</th>\r\n                <td>{{detail.number}}</td>\r\n                <th>负 责 人</th>\r\n                <td>{{detail.man}}</td>\r\n            </tr>\r\n            <tr>\r\n                <th>客户名称</th>\r\n                <td>{{detail.coname}}</td>\r\n                <th>客户合同号</th>\r\n                <td>{{detail.custno}}</td>\r\n            </tr>\r\n            <tr>\r\n                <th>帐单地址</th>\r\n                <td colspan=\"3\">{{detail.coaddr}}</td>\r\n            </tr>\r\n            <tr>\r\n                <th>销售时间</th>\r\n                <td>{{detail.datetime}}</td>\r\n                <th>发货时间</th>\r\n                <td>{{detail.send_date}}</td>\r\n            </tr>\r\n            <tr>\r\n                <td colspan=\"4\">\r\n                    <jxiaui-datagrid class=\"table\" ref=\"datagrid\" :dataset=\"dataset\" :self-define-row-handler=\"rowHandler\">\r\n                        <jxiaui-datagrid-item label=\"#\" type=\"index\"></jxiaui-datagrid-item>\r\n                        <jxiaui-datagrid-item label=\"型号\" field=\"epro\"></jxiaui-datagrid-item>\r\n                        <jxiaui-datagrid-item label=\"批号\" field=\"cpro\">\r\n                        </jxiaui-datagrid-item>\r\n                        <jxiaui-datagrid-item label=\"数量\" field=\"num\">\r\n                        </jxiaui-datagrid-item>\r\n                        <jxiaui-datagrid-item label=\"货期\" field=\"fypronum\">\r\n                        </jxiaui-datagrid-item>\r\n                        <jxiaui-datagrid-item label=\"已出库数量\" field=\"numOut\">\r\n                        </jxiaui-datagrid-item>\r\n                        <jxiaui-datagrid-item label=\"品牌\" field=\"supplier\">\r\n                        </jxiaui-datagrid-item>\r\n                        <jxiaui-datagrid-item label=\"出库数量\">\r\n                            <template v-slot=\"row\">\r\n                                <input v-model=\"row.outNum\">\r\n                            </template>\r\n                        </jxiaui-datagrid-item>\r\n                        <jxiaui-datagrid-item label=\"出库产品\">\r\n                            <template v-slot=\"row\">\r\n                                <product-select v-model=\"row.productId\" :model=\"row.epro\"></product-select>\r\n                            </template>\r\n                        </jxiaui-datagrid-item>\r\n                        <jxiaui-datagrid-item label=\"操作\">\r\n                            <template v-slot=\"row\">\r\n                                    <button @click=\"out(row)\">出库</button>\r\n                                </template>\r\n                        </jxiaui-datagrid-item>\r\n                    </jxiaui-datagrid>\r\n                </td>\r\n\r\n            </tr>\r\n        </table>\r\n    </div>\r\n\r\n    <!-- 返回合同的弹出框 -->\r\n    <return-out-dialog ref=\"returnDialog\"></return-out-dialog>\r\n</div>";
+        
+
         exports.init = function() {
             let id = router.getParam("id");
 
@@ -52,7 +56,11 @@ new Vue({
         },
         // 表格行的处理，待出库数量=合同产品数量 - 已出库数量
         rowHandler(row) {
-            row.outNum = row.num - row.numOut;
+            let numOut = row.numOut;
+            if (!numOut) {
+                numOut = 0;
+            }
+            row.outNum = row.num - numOut;
         },
         // 打印订单
         toPrintDeliveryBill() {
