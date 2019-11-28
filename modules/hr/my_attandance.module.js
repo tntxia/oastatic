@@ -1,15 +1,35 @@
-(function(name, module) {
+(function(name, moduleFun) {
     if (!window.modules) {
         window.modules = Object.create(null);
     };
-    window.modules[name] = module();
+    let module = moduleFun();
+    if (arguments.length > 2) {
+        let components = Object.create(null);
+        for (let i = 2; i < arguments.length; i++) {
+            let name = arguments[i];
+            i++;
+            let func = arguments[i];
+            if (!func) {
+                continue;
+            }
+            let component = func();
+            components[name] = component;
+        }
+        module.components = components;
+    }
+
+    window.modules[name] = module;
 })('hr/my_attandance', function() {
-    var module = Object.create(null);
-    var exports = Object.create(null);
-    module.exports = exports;
-    exports.leftbar = false;
-    exports.init = function() {
-        let url = webRoot + "/checkwork/checkwork!my.do";
+        var module = Object.create(null);
+        var exports = Object.create(null);
+        module.exports = exports;
+
+        
+        module.exports.template = null;
+        
+
+        exports.init = function() {
+            let url = webRoot + "/checkwork/checkwork!my.do";
 
 let pid = router.getParam("id");
 
@@ -67,6 +87,9 @@ new Vue({
         }
     }
 });
-    };
-    return module.exports;
-});
+        };
+        return module.exports;
+    }
+
+    
+);
