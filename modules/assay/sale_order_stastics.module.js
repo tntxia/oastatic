@@ -104,9 +104,13 @@
                 type: 'post',
                 data: param,
                 success: function(data) {
-                    let uuid = data.uuid;
-                    debugger
-                    webApp.download("/report/report!download.do?id=" + uuid);
+                    if (data.success) {
+                        let uuid = data.uuid;
+                        webApp.download("/report/report!download.do?id=" + uuid);
+                    } else {
+                        alert("操作失败：" + data.msg);
+                    }
+
                 },
                 error: function(e) {
                     alert("获取信息异常");
