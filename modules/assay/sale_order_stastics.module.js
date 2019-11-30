@@ -51,7 +51,7 @@
         dataset: {
             url: "assay/assay!getStatistic.do",
             method: 'post',
-            pageSize: 50
+            pageSize: 20
         }
     },
     created: function() {
