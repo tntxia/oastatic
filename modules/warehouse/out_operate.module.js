@@ -212,6 +212,7 @@ module.exports.template = "<jxiaui-dialog title=\"订单返回\" ref=\"dialog\">
             let me = this;
             $.ajax({
                 url: 'warehouse/warehouse!listByModel.do',
+                type: 'post',
                 data: {
                     model: this.model
                 }
