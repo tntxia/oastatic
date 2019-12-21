@@ -39,7 +39,7 @@ new Vue({
         detail: {},
         currentView: null,
         dataset: {
-            url: "sale/sale!listProduct.do",
+            url: "warehouse/warehouse!listSaleProductToOut.do",
             params: {
                 id: id
             }
@@ -56,7 +56,6 @@ new Vue({
         },
         // 表格行的处理，待出库数量=合同产品数量 - 已出库数量
         rowHandler(row) {
-            debugger
             if (!row.s_num) {
                 row.s_num = 0;
             }
