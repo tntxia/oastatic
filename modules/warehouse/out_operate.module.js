@@ -137,7 +137,7 @@ new Vue({
                     alert("出库完成");
                     me.back();
                 } else {
-                    alert("操作失败");
+                    alert("操作失败:" + data.msg);
                 }
             });
         }
