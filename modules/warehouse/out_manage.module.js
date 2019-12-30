@@ -24,6 +24,10 @@
         var exports = Object.create(null);
         module.exports = exports;
 
+        
+        module.exports.template = "<div id=\"container\">\r\n    <jxiaui-tabs>\r\n        <jxiaui-tabs-item label=\"销售待出库列表\" template=\"warehouse/out/template_to_out.mvc\" onload=\"loadWait\">\r\n            <out-list-wait></out-list-wait>\r\n        </jxiaui-tabs-item>\r\n        <jxiaui-tabs-item label=\"样品待出库列表\" template=\"warehouse/out/template_sample_to_out.mvc\" onload=\"loadWaitSample\">\r\n            <warehouse-out-list-sample></warehouse-out-list-sample>\r\n        </jxiaui-tabs-item>\r\n        <jxiaui-tabs-item label=\"退货待出库列表\" template=\"warehouse/out/template_refund_to_out.mvc\" onload=\"loadWaitRefund\">\r\n            <warehouse-out-list-refund></warehouse-out-list-refund>\r\n        </jxiaui-tabs-item>\r\n        <jxiaui-tabs-item label=\"已出库列表\" template=\"warehouse/out/template_outed.mvc\">\r\n            <warehouse-out-list></warehouse-out-list>\r\n            </jxia-tabs-item>\r\n    </jxiaui-tabs>\r\n</div>";
+        
+
         exports.init = function() {
             new Vue({
     el: '#container',
