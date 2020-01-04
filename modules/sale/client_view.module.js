@@ -25,7 +25,7 @@
         module.exports = exports;
 
         
-        module.exports.template = "<div id=\"changeNameDiv\" style=\"display:none\">\r\n    <input id=\"nameToChange\" value=\"${coname }\"><button id=\"changeNameConfirmBtn\">修改</button>\r\n</div>\r\n\r\n<br>\r\n<div id=\"app\">\r\n    <div class=\"jxiaui-table-form\">\r\n        <table style=\"width: 100%\">\r\n            <tr>\r\n                <td colspan=\"4\">\r\n                    <button @click=\"viewFollow\">客户跟进</button>\r\n                    <button @click=\"viewContact\">联系人</button>\r\n                    <button @click=\"viewInquiry\">客户询价</button>\r\n                    <button @click=\"viewProject\">客户项目</button>\r\n                    <button @click=\"viewQuote\">客户报价</button>\r\n                    <button @click=\"viewOrder\">客户订单</button>\r\n                    <button @click=\"viewGather\">客户收款</button>\r\n                    <button @click=\"update\">修改</button>\r\n                    <button @click=\"del\">删除</button>\r\n                    <button @click=\"viewlist\">查看列表</button>\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>公司编号</th>\r\n                <td>{{form.co_number }}</td>\r\n                <th>是否共享</th>\r\n                <td>\r\n                    <select v-model=\"form.share\">\r\n                        <option>是</option>\r\n                        <option>否</option>\r\n                    </select>\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>公司名称</th>\r\n                <td>{{form.coname}}</td>\r\n                <th>电　　话</th>\r\n                <td><input v-model=\"form.cotel\"></td>\r\n            </tr>\r\n            <tr>\r\n                <th>公司地址</th>\r\n                <td><input v-model=\"form.coaddr\" style=\"width: 80%\"></td>\r\n                <th>传　　真</th>\r\n                <td><input v-model=\"form.cofax\"></td>\r\n            </tr>\r\n            <tr>\r\n                <th>网　　址</th>\r\n                <td>\r\n                    <input v-model=\"form.conet\">\r\n                </td>\r\n                <th>电子邮件</th>\r\n                <td>\r\n                    <input v-model=\"form.email\">\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>邮　　编</th>\r\n                <td>\r\n                    <input v-model=\"form.post\">\r\n                </td>\r\n                <th>城　　市</th>\r\n                <td>\r\n                    <input v-model=\"form.city\">\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>省　　市</th>\r\n                <td>\r\n                    <input v-model=\"form.province\">\r\n                </td>\r\n                <th>国　　家</th>\r\n                <td>\r\n                    <input v-model=\"form.coman\">\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>组织形式</th>\r\n                <td>\r\n                    <select v-model=\"form.cozzxs\">\r\n                        <option>私营有限公司</option>\r\n                        <option>国营有限公司</option>\r\n                        <option>股份制公司</option>\r\n                        <option>外资企业</option>\r\n                        <option>中外合资企业</option>\r\n                        <option>个体户</option>\r\n                    </select>\r\n                </td>\r\n                <th>付款方式</th>\r\n                <td>\r\n                    <jxiaui-select v-model=\"form.cozczb\" :url=\"paywaySelectUrl\" value-name=\"payment\" label-name=\"payment\"></jxiaui-select>\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>付款逾期期限</th>\r\n                <td colspan=\"3\">\r\n                    <input v-model=\"form.pay_deadline\">天\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>行业性质</th>\r\n                <td>\r\n                    <input v-model=\"form.tradetypes\">\r\n                </td>\r\n                <th>开户名称</th>\r\n                <td>\r\n                    <input v-model=\"form.coclrq\">\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>银行名称</th>\r\n                <td>\r\n                    <input v-model=\"form.bank_name\">\r\n                </td>\r\n                <th>银行地址</th>\r\n                <td>\r\n                    <input v-model=\"form.bank_addr\">\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>Swift Code</th>\r\n                <td>\r\n                    <input v-model=\"form.swift_code\">\r\n                </td>\r\n                <th>IBAN</th>\r\n                <td>\r\n                    <input v-model=\"form.iban\">\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>Route</th>\r\n                <td>\r\n                    <input v-model=\"form.route\">\r\n                </td>\r\n                <th>BIC #</th>\r\n                <td>\r\n                    <input v-model=\"form.bic\">\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>信用级别</th>\r\n                <td>\r\n                    <input v-model=\"form.cokhjb\">\r\n                </td>\r\n                <th>银行帐号</th>\r\n                <td>\r\n                    <input v-model=\"form.coyhzh\">\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>运输方式</th>\r\n                <td>\r\n                    <input v-model=\"form.cokhjb\"> 帐号：\r\n                    <input v-model=\"form.cokhjb\">\r\n                </td>\r\n                <th>评 分</th>\r\n                <td>\r\n                    <table style=\"font-size:12px\">\r\n                        <tr>\r\n                            <td>询价单(RFQs)回应速度:</td>\r\n                            <td><span>{{scores.rfq}}</span></td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>购买机率:</td>\r\n                            <td>{{scores.gmjl}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>付款情况:</td>\r\n                            <td>{{scores.fk}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>退货速度:</td>\r\n                            <td>{{scores.th}}</td>\r\n                        </tr>\r\n                    </table>\r\n                    <button @click=\"score\">我要评分</button>\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>使用货币</th>\r\n                <td>\r\n                    <select v-model=\"form.cosyhb\">\r\n                        <option>CNY</option>\r\n                        <option>USD</option>\r\n                    </select>\r\n                </td>\r\n                <th>注册资本</th>\r\n                <td>\r\n                    <input v-model=\"form.nsnumber\"> 万元\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>员工总数</th>\r\n                <td>\r\n                    <input v-model=\"form.number\"> 人\r\n                </td>\r\n                <th>创建用户</th>\r\n                <td>\r\n                    {{form.username}}\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>所在部门</th>\r\n                <td>\r\n                    {{form.dept}}\r\n                </td>\r\n                <th>创建日期</th>\r\n                <td>\r\n                    {{form.rg_date}}\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>修改用户</th>\r\n                <td>\r\n                    {{form.modman}}\r\n                </td>\r\n                <th>修改日期</th>\r\n                <td>\r\n                    {{form.mod_date}}\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>生产产品及转移记录</th>\r\n                <td colspan=\"3\">\r\n                    {{form.mproduct}}\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>经营情况</th>\r\n                <td>\r\n                    {{form.company_management}}\r\n                </td>\r\n                <th>推荐产品</th>\r\n                <td>\r\n                    {{form.product}}\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>备　　注</th>\r\n                <td colspan=\"3\">\r\n                    {{form.describee}}\r\n                </td>\r\n            </tr>\r\n        </table>\r\n    </div>\r\n</div>";
+        module.exports.template = "<div id=\"changeNameDiv\" style=\"display:none\">\r\n    <input id=\"nameToChange\" value=\"${coname }\"><button id=\"changeNameConfirmBtn\">修改</button>\r\n</div>\r\n\r\n<br>\r\n<div id=\"app\">\r\n    <div class=\"jxiaui-table-form\">\r\n        <table style=\"width: 100%\">\r\n            <tr>\r\n                <td colspan=\"4\">\r\n                    <button @click=\"viewFollow\">客户跟进</button>\r\n                    <button @click=\"viewContact\">联系人</button>\r\n                    <button @click=\"viewInquiry\">客户询价</button>\r\n                    <button @click=\"viewProject\">客户项目</button>\r\n                    <button @click=\"viewQuote\">客户报价</button>\r\n                    <button @click=\"viewOrder\">客户订单</button>\r\n                    <button @click=\"viewGather\">客户收款</button>\r\n                    <button @click=\"update\">修改</button>\r\n                    <button @click=\"del\">删除</button>\r\n                    <button @click=\"viewlist\">查看列表</button>\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>公司编号</th>\r\n                <td>{{form.co_number }}</td>\r\n                <th>是否共享</th>\r\n                <td>\r\n                    <select v-model=\"form.share\">\r\n                        <option>是</option>\r\n                        <option>否</option>\r\n                    </select>\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>公司名称</th>\r\n                <td>{{form.coname}}</td>\r\n                <th>电　　话</th>\r\n                <td><input v-model=\"form.cotel\"></td>\r\n            </tr>\r\n            <tr>\r\n                <th>公司地址</th>\r\n                <td><input v-model=\"form.coaddr\" style=\"width: 80%\"></td>\r\n                <th>传　　真</th>\r\n                <td><input v-model=\"form.cofax\"></td>\r\n            </tr>\r\n            <tr>\r\n                <th>网　　址</th>\r\n                <td>\r\n                    <input v-model=\"form.conet\">\r\n                </td>\r\n                <th>电子邮件</th>\r\n                <td>\r\n                    <input v-model=\"form.email\">\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>邮　　编</th>\r\n                <td>\r\n                    <input v-model=\"form.post\">\r\n                </td>\r\n                <th>国　　家</th>\r\n                <td>\r\n                    <input v-model=\"form.coman\">\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>省　　市</th>\r\n                <td>\r\n                    <province-select v-model=\"form.province\"></province-select>\r\n                </td>\r\n                <th>城　　市</th>\r\n                <td>\r\n                    <city-select v-model=\"form.city\" :province=\"form.province\"></city-select>\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>组织形式</th>\r\n                <td>\r\n                    <select v-model=\"form.cozzxs\">\r\n                        <option>私营有限公司</option>\r\n                        <option>国营有限公司</option>\r\n                        <option>股份制公司</option>\r\n                        <option>外资企业</option>\r\n                        <option>中外合资企业</option>\r\n                        <option>个体户</option>\r\n                    </select>\r\n                </td>\r\n                <th>付款方式</th>\r\n                <td>\r\n                    <jxiaui-select v-model=\"form.cozczb\" :url=\"paywaySelectUrl\" value-name=\"payment\" label-name=\"payment\"></jxiaui-select>\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>付款逾期期限</th>\r\n                <td colspan=\"3\">\r\n                    <input v-model=\"form.pay_deadline\">天\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>行业性质</th>\r\n                <td>\r\n                    <input v-model=\"form.tradetypes\">\r\n                </td>\r\n                <th>开户名称</th>\r\n                <td>\r\n                    <input v-model=\"form.coclrq\">\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>银行名称</th>\r\n                <td>\r\n                    <input v-model=\"form.bank_name\">\r\n                </td>\r\n                <th>银行地址</th>\r\n                <td>\r\n                    <input v-model=\"form.bank_addr\">\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>Swift Code</th>\r\n                <td>\r\n                    <input v-model=\"form.swift_code\">\r\n                </td>\r\n                <th>IBAN</th>\r\n                <td>\r\n                    <input v-model=\"form.iban\">\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>Route</th>\r\n                <td>\r\n                    <input v-model=\"form.route\">\r\n                </td>\r\n                <th>BIC #</th>\r\n                <td>\r\n                    <input v-model=\"form.bic\">\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>信用级别</th>\r\n                <td>\r\n                    <input v-model=\"form.cokhjb\">\r\n                </td>\r\n                <th>银行帐号</th>\r\n                <td>\r\n                    <input v-model=\"form.coyhzh\">\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>运输方式</th>\r\n                <td>\r\n                    <input v-model=\"form.cokhjb\"> 帐号：\r\n                    <input v-model=\"form.cokhjb\">\r\n                </td>\r\n                <th>评 分</th>\r\n                <td>\r\n                    <table style=\"font-size:12px\">\r\n                        <tr>\r\n                            <td>询价单(RFQs)回应速度:</td>\r\n                            <td><span>{{scores.rfq}}</span></td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>购买机率:</td>\r\n                            <td>{{scores.gmjl}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>付款情况:</td>\r\n                            <td>{{scores.fk}}</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>退货速度:</td>\r\n                            <td>{{scores.th}}</td>\r\n                        </tr>\r\n                    </table>\r\n                    <button @click=\"score\">我要评分</button>\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>使用货币</th>\r\n                <td>\r\n                    <select v-model=\"form.cosyhb\">\r\n                        <option>CNY</option>\r\n                        <option>USD</option>\r\n                    </select>\r\n                </td>\r\n                <th>注册资本</th>\r\n                <td>\r\n                    <input v-model=\"form.nsnumber\"> 万元\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>员工总数</th>\r\n                <td>\r\n                    <input v-model=\"form.number\"> 人\r\n                </td>\r\n                <th>创建用户</th>\r\n                <td>\r\n                    {{form.username}}\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>所在部门</th>\r\n                <td>\r\n                    {{form.dept}}\r\n                </td>\r\n                <th>创建日期</th>\r\n                <td>\r\n                    {{form.rg_date}}\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>修改用户</th>\r\n                <td>\r\n                    {{form.modman}}\r\n                </td>\r\n                <th>修改日期</th>\r\n                <td>\r\n                    {{form.mod_date}}\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>生产产品及转移记录</th>\r\n                <td colspan=\"3\">\r\n                    {{form.mproduct}}\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>经营情况</th>\r\n                <td>\r\n                    {{form.company_management}}\r\n                </td>\r\n                <th>推荐产品</th>\r\n                <td>\r\n                    {{form.product}}\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <th>备　　注</th>\r\n                <td colspan=\"3\">\r\n                    {{form.describee}}\r\n                </td>\r\n            </tr>\r\n        </table>\r\n    </div>\r\n</div>";
         
 
         exports.init = function() {
@@ -33,6 +33,7 @@
 
 new Vue({
     el: '#app',
+    components: this.conponents,
     data: {
         paywaySelectUrl: webRoot + '/payway!list.do',
         form: {},
@@ -125,7 +126,7 @@ new Vue({
             router.goRoute("sale/client_doc", { id });
         },
         viewlist() {
-            router.goRoute("sale_client_list");
+            router.goRoute("sale/client_list");
         },
         query() {
             let datagrid = this.$refs["gatheringTable"];
@@ -138,6 +139,11 @@ new Vue({
             let dialog = mainLayout.showDialog("clientScoreDialog");
             dialog.setId(id);
             dialog.show();
+        }
+    },
+    watch: {
+        "form.province": function() {
+            console.log("form.province change.....");
         }
     }
 });
@@ -162,5 +168,108 @@ $("#exportBtn").click(function() {
         return module.exports;
     }
 
+    ,
+    'province-select',
+    function() {
+        var module = Object.create(null);
+        module.exports = {
+    props: ['value'],
+    data() {
+        return {
+            v: null,
+            provinceList: []
+        }
+    },
+    mounted() {
+        console.log("this.value", this.value);
+        if (this.value) {
+            this.v = this.value;
+        }
+        this.loadData();
+    },
+    updated() {},
+    methods: {
+        loadData() {
+            let me = this;
+            $.ajax({
+                url: '/gis/province!listAll.do'
+            }).done(function(res) {
+                let data = res.data;
+                if (!me.v) {
+                    if (data && data.length) {
+                        me.v = data[0].name;
+                    }
+                }
+                me.provinceList = data;
+            })
+        }
+    },
+    watch: {
+        v() {
+            console.log("select change!!!", this.v);
+            this.$emit("input", this.v);
+        },
+        value() {
+            this.v = this.value;
+        }
+    }
+}
+module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"c in provinceList\">{{c.name}}</option>\r\n</select>";
+        return module.exports;
+    }
+    ,
+    'city-select',
+    function() {
+        var module = Object.create(null);
+        module.exports = {
+    props: ['value', 'province'],
+    data() {
+        return {
+            v: null,
+            cityList: []
+        }
+    },
+    mounted() {
+        this.loadData();
+    },
+    updated() {},
+    methods: {
+        loadData() {
+            if (!this.province) {
+                return;
+            }
+            let me = this;
+            $.ajax({
+                url: '/gis/city!listAllByProvinceName.do',
+                type: 'post',
+                data: {
+                    parent: this.province
+                }
+            }).done(function(res) {
+                let data = res.data;
+                if (!me.v) {
+                    if (data && data.length) {
+                        me.v = data[0].name;
+                    }
+                }
+                me.cityList = data;
+            })
+        }
+    },
+    watch: {
+        province() {
+            this.loadData();
+        },
+        v() {
+            this.$emit("input", this.v);
+        },
+        value() {
+            this.v = this.value;
+        }
+    }
+}
+module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"c in cityList\">{{c.name}}</option>\r\n</select>";
+        return module.exports;
+    }
     
 );

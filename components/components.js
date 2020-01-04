@@ -214,6 +214,10 @@ module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"c in co
         }
     },
     mounted() {
+        console.log("this.value", this.value);
+        if (this.value) {
+            this.v = this.value;
+        }
         this.loadData();
     },
     updated() {},
@@ -224,8 +228,10 @@ module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"c in co
                 url: '/gis/province!listAll.do'
             }).done(function(res) {
                 let data = res.data;
-                if (data && data.length) {
-                    me.v = data[0].name;
+                if (!me.v) {
+                    if (data && data.length) {
+                        me.v = data[0].name;
+                    }
                 }
                 me.provinceList = data;
             })
@@ -233,7 +239,11 @@ module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"c in co
     },
     watch: {
         v() {
+            console.log("select change!!!", this.v);
             this.$emit("input", this.v);
+        },
+        value() {
+            this.v = this.value;
         }
     }
 }
@@ -253,7 +263,7 @@ module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"c in pr
     (() => {
         let module = Object.create(null);
         module.exports = {
-    props: ['value', 'parent'],
+    props: ['value', 'province'],
     data() {
         return {
             v: null,
@@ -266,7 +276,7 @@ module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"c in pr
     updated() {},
     methods: {
         loadData() {
-            if (!this.parent) {
+            if (!this.province) {
                 return;
             }
             let me = this;
@@ -274,23 +284,28 @@ module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"c in pr
                 url: '/gis/city!listAllByProvinceName.do',
                 type: 'post',
                 data: {
-                    parent: this.parent
+                    parent: this.province
                 }
             }).done(function(res) {
                 let data = res.data;
-                if (data && data.length) {
-                    me.v = data[0].name;
+                if (!me.v) {
+                    if (data && data.length) {
+                        me.v = data[0].name;
+                    }
                 }
                 me.cityList = data;
             })
         }
     },
     watch: {
-        parent() {
+        province() {
             this.loadData();
         },
         v() {
             this.$emit("input", this.v);
+        },
+        value() {
+            this.v = this.value;
         }
     }
 }
