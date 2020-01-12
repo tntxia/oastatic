@@ -209,7 +209,7 @@ module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"c in co
     props: ['value'],
     data() {
         return {
-            v: null,
+            v: '',
             provinceList: []
         }
     },
@@ -228,11 +228,6 @@ module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"c in co
                 url: '/gis/province!listAll.do'
             }).done(function(res) {
                 let data = res.data;
-                if (!me.v) {
-                    if (data && data.length) {
-                        me.v = data[0].name;
-                    }
-                }
                 me.provinceList = data;
             })
         }
@@ -247,7 +242,7 @@ module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"c in co
         }
     }
 }
-module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"c in provinceList\">{{c.name}}</option>\r\n</select>"
+module.exports.template = "<select v-model=\"v\">\r\n    <option value=\"\">请选择省份</option>\r\n    <option v-for=\"c in provinceList\">{{c.name}}</option>\r\n</select>"
         return module.exports;
     })(),
 
@@ -266,7 +261,7 @@ module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"c in pr
     props: ['value', 'province'],
     data() {
         return {
-            v: null,
+            v: '',
             cityList: []
         }
     },
@@ -288,11 +283,6 @@ module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"c in pr
                 }
             }).done(function(res) {
                 let data = res.data;
-                if (!me.v) {
-                    if (data && data.length) {
-                        me.v = data[0].name;
-                    }
-                }
                 me.cityList = data;
             })
         }
@@ -309,7 +299,7 @@ module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"c in pr
         }
     }
 }
-module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"c in cityList\">{{c.name}}</option>\r\n</select>"
+module.exports.template = "<select v-model=\"v\">\r\n    <option value=\"\">请选择城市</option>\r\n    <option v-for=\"c in cityList\">{{c.name}}</option>\r\n</select>"
         return module.exports;
     })(),
 
