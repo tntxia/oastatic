@@ -1,15 +1,35 @@
-(function(name, module) {
+(function(name, moduleFun) {
     if (!window.modules) {
         window.modules = Object.create(null);
     };
-    window.modules[name] = module();
+    let module = moduleFun();
+    if (arguments.length > 2) {
+        let components = Object.create(null);
+        for (let i = 2; i < arguments.length; i++) {
+            let name = arguments[i];
+            i++;
+            let func = arguments[i];
+            if (!func) {
+                continue;
+            }
+            let component = func();
+            components[name] = component;
+        }
+        module.components = components;
+    }
+
+    window.modules[name] = module;
 })('sale/client_list', function() {
-    var module = Object.create(null);
-    var exports = Object.create(null);
-    module.exports = exports;
-    exports.leftbar = true;
-    exports.init = function() {
-        let url = webRoot + "/client/client!list.do";
+        var module = Object.create(null);
+        var exports = Object.create(null);
+        module.exports = exports;
+
+        
+        module.exports.template = "<div id=\"app\">\r\n    <div>\r\n        <span>省份</span>\r\n        <province-select v-model=\"form.province\"></province-select>\r\n        <span>城市</span>\r\n        <city-select v-model=\"form.city\" :province=\"form.province\"></city-select>\r\n        客户名称:<input v-model=\"form.coname\"> 业务跟进人：\r\n        <input v-model='form.follower'>\r\n        <button @click=\"toAdd\">新增</button>\r\n        <button @click=\"query\">查询</button>\r\n        <button @click=\"exportData\">导出</button>\r\n    </div>\r\n    <div>\r\n        <jxiaui-datagrid class=\"table\" ref=\"datagrid\" :dataset=\"dataset\">\r\n            <jxiaui-datagrid-item label=\"序号\" type=\"index\"></jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"客户编号\">\r\n                <template v-slot=\"row\">\r\n\t\t\t\t\t<a :href=\"getUrl(row)\">{{row.co_number}}</a>\r\n\t\t\t\t</template>\r\n            </jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"名称\">\r\n                <template v-slot=\"row\">\r\n\t\t\t\t\t<a :href=\"getUrl(row)\">{{row.coname}}</a>\r\n\t\t\t\t</template>\r\n            </jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"电话\">\r\n                <template v-slot=\"row\">\r\n\t\t\t\t\t<a :href=\"getUrl(row)\" target=\"_blank\">{{row.cotel}}</a>\r\n\t\t\t\t</template>\r\n            </jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"是否共享\" field=\"share\">\r\n            </jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"地址\" field=\"coaddr\">\r\n            </jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"EAU\" field=\"company_management\">\r\n            </jxiaui-datagrid-item>\r\n            <jxiaui-datagrid-item label=\"创建用户\" field=\"username\">\r\n            </jxiaui-datagrid-item>\r\n        </jxiaui-datagrid>\r\n    </div>\r\n</div>";
+        
+
+        exports.init = function() {
+            let url = webRoot + "/client/client!list.do";
 
 new Vue({
     el: '#app',
@@ -28,6 +48,7 @@ new Vue({
             follower: null
         }
     },
+    components: this.components,
     mounted() {
         this.loadData();
     },
@@ -91,6 +112,112 @@ new Vue({
         }
     }
 });
-    };
-    return module.exports;
-});
+        };
+        return module.exports;
+    }
+
+    ,
+    'province-select',
+    function() {
+        var module = Object.create(null);
+        module.exports = {
+    props: ['value'],
+    data() {
+        return {
+            v: null,
+            provinceList: []
+        }
+    },
+    mounted() {
+        console.log("this.value", this.value);
+        if (this.value) {
+            this.v = this.value;
+        }
+        this.loadData();
+    },
+    updated() {},
+    methods: {
+        loadData() {
+            let me = this;
+            $.ajax({
+                url: '/gis/province!listAll.do'
+            }).done(function(res) {
+                let data = res.data;
+                if (!me.v) {
+                    if (data && data.length) {
+                        me.v = data[0].name;
+                    }
+                }
+                me.provinceList = data;
+            })
+        }
+    },
+    watch: {
+        v() {
+            console.log("select change!!!", this.v);
+            this.$emit("input", this.v);
+        },
+        value() {
+            this.v = this.value;
+        }
+    }
+}
+module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"c in provinceList\">{{c.name}}</option>\r\n</select>";
+        return module.exports;
+    }
+    ,
+    'city-select',
+    function() {
+        var module = Object.create(null);
+        module.exports = {
+    props: ['value', 'province'],
+    data() {
+        return {
+            v: null,
+            cityList: []
+        }
+    },
+    mounted() {
+        this.loadData();
+    },
+    updated() {},
+    methods: {
+        loadData() {
+            if (!this.province) {
+                return;
+            }
+            let me = this;
+            $.ajax({
+                url: '/gis/city!listAllByProvinceName.do',
+                type: 'post',
+                data: {
+                    parent: this.province
+                }
+            }).done(function(res) {
+                let data = res.data;
+                if (!me.v) {
+                    if (data && data.length) {
+                        me.v = data[0].name;
+                    }
+                }
+                me.cityList = data;
+            })
+        }
+    },
+    watch: {
+        province() {
+            this.loadData();
+        },
+        v() {
+            this.$emit("input", this.v);
+        },
+        value() {
+            this.v = this.value;
+        }
+    }
+}
+module.exports.template = "<select v-model=\"v\">\r\n    <option v-for=\"c in cityList\">{{c.name}}</option>\r\n</select>";
+        return module.exports;
+    }
+    
+);
