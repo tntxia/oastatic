@@ -100,7 +100,7 @@ new Vue({
                 data: param,
                 success: function(data) {
                     if (data.success) {
-                        window.open("/ReportCenter/view.mvc?id=" + data.uuid);
+                        window.open("/report/report!download.do?id=" + data.uuid);
                     } else {
                         alert("操作失败：" + data.msg);
                     }
