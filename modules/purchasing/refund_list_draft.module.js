@@ -1,15 +1,35 @@
-(function(name, module) {
+(function(name, moduleFun) {
     if (!window.modules) {
         window.modules = Object.create(null);
     };
-    window.modules[name] = module();
+    let module = moduleFun();
+    if (arguments.length > 2) {
+        let components = Object.create(null);
+        for (let i = 2; i < arguments.length; i++) {
+            let name = arguments[i];
+            i++;
+            let func = arguments[i];
+            if (!func) {
+                continue;
+            }
+            let component = func();
+            components[name] = component;
+        }
+        module.components = components;
+    }
+
+    window.modules[name] = module;
 })('purchasing/refund_list_draft', function() {
-    var module = Object.create(null);
-    var exports = Object.create(null);
-    module.exports = exports;
-    exports.leftbar = true;
-    exports.init = function() {
-        let url = webRoot + '/purchasing/purchasing!list.do';
+        var module = Object.create(null);
+        var exports = Object.create(null);
+        module.exports = exports;
+
+        
+        module.exports.template = null;
+        
+
+        exports.init = function() {
+            let url = webRoot + '/purchasing/purchasing!list.do';
 new Vue({
     el: '#app',
     data: {
@@ -40,48 +60,40 @@ new Vue({
             datagrid.loadData();
         },
         toAdd() {
-            BootstrapUtils.createDialog({
-                id: 'chooseOrderTemplateModal',
-                title: "新增采购合同 - 选择模板",
-                template: webRoot + '/template/chooseOrderTemplate.mvc',
-                onFinish: function() {
-                    var dialog = this;
-                    var vm = new Vue({
-                        data: {
-                            rows: [],
-                            page: 1,
-                            params: {
-                                type: 'purchase'
-                            }
-                        },
-                        created: function() {
-                            this.fetchData();
-                        },
-                        methods: {
-                            fetchData: function() {
-                                var vm = this;
-                                $.ajax({
-                                    url: webRoot + "/template!list.do",
-                                    type: 'post',
-                                    data: vm.params,
-                                    success: function(data) {
-                                        vm.rows = data;
-                                    }
-                                });
-                            },
-                            getUrl: function(id) {
-                                return webRoot + "/ddgl/new.mvc?id=" + id;
-                            }
-                        }
-                    });
-
-                    vm.$mount(this.find(".modal-body").get(0));
-                }
-            });
-            $("#chooseOrderTemplateModal").modal('show');
+            window.open(webRoot + "/purchasing/refund/new.mvc");
         }
     }
 });
-    };
-    return module.exports;
-});
+        };
+        return module.exports;
+    }
+
+    ,
+    'choose-template-dialog',
+    function() {
+        var module = Object.create(null);
+        module.exports = {
+    data() {
+        return {
+            dataset: {
+                url: 'template!list.do'
+            }
+        }
+    },
+    mounted() {},
+    updated() {},
+    methods: {
+        show() {
+            this.$refs.dialog.show();
+        },
+        choose: function(row) {
+            this.$emit("choose", row.id);
+            this.$refs.dialog.close();
+        }
+    }
+}
+module.exports.template = "<jxiaui-dialog ref=\"dialog\" title=\"新增采购合同 - 选择模板\">\r\n    <jxiaui-datagrid class=\"table\" ref=\"datagrid\" :dataset=\"dataset\">\r\n        <jxiaui-datagrid-item label=\"序号\" type=\"index\"></jxiaui-datagrid-item>\r\n        <jxiaui-datagrid-item label=\"合同名称\" field=\"q_name\"></jxiaui-datagrid-item>\r\n        <jxiaui-datagrid-item label=\"公司名称\" field=\"q_company\"></jxiaui-datagrid-item>\r\n        <jxiaui-datagrid-item label=\"日期\" field=\"q_date\"></jxiaui-datagrid-item>\r\n        <jxiaui-datagrid-item label=\"操作\">\r\n            <template v-slot=\"row\">\r\n                <button @click=\"choose(row)\">选择</button>\r\n            </template>\r\n        </jxiaui-datagrid-item>\r\n    </jxiaui-datagrid>\r\n</jxiaui-dialog>";
+        return module.exports;
+    }
+    
+);
