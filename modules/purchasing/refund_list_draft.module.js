@@ -29,7 +29,7 @@
         
 
         exports.init = function() {
-            let url = webRoot + '/purchasing/purchasing!list.do';
+            let url = webRoot + '/purchasing/purchasing!listRefundDraft.do';
 new Vue({
     el: '#app',
     data: {
