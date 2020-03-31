@@ -51,7 +51,7 @@ new Vue({
     },
     methods: {
         getUrl: function(row) {
-            return webRoot + "/purchasing/detail.mvc?id=" + row.id
+            return webRoot + "/xclient/product/th/dd-view.jsp?id=" + row.id
         },
         loadData() {},
         query() {
